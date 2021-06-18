@@ -1807,6 +1807,7 @@ margin-top: 90px;
     text-align: center;
     margin: 24px 0 12px 0;
     position: relative;
+    background-color: #111;
   }
 
   img.avatar {
@@ -1840,8 +1841,22 @@ margin-top: 90px;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
     width: 20%;
+    background-color: #111;
   }
+  .modal-content2 {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
 
+  }
+  .btn-violet {
+    background-color: #81256c;
+    color: #fff;
+  }
+  .btn-violet:hover {
+    background-color: #fff;
+    color: #111;
+  }
 
   .close {
     position: absolute;
@@ -1886,6 +1901,28 @@ margin-top: 90px;
     .control-label {
         font-size: 20px;
         color: black;
+    }
+
+    .drop-menu{
+        color: #fff;
+    }
+    .drop-menu:hover{
+        color: red;
+    }
+    .drop-content{
+        background-color: white;
+        color: #000 !important;
+    }
+    .drop-content:hover{
+        background-color: gray;
+        color: red !important;
+    }
+    a.drop-menu i.fa-caret-down{
+        font-size: 20px;
+        padding-left: 5px;
+    }
+    .fa-sign-in{
+        font-size: 20px;
     }
 
 /**footer shortlink**/
@@ -1949,8 +1986,5 @@ margin-top: 90px;
 .pagination {
     margin-top: 20px;
 }
-
-
-
 
 

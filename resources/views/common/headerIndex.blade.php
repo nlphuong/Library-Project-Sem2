@@ -24,32 +24,36 @@
 
                                     <div id="id01" class="modal">
 
-                                      <form class="modal-content animate" action="/action_page.php" method="post">
-                                        <div class="imgcontainer">
-                                          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login">&times;</span>
-                                          <img src="{{asset('images/avata-login.jpg')}}" alt="Avatar" class="avatar">
-                                        </div>
-                                        <br>
-                                        <div class="container">
-                                            <div class="form-group ">
-                                                <input type="text" class="form-control border-primary " placeholder="Enter Username" name="uname" required>
-                                                <br>
+                                        <form class="modal-content animate" action="{{url('/postLogin')}}" method="post">
+                                            @csrf
+                                            <div class="imgcontainer">
+                                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login">&times;</span>
+                                                <img src="{{asset('images/avata-login.jpg')}}" alt="Avatar" class="avatar">
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                                <div class="form-group ">
+                                                    @if(session('loginfail'))
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{session('loginfail')}}
+                                                    </div>
+                                                    @endif
+                                                    <input type="email" class="form-control border-primary " placeholder="Enter Email" name="email" required>
+                                                    <br>
 
-                                                <input type="password" class="form-control border-primary " placeholder="Enter Password" name="psw" required>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary ">Login</button>
-                                                <label style="padding-left: 10px">
-                                                  <input type="checkbox" checked="checked" name="remember"> Remember me
-                                                </label>
+                                                    <input type="password" class="form-control border-primary " placeholder="Enter Password" name="password" required>
+                                                    <br>
+                                                    <button type="submit" class="btn btn-violet ">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+
+                                                </div>
+
                                             </div>
 
-                                        </div>
-
-                                        <div class="container" style="background-color:#f1f1f1">
-                                            <span class="psw"><a href="{{url('register')}}">Register now</a></span>
-                                            <span class="psw"><a href="#">Forgot password?</a></span>
-                                        </div>
-                                      </form>
+                                            <div class="container">
+                                                <span class="psw text-left" ><a style="color: white !important" class="a-hover" href="{{url('register')}}">Register now</a></span>
+                                                <span class="psw"><a style="color: white !important" class="a-hover" href="#">Forgot password?</a></span>
+                                            </div>
+                                        </form>
                                     </div>
                                  </li>
 

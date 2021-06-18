@@ -18,19 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 // Route không áp dụng middleware
 Route::get('/','UserController@index');
-Route::get('/home','UserController@home');
-Route::get('/about','UserController@about');
-Route::get('/books','UserController@books');
-Route::get('/contact','UserController@contact');
-Route::get('/library','UserController@library');
 Route::get('/register','UserController@register');
-Route::get('/index','UserController@indexAdmin');
+Route::post('/register','UserController@postRegister');
+Route::post('/postLogin','UserController@postLogin');
+Route::get('/logout','UserController@logout');
 
 
 //Route chỉ admin mới vào được(middleware -> admin)
-Route::prefix('admin')->middleware('admin')->group(function () {
+Route::prefix('admin')->group(function () {
 
-    // Route::get('/index','AdminController@index');
+    Route::get('/index','Admin\AdminController@index');
+    Route::resource('category', 'Admin\CategoryController');
+    Route::get('category/delete/{category}','Admin\CategoryController@delete');
+    Route::resource('book', 'Admin\BookController');
 
 
 
@@ -38,8 +38,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 
 //Route chỉ Customer mới vào được (middleware->cus)
-Route::prefix('customer')->middleware('cus')->group(function () {
-    //  Route::get('/index','CustomerController@index');
+Route::prefix('customer')->group(function () {
+     Route::get('/index','CustomerController@index');
 
 
 
