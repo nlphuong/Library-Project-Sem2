@@ -40,7 +40,7 @@
                      <div style="color: white">
                         <p style="font-size: small"> Memorial bring the bes experience for you, The cosy atmosphere here is
                            wating for you
-                        </p></br>
+                        </p><br>
                         <div class="footer-shortlink">
                            <li><a target="blank" href="https://goo.gl/maps/cUPcLhpbbMfWtdgHA"><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </a></li>
                            <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
