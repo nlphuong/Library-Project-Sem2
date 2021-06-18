@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin Management</title>
   <!-- Tell the browser to be responsive to screen width -->
+
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
+  <script src="{{asset('admin')}}/bower_components/jquery/dist/jquery.min.js"></script>
   <link rel="stylesheet" href="{{asset('admin')}}/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('admin')}}/bower_components/font-awesome/css/font-awesome.min.css">
@@ -27,6 +29,7 @@
   <link rel="stylesheet" href="{{asset('admin')}}/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  @yield('css')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,37 +41,63 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+@yield('style')
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="../../index2.html" class="logo">
+        <a href="{{url('customer/index')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b></b></span>
+          <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin Managements</b></span>
+          <span class="logo-lg"><img src="{{asset('images')}}/logo.png"  alt="" width="70%"></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
           </a>
 
-          <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi Admin Manager <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Thông tin</a></li>
-                <li><a href="#">Thoát tài khoản</a></li>
-              </ul>
-            </li>
-          </ul>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              @if(session('adminSession'))
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img  src="{{asset('uploads/'.session('adminSession')[0]['image'])}}" class="user-image" alt="User Image">
+                  <span class="hidden-xs">{{session('adminSession')[0]['fullname']}}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="{{asset('uploads/'.session('adminSession')[0]['image'])}}" class="img-circle" alt="User Image">
 
+                    <p>
+                      {{session('adminSession')[0]['fullname']}} - Web Developer
+                      <small>Member since {{session('adminSession')[0]['created_at']}}</small>
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  {{-- <li class="user-body">
+
+                    <!-- /.row -->
+                  </li> --}}
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              @endif
+            </ul>
+          </div>
         </nav>
       </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -90,16 +119,21 @@
             <li><a href=""><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
+        <li>
+            <a href="{{route('category.index')}}">
+              <i class="fa fa-th"></i> <span>Categories</span>
+            </a>
+          </li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-home"></i> <span>Categories</span>
+          <a href="">
+            <i class="glyphicon glyphicon-book"></i> <span>Books</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Cat 1</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Cat 2</a></li>
+            <li><a href="{{route('book.create')}}"><i class="fa fa-circle-o"></i> Create book</a></li>
+            <li><a href="{{route('book.index')}}"><i class="fa fa-circle-o"></i> Book list</a></li>
           </ul>
         </li>
         <li>
@@ -118,36 +152,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol> -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-        </div>
-        <div class="box-body">
-          Start creating your amazing application!
-        </div>
-
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-
-    </section>
-    <!-- /.content -->
+        @yield('main')
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -353,9 +358,9 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery 3 -->
-<script src="{{asset('admin')}}/bower_components/jquery/dist/jquery.min.js"></script>
+
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('admin')}}/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -382,6 +387,7 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('admin')}}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
+@yield('js')
 <script src="{{asset('admin')}}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="{{asset('admin')}}/bower_components/fastclick/lib/fastclick.js"></script>
@@ -391,5 +397,6 @@
 <script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin')}}/dist/js/demo.js"></script>
+
 </body>
 </html>
