@@ -1902,6 +1902,7 @@ margin-top: 90px;
         font-size: 20px;
         color: black;
     }
+
     .drop-menu{
         color: #fff;
     }
@@ -1923,6 +1924,7 @@ margin-top: 90px;
     .fa-sign-in{
         font-size: 20px;
     }
+
 /**footer shortlink**/
 
 .footer-shortlink li a{
@@ -1932,7 +1934,6 @@ margin-top: 90px;
 .footer-shortlink li:hover a{
     color: #b32137;
 }
-
 
 /* test */
 
