@@ -7,17 +7,17 @@
                     <div class="Follow">
                        <h3>Follow Us</h3>
                     </div>
-                    <div><a href="##"><img src="images/logo.png"></a>
+                    <div><a href="##"><img src="{{asset('images/logo.png')}}"></a>
                         <p></p>
                     </div>
                     <ul class="location_icon">
-                       <li> <a href="#"><img src="icon/facebook.png"></a></li>
-                       <li> <a href="#"><img src="icon/Twitter.png"></a></li>
-                       <li> <a href="#"><img src="icon/linkedin.png"></a></li>
-                       <li> <a href="#"><img src="icon/instagram.png"></a></li>
+                       <li> <a href="#"><img src="{{asset('icon/facebook.png')}}"></a></li>
+                       <li> <a href="#"><img src="{{asset('icon/Twitter.png')}}"></a></li>
+                       <li> <a href="#"><img src="{{asset('icon/linkedin.png')}}"></a></li>
+                       <li> <a href="#"><img src="{{asset('icon/instagram.png')}}"></a></li>
                     </ul>
                  </div>
-                 
+
                 <!--Short Link-->
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 item">
                         <div class="Follow">
@@ -46,7 +46,7 @@
                            <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
                            <li><a href="mailto:support@harvelelectric.com"><i class="fa fa fa-envelope"></i> info@example.com</a> </li>
                         </div>
-                     </div>     
+                     </div>
                  </div>
 
                 <!--Google map-->
