@@ -2076,8 +2076,13 @@ ul.location_icon span {
     margin-bottom: 90px;
 }
 
+/*.about-bg {
+    background-color: #b32137;
+    margin-top: 90px;
+}*/
 .about-bg {
     background-color: #b32137;
+    background-image: linear-gradient(#b32137, #550002); 
     margin-top: 90px;
 }
 
@@ -2257,12 +2262,12 @@ a.drop-menu i.fa-caret-down {
 
 /**footer shortlink**/
 
-.footer-shortlink li a {
-    color: #ffffff;
+/**footer shortlink**/
+.footer-shortlink li a{
+    color: white;
 }
-
-.footer-shortlink li:hover a {
-    color: #b32137;
+.footer-shortlink li:hover a{
+    color: black;
 }
 
 
@@ -2339,4 +2344,23 @@ a.drop-menu i.fa-caret-down {
     -moz-box-shadow: 12px 14px 22px 2px rgba(0, 0, 0, 0.75);
     box-shadow: 12px 14px 22px 2px rgba(0, 0, 0, 0.75);
     margin-bottom: 100px;
+}
+
+/**About us**/
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #b32137;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b32137;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+.social-link:hover, .social-link:focus {
+    background: #b32137;
+    text-decoration: none;
+    color: white;
 }
