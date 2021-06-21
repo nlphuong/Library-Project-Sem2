@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="abouttitle">
-                    <h2>Our Books</h2>
+                    <h2>Book Details</h2>
                 </div>
             </div>
         </div>
@@ -36,13 +36,18 @@
                 </div> -->
             <div class="row">
                 <h3 class="text-warning">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                    @for($i =1; $i <=$star; $i++)
+                    <i class="fa fa-star"  aria-hidden="true"></i>
+                    @endfor
+                    @for($i =1; $i <= 5 - $star; $i++)
+                    <i class="fa fa-star-o"  aria-hidden="true"></i>
+                    @endfor
+                    <!-- <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i> -->
                 </h3> &nbsp;
-                <!-- <h5>1200 start and 250 review</h5> -->
+                <h5>{{$books->total_no_star}} stars and {{$books->total_rating}} reviews</h5>
 
             </div>
             <div class="row">
@@ -79,7 +84,7 @@
                     <div class="row mt-4">
                         <h3 class="text-info"><i class="fa fa-map-marker" aria-hidden="true"></i></h3>
                         <p style="font-size: 20px;">&nbsp; {{$books->position}} | &nbsp; <span
-                                class="text-success">avaible</span></p>
+                                class="text-success">available</span></p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -122,7 +127,7 @@
                 <p style="font-size: 18px;">G.M Garments</p>
             </div> -->
             <div class="row">
-                <h4><Strong>Description:</Strong></h4>
+                <h4 class="my-3"><Strong>Description:</Strong></h4>
             </div>
             <div class="row" style="text-align: left;">
                 {!! $books->content !!}
@@ -133,7 +138,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <h2>Similar Books</h2>
+        <h2 class="my-4">Similar Books</h2>
     </div>
     <div class="row mt-5">
         @foreach($relateBooks as $b)
