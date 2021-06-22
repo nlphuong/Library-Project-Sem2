@@ -34,8 +34,8 @@
       @include('common.header')
 
          @yield('main')
-         
-      @include('common.footer')   
+
+      @include('common.footer')
 
      <!-- Javascript files-->
      @if(Session::has('login'))
@@ -51,5 +51,6 @@
      <!-- sidebar -->
      <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
      <script src="{{asset('js/custom.js')}}"></script>
+     @yield('script')
   </body>
 </html>

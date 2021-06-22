@@ -22,9 +22,9 @@
                                  <li>
                                     <a href="#"  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">LOGIN</a>
 
-                                    <div id="id01" class="modal">
+                                    <div id="id01" class="modal1">
 
-                                        <form class="modal-content animate" action="{{url('/postLogin')}}" method="post">
+                                        <form class="modal-content1 animate" action="{{url('/postLogin')}}" method="post">
                                             @csrf
                                             <div class="imgcontainer">
                                                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login">&times;</span>

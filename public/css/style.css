@@ -1820,7 +1820,7 @@ margin-top: 90px;
   }
 
 
-  .modal {
+  .modal1 {
     display: none;
     position: fixed;
     z-index: 1;
@@ -1836,7 +1836,7 @@ margin-top: 90px;
   }
 
 
-  .modal-content {
+  .modal-content1 {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
