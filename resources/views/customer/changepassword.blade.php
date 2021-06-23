@@ -37,26 +37,30 @@
               <div class="alert alert-danger" role="alert">
                   {{Session::get('incorrect')}}
               </div>
-
            @endif
       </div>
       <div class="form-group">
           <label for="my-input">New Password</label>
           <input id="my-input" class="form-control" required  type="password" name="password">
           @error('password')
-          <div class="alert alert-danger" role="alert">
-              {{$message}}
-          </div>
-      @enderror
+            <div class="alert alert-danger" role="alert">
+                {{$message}}
+            </div>
+          @enderror
+          @if(Session::has('same'))
+            <div class="alert alert-danger" role="alert">
+                {{Session::get('same')}}
+            </div>
+          @endif
       </div>
       <div class="form-group">
           <label for="my-input">Confirm Password</label>
           <input id="my-input" class="form-control"  required type="password" name="confirmPass">
           @error('confirmPass')
-          <div class="alert alert-danger" role="alert">
-              {{$message}}
-          </div>
-      @enderror
+            <div class="alert alert-danger" role="alert">
+                {{$message}}
+            </div>
+          @enderror
       </div>
 
       <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure change password?')">Save Change</button>

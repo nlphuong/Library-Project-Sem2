@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule as ValidationRule;
+
 
 class CustomerController extends Controller
 {
+
     public function index(){
         return view('customer.index');
     }
@@ -20,7 +23,11 @@ class CustomerController extends Controller
         //validate
         $request->validate([
             'fullname'=>'required|max:50',
-            'email'=>'required|max:100|unique:accounts',
+            'email' => [
+                'required',
+                'email',
+                ValidationRule::unique('accounts')->ignore($id, 'id')
+            ],
             'address'=>'required|max:100',
             'birthday'=>'required',
             'phone'=>'required',
@@ -28,7 +35,7 @@ class CustomerController extends Controller
         ]);
         $account=account::where('id',$id)->update(request()->only('fullname','email','gender','address','birthday','phone'));
         if($account){
-            return redirect()->back()->with('success','updateSuccess');
+            return redirect()->back()->with('success','Update profile success!');
         }
         else return redirect()->back()->with('fail','updateFail');
 
@@ -51,7 +58,7 @@ class CustomerController extends Controller
             // dd(Hash::make($request->password));
             $update=account::where('id',$id)->update(['password'=>Hash::make($request->password)]);
             if($update){
-                return redirect()->back()->with('success','updateSuccess');
+                return redirect()->action('CustomerController@profile',['id'=>$id])->with('success','Change password success');
             }
             else return redirect()->back()->with('fail','updateFail');
         }

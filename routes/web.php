@@ -34,8 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('category', 'Admin\CategoryController');
     Route::get('category/delete/{category}','Admin\CategoryController@delete');
     Route::resource('book', 'Admin\BookController');
-
-
+    Route::get('/profile','Admin\AdminController@profile');
+    Route::post('/editProfile/{id}','Admin\AdminController@editProfile');
+    Route::post('/changePass/{id}','Admin\AdminController@postChangePass');
 
 
 });
