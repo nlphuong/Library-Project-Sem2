@@ -17,46 +17,31 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li> <a href="{{url('home')}}">Home</a> </li>
+                                 <li> <a href="{{url('customer/index')}}">Home</a> </li>
                                  <li> <a href="{{url('about')}}">About us</a> </li>
                                  <li><a href="{{url('books')}}">Our Books</a></li>
                                  <li><a href="{{url('library')}}">library</a></li>
                                  <li><a href="{{url('contact')}}">Contact us</a></li>
                                  <li> <a href="#"><img src="{{asset('images/search_icon.png')}}" alt="#" /></a> </li>
-
-                                 <li>
-                                    <a href="#"  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="{{asset('images/top-icon.png')}}" alt="Login" title="Login" /></a>
-
-                                    <div id="id01" class="modal">
-
-                                      <form class="modal-content animate" action="/action_page.php" method="post">
-                                        <div class="imgcontainer">
-                                          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login">&times;</span>
-                                          <img src="{{asset('images/avata-login.jpg')}}" alt="Avatar" class="avatar">
-                                        </div>
-                                        <br>
-                                        <div class="container">
-                                            <div class="form-group ">
-                                                <input type="text" class="form-control border-primary " placeholder="Enter Username" name="uname" required>
-                                                <br>
-
-                                                <input type="password" class="form-control border-primary " placeholder="Enter Password" name="psw" required>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary ">Login</button>
-                                                <label style="padding-left: 10px">
-                                                  <input type="checkbox" checked="checked" name="remember"> Remember me
-                                                </label>
+                                 @if(session('accountSession'))
+                                    <li>
+                                        <a href="#" class="drop-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">hi {{session('accountSession')[0]['fullname']}}<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right" style="width: 34%">
+                                            <div class="text-center"><img width="20%" style="border-radius: 50%;"  src="{{asset('uploads')}}/{{session('accountSession')[0]['image']}}" alt="">
+                                                     <span style="padding-left: 5px">{{session('accountSession')[0]['email']}}</span>
                                             </div>
+                                            <a href="{{url('/customer/profile')}}/{{session('accountSession')[0]['id']}}" class="dropdown-item drop-content" >Your Profile</a>
+                                            <a href="{{url('/logout')}}" class="dropdown-item drop-content" >Sign out</a>
 
-                                        </div>
+                                          </div>
 
-                                        <div class="container" style="background-color:#f1f1f1">
-                                            <span class="psw"><a href="{{url('register')}}">Register now</a></span>
-                                            <span class="psw"><a href="#">Forgot password?</a></span>
-                                        </div>
-                                      </form>
-                                    </div>
-                                 </li>
+                                    </li>
+                                    @endif
+                                    @if(session('adminSession'))
+                                        <li><a href="{{url('admin/index')}}"><img src="{{asset('images')}}/admin.png" width="30px" alt=""></a></li>
+
+                                    @endif
+
 
                                  <li></li>
                                 </ul>

@@ -34,8 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('category', 'Admin\CategoryController');
     Route::get('category/delete/{category}','Admin\CategoryController@delete');
     Route::resource('book', 'Admin\BookController');
-
-
+    Route::get('/profile','Admin\AdminController@profile');
+    Route::post('/editProfile/{id}','Admin\AdminController@editProfile');
+    Route::post('/changePass/{id}','Admin\AdminController@postChangePass');
 
 
 });
@@ -43,6 +44,12 @@ Route::prefix('admin')->group(function () {
 //Route chỉ Customer mới vào được (middleware->cus)
 Route::prefix('customer')->group(function () {
      Route::get('/index','CustomerController@index');
+     Route::get('/profile/{id}','CustomerController@profile');
+     Route::post('/editProfile/{id}','CustomerController@editProfile');
+     Route::get('/changePass/{id}','CustomerController@changePass');
+     Route::post('/changePass/{id}','CustomerController@postChangePass');
+     Route::get('/memberPack/{id}','CustomerController@memberPack');
+
 
 
 

@@ -2082,7 +2082,7 @@ ul.location_icon span {
 }*/
 .about-bg {
     background-color: #b32137;
-    background-image: linear-gradient(#b32137, #550002); 
+    background-image: linear-gradient(#b32137, #550002);
     margin-top: 90px;
 }
 
@@ -2140,7 +2140,8 @@ span.psw {
     padding-top: 16px;
 }
 
-.modal {
+  .modal1 {
+
     display: none;
     position: fixed;
     z-index: 1;
@@ -2155,7 +2156,9 @@ span.psw {
     padding-top: 60px;
 }
 
-.modal-content {
+
+  .modal-content1 {
+
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;

@@ -40,7 +40,7 @@
                     <div class=" ">
                         <table id="table_id" class="display table-bordered">
                             <thead>
-                                <tr>
+                                <tr style="color: white;background-color: cadetblue">
 
                                     <th>ISBN</th>
                                     <th>Title</th>
@@ -48,7 +48,7 @@
                                     <th class="text-center">Quantity</th>
                                     <th class="text-center">Price</th>
                                     <th>Date Update</th>
-                                    <th class="text-center" style="width: 200px">Image</th>
+                                    <th class="text-center" style="width: 100px">Image</th>
                                     <th class="text-center">Position</th>
                                     <th></th>
 
@@ -65,7 +65,7 @@
                                     <td class="text-center">{{$d->no_Copies_Current}}</td>
                                     <td class="text-center">{{$d->price}}</td>
                                     <td>{{$d->updated_at}}</td>
-                                    <td class="text-center"><img src="{{asset('uploads')}}/{{$d->image}}" alt="" width="80%"></td>
+                                    <td class="text-center"><img src="{{asset('uploads')}}/{{$d->image}}" alt="" width="100%"></td>
                                     <td class="text-center">{{$d->position}}</td>
                                     <td>
                                         <div class="dropdown">
