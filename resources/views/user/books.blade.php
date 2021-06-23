@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="product.html" title="View Product">{{$b->title}}</a></h4>
+                            <h4 class="card-title"><a href="{{url("books/detail/{$b->isbn}")}}" title="View Product">{{$b->title}}</a></h4>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk
                                 of the card's content.</p>
                                 <br>

@@ -1,6 +1,40 @@
 
 @extends('layout.profile')
 @section('contentProfile')
+<link rel="stylesheet" href="{{asset('css')}}/admincss.css">
+    {{-- notifi success change password --}}
+
+    <div class="modal fade" id="modal-id">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 style="font-weight: bold" class="modal-title">Message</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="success-checkmark">
+                        <div class="check-icon" style="box-sizing: content-box !important">
+                          <span class="icon-line line-tip"></span>
+                          <span class="icon-line line-long"></span>
+                          <div class="icon-circle"></div>
+                          <div class="icon-fix" ></div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>
+
+                            {{Session::get('success')}}
+
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div class="card-body">
       <div class="row">
@@ -151,5 +185,13 @@
         element.classList.add("active");
 
     </script>
+    @if(Session::has('success') )
+    <script>
+        $(document).ready(function () {
+            $('#modal-id').modal('show');
+        });
+
+    </script>
+    @endif
 @endsection
 

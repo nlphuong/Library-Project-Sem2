@@ -5,7 +5,7 @@
 @section('body-class','contact-page')
 @section('main')
 
-<link rel="stylesheet" href="{{asset('css')}}/sang.css">
+
 
 <div class="about-bg"></div>
 <div class="container">
@@ -41,7 +41,7 @@
 							<i class="fa fa-home"></i>
 							Overview </a>
 						</li>
-						<li >
+						<li id="membership">
 							<a href="{{url('customer/memberPack/'.$account->id)}}">
 							<i class="fa fa-user"></i>
 							Membership Package </a>

@@ -75,7 +75,7 @@
                     <img src="{{asset('uploads/'.session('adminSession')[0]['image'])}}" class="img-circle" alt="User Image">
 
                     <p>
-                      {{session('adminSession')[0]['fullname']}} - Web Developer
+                      {{session('adminSession')[0]['fullname']}} - Admin
                       <small>Member since {{session('adminSession')[0]['created_at']}}</small>
                     </p>
                   </li>
@@ -87,7 +87,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="{{url('admin/profile')}}" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
