@@ -17,42 +17,36 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route không áp dụng middleware
-Route::get('/','UserController@index');
-Route::get('/books','BookController@showAllBook');
-Route::get('/books/categories/{id}','BookController@getCategoryBooks');
-Route::get('/books/detail/{id}','BookController@detailBooks');
-Route::get('/register','UserController@register');
-Route::post('/register','UserController@postRegister');
-Route::post('/postLogin','UserController@postLogin');
-Route::get('/logout','UserController@logout');
+Route::get('/', 'UserController@index');
+Route::get('/books', 'BookController@showAllBook');
+Route::get('/books/categories/{id}', 'BookController@getCategoryBooks');
+Route::get('/books/detail/{id}', 'BookController@detailBooks');
+Route::get('/register', 'UserController@register');
+Route::post('/register', 'UserController@postRegister');
+Route::post('/postLogin', 'UserController@postLogin');
+Route::get('/logout', 'UserController@logout');
 
 
 //Route chỉ admin mới vào được(middleware -> admin)
 Route::prefix('admin')->group(function () {
 
-    Route::get('/index','Admin\AdminController@index');
+    Route::get('/index', 'Admin\AdminController@index');
     Route::resource('category', 'Admin\CategoryController');
-    Route::get('category/delete/{category}','Admin\CategoryController@delete');
+    Route::get('category/delete/{category}', 'Admin\CategoryController@delete');
     Route::resource('book', 'Admin\BookController');
-    Route::get('/profile','Admin\AdminController@profile');
-    Route::post('/editProfile/{id}','Admin\AdminController@editProfile');
-    Route::post('/changePass/{id}','Admin\AdminController@postChangePass');
-
-
+    Route::get('/profile', 'Admin\AdminController@profile');
+    Route::post('/editProfile/{id}', 'Admin\AdminController@editProfile');
+    Route::post('/changePass/{id}', 'Admin\AdminController@postChangePass');
 });
 
 //Route chỉ Customer mới vào được (middleware->cus)
 Route::prefix('customer')->group(function () {
-     Route::get('/index','CustomerController@index');
-     Route::get('/profile/{id}','CustomerController@profile');
-     Route::post('/editProfile/{id}','CustomerController@editProfile');
-     Route::get('/changePass/{id}','CustomerController@changePass');
-     Route::post('/changePass/{id}','CustomerController@postChangePass');
-     Route::get('/memberPack/{id}','CustomerController@memberPack');
-
-
-
-
-
+    Route::get('/index', 'CustomerController@index');
+    Route::get('/profile/{id}', 'CustomerController@profile');
+    Route::post('/editProfile/{id}', 'CustomerController@editProfile');
+    Route::get('/changePass/{id}', 'CustomerController@changePass');
+    Route::post('/changePass/{id}', 'CustomerController@postChangePass');
+    Route::get('/memberPack/{id}', 'CustomerController@memberPack');
+    Route::get('/contact', 'CustomerController@contact');
+    Route::post('/contact', 'CustomerController@send');
 });
-
