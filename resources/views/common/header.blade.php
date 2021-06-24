@@ -21,7 +21,7 @@
                                  <li> <a href="{{url('about')}}">About us</a> </li>
                                  <li><a href="{{url('books')}}">Our Books</a></li>
                                  <li><a href="{{url('library')}}">library</a></li>
-                                 <li><a href="{{url('contact')}}">Contact us</a></li>
+                                 <li><a href="{{url('customer/contact')}}">Contact us</a></li>
                                  <li> <a href="#"><img src="{{asset('images/search_icon.png')}}" alt="#" /></a> </li>
                                  @if(session('accountSession'))
                                     <li>
