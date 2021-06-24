@@ -9,7 +9,7 @@
 
 <div class="about-bg"></div>
 <div class="container">
-    <div class="row profile">
+    <div class="row profile" style="padding: 50px 0px">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
@@ -63,7 +63,6 @@
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-
                     <div class="card mb-3">
                         @yield('contentProfile')
                     </div>

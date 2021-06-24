@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Models\account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule as ValidationRule;
 
@@ -62,4 +64,53 @@ class AdminController extends Controller
         else return redirect()->back()->with('incorrect',"Current Password not match!");
     }
 
+    public function feedback(){
+        $data=DB::table('contact')->orderBy('created_at')->get();
+        return view('adminView.feedback',compact('data'));
+    }
+    public function createAccount(){
+        return view('adminView.account.create');
+    }
+    public function postCreateAccount(LoginRequest $loginRequest){
+        $account = new account();
+        $account->fullname=request()->fullname;
+        $account->email=$loginRequest->email;
+        $account->password= Hash::make($loginRequest->password);
+        $account->gender=$loginRequest->gender;
+        $account->address=$loginRequest->address;
+        $account->birthday=$loginRequest->birthday;
+        $account->phone=$loginRequest->phone;
+        $account->phone=$loginRequest->role;
+        $result = $account->save();
+        if($result){
+           return  redirect()->back()->with('Success','Account has been successfully registered');
+        }
+        else return redirect() -> back()->with('erro','fail');
+    }
+    public function customer(){
+        $data= account::where('role',1)->get();
+        return view('adminView.account.customer',compact('data'));
+    }
+    public function lock($id){
+
+        $data= account::where('id',$id)->update(['active'=>2]);
+        if($data){
+            return redirect()->back()->with('success','Lock success');
+        }
+        else return redirect()->back()->with('fail','Lock fail');
+
+    }
+    public function unlock($id){
+
+        $data= account::where('id',$id)->update(['active'=>1]);
+        if($data){
+            return redirect()->back()->with('success','Lock success');
+        }
+        else return redirect()->back()->with('fail','Lock fail');
+
+    }
+    public function admin(){
+        $data= account::where('role',2)->get();
+        return view('adminView.account.admin',compact('data'));
+    }
 }
