@@ -29,7 +29,7 @@
                     <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li> -->
                     <li class="list-group-item"><a href="{{url("books")}}">All Categories</a></li>
                     @foreach($cats as $c)
-                        <li class="list-group-item"><a href="{{url("books/categories/{$c->id}")}}">{{$c->name}}</a></li>
+                    <li class="list-group-item"><a href="{{url("books/categories/{$c->id}")}}">{{$c->name}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -48,23 +48,34 @@
             @foreach($books as $b)
             <div class="card">
                 <div class="row">
-                    <div class="col-sm-5">
-                        <img style="width: 60%;" src="{{asset('uploads')}}/{{$b->image}}" alt="Card image cap">
+                    <div class="col-sm-5" style="display:flex; align-items: center;">
+                        <img style="width: 60%; height: 250px;" src="{{asset('uploads')}}/{{$b->image}}" alt="Card image cap">
                     </div>
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="{{url("books/detail/{$b->isbn}")}}" title="View Product">{{$b->title}}</a></h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                                <br>
-                                <!-- {!! $b->content !!} -->
-                            <br>
+                            <h4 class="card-title"><a href="{{url("books/detail/{$b->isbn}")}}"
+                                    title="View Product">{{$b->title}}</a></h4>
+                            <p class="card-text">
+                                <i class="text-success fa fa-user" aria-hidden="true" style="font-size: 1em"></i>
+                                <strong>Authors: &nbsp;</strong> {{$b->author}} &nbsp; <br />
+                                <i class="text-success fa fa-book" aria-hidden="true" style="font-size: 1em"></i>
+                                <strong>Publisher: &nbsp;</strong> {{$b->publisher}}<br />
+                                <i class="text-success fa fa-clock-o" aria-hidden="true" style="font-size: 1em"></i>
+                                <strong>Year: &nbsp;</strong> {{$b->publication_Year}}<br />
+                                <i class="text-success fa fa-file-text-o" aria-hidden="true" style="font-size: 1em"></i>
+                                <strong>Pages: &nbsp;</strong> {{$b->no_Pages}} &nbsp;pages.
+                            </p>
+                            <br/>
+                            <!-- {!! $b->content !!} -->
+
                             <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">{{$b->price}}</p>
+                                <div class="col-6">
+                                    <!-- <p class="btn btn-danger btn-block">{{$b->price}}</p> -->
                                 </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                <div class="col-6">
+                                    <br>
+                                    <a href="{{url("books/detail/{$b->isbn}")}}"
+                                        class="btn btn-info btn-block">Review</a>
                                 </div>
                             </div>
                         </div>

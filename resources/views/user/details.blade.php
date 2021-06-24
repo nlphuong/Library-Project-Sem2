@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a href="" class="btn btn-primary text-light"><i class="fa fa-bookmark-o" aria-hidden="true"></i> &nbsp; Borrow</a>&nbsp;
+                    <a href="" class="btn btn-primary text-light"><i class="fa fa-bookmark-o" aria-hidden="true" style="font-size: 1em"></i> &nbsp; Borrow</a>&nbsp;
                     <!-- <a href="" class="btn btn-danger text-light">Red</a>&nbsp;
                 <a href="" class="btn btn-warning text-light">Yellow</a>&nbsp;
                 <a href="" class="btn btn-success text-light">Green</a>&nbsp;
@@ -151,7 +151,7 @@
                 </div>
                 <div class="card-text">
                     <strong>Authors: &nbsp;</strong> {{$b->author}}.<br />
-                    <a href="" class="btn btn-danger text-light"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;
+                    <a href="{{url("books/detail/{$b->isbn}")}}" class="btn btn-danger text-light"><i class="fa fa-book" aria-hidden="true" style="font-size: 1em"></i>&nbsp;
                         Detail</a>
                     <br><br>
                 </div>
