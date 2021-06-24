@@ -136,9 +136,32 @@
             <li><a href="{{route('book.index')}}"><i class="fa fa-circle-o"></i> Book list</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="">
+            <i class="fa fa-user-circle"></i> <span>Accounts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('admin/account/createAccount')}}"><i class="fa fa-user-o"></i>Create new account</a></li>
+            <li><a href="{{url('admin/account/customer')}}"><i class="fa fa-user-o"></i>Customer</a></li>
+            @if(session('adminSession')[0]['role']==3)
+            <li><a href="{{url('admin/account/admin')}}"><i class="fa fa-user"></i>Admin</a></li>
+            @endif
+          </ul>
+        </li>
         <li>
           <a href="">
             <i class="fa fa-th"></i> <span>Widgets</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">Hot</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('admin/feedback')}}">
+            <i class="fa fa-comments-o"></i> <span>Customer Feedback</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
             </span>
