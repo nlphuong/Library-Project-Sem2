@@ -25,6 +25,9 @@ Route::get('/register', 'UserController@register');
 Route::post('/register', 'UserController@postRegister');
 Route::post('/postLogin', 'UserController@postLogin');
 Route::get('/logout', 'UserController@logout');
+Route::get('/resetPass', 'UserController@resetPass');
+Route::post('/resetPass', 'UserController@postResetPass');
+
 
 
 //Route chỉ admin mới vào được(middleware -> admin)
