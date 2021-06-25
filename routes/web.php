@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Route không áp dụng middleware
 Route::get('/', 'UserController@index');
 Route::get('/books', 'BookController@showAllBook');
+Route::get('/about', 'UserController@about');
 Route::get('/books/categories/{id}', 'BookController@getCategoryBooks');
 Route::get('/books/detail/{id}', 'BookController@detailBooks');
 Route::get('/register', 'UserController@register');
