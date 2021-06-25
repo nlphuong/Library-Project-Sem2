@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ratingBooks` (
   `id` int(11) NOT NULL,
   `customer_Id` int(11) NOT NULL,
-  `book_ISBN` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isbn` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `rating` int(11) NOT NULL,
   `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `create_at` datetime NOT NULL
