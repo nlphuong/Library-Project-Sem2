@@ -18,16 +18,46 @@ class BookController extends Controller
     }
 
     public function detailBooks($isbn){
+        $star = 0;
+
         $books = DB::table('books')->where('isbn', intval($isbn))->first();
+
         $relateBooks = DB::table('books')->where('isbn','!=',intval($isbn))
                                         ->where(['category_Id'=>$books->category_Id])
                                         ->inRandomOrder()->limit(2)->get();
 
-        $star = 0;
-            if($books->total_rating){
-                $star = floor($books->total_no_star / $books->total_rating);
-            }
+        $rate = DB::table('ratingBooks')->join('accounts', 'ratingBooks.customer_Id', '=', 'accounts.id')
+                                        ->where('ratingBooks.isbn', $isbn)->orderByDesc('create_at')
+                                        ->paginate(4);
+        $total_no_star = DB::table('ratingBooks')->where('isbn', $isbn)->sum('rating');
 
-        return view('user.details')->with(['books'=>$books, 'relateBooks'=>$relateBooks, 'star'=>$star]);
+        $total_review = DB::table('ratingBooks')->where('isbn', $isbn)->count();
+
+        if($total_review !== 0){
+            $star = floor($total_no_star / $total_review);
+        }
+
+        return view('user.details')->with(['books'=>$books,
+                                            'relateBooks'=>$relateBooks,
+                                            'star'=>$star,
+                                            'rate'=>$rate,
+                                            'no_star'=>$total_no_star,
+                                            'review'=>$total_review,]);
+    }
+
+    public function rating(Request $request){
+        $data = $request->all();
+        $customer_Id = $data['user_id'];
+        $isbn = $data['isbn'];
+        $rating = $data['rating_data'];
+        $comment = $data['user_review'];
+
+        return DB::table('ratingBooks')->insert([
+            'customer_Id' => $customer_Id,
+            'isbn' => $isbn,
+            'rating'=> $rating,
+            'comment'=>$comment,
+        ]);;
+
     }
 }

@@ -36,18 +36,16 @@
                 </div> -->
             <div class="row">
                 <h3 class="text-warning">
-                    @for($i =1; $i <=$star; $i++)
-                    <i class="fa fa-star"  aria-hidden="true"></i>
-                    @endfor
-                    @for($i =1; $i <= 5 - $star; $i++)
-                    <i class="fa fa-star-o"  aria-hidden="true"></i>
-                    @endfor
-                    <!-- <i class="fa fa-star" aria-hidden="true"></i>
+                    @for($i =1; $i <=$star; $i++) <i class="fa fa-star" aria-hidden="true"></i>
+                        @endfor
+                        @for($i =1; $i <= 5 - $star; $i++) <i class="fa fa-star-o" aria-hidden="true"></i>
+                            @endfor
+                            <!-- <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
                     <i class="fa fa-star-o" aria-hidden="true"></i> -->
                 </h3> &nbsp;
-                <h5>{{$books->total_no_star}} stars and {{$books->total_rating}} reviews</h5>
+                <h5>{{$no_star}} stars and {{$review}} reviews</h5>
 
             </div>
             <div class="row">
@@ -88,7 +86,8 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a href="" class="btn btn-primary text-light"><i class="fa fa-bookmark-o" aria-hidden="true" style="font-size: 1em"></i> &nbsp; Borrow</a>&nbsp;
+                    <a href="" class="btn btn-primary text-light"><i class="fa fa-bookmark-o" aria-hidden="true"
+                            style="font-size: 1em"></i> &nbsp; Borrow</a>&nbsp;
                     <!-- <a href="" class="btn btn-danger text-light">Red</a>&nbsp;
                 <a href="" class="btn btn-warning text-light">Yellow</a>&nbsp;
                 <a href="" class="btn btn-success text-light">Green</a>&nbsp;
@@ -151,7 +150,8 @@
                 </div>
                 <div class="card-text">
                     <strong>Authors: &nbsp;</strong> {{$b->author}}.<br />
-                    <a href="{{url("books/detail/{$b->isbn}")}}" class="btn btn-danger text-light"><i class="fa fa-book" aria-hidden="true" style="font-size: 1em"></i>&nbsp;
+                    <a href="{{url("books/detail/{$b->isbn}")}}" class="btn btn-danger text-light"><i class="fa fa-book"
+                            aria-hidden="true" style="font-size: 1em"></i>&nbsp;
                         Detail</a>
                     <br><br>
                 </div>
@@ -164,59 +164,126 @@
     <div class="row">
         <h2>Rating & Reviews</h2>
     </div>
+    <!-- @foreach($rate as $r)
     <div class="row mb-5">
         <div class="media">
-            <img class="mr-3" src="{{asset('uploads')}}/{{'avatar.jpg'}}" alt="Generic placeholder image">
-            <div class="media-body">
-                <h5 class="mt-0">Media heading <span class="text-warning">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </span></h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
+            <div class="col-sm-5" style="display:flex; align-items: center;">
+                <img class="mr-3" style="width: 300px; height: 200px;" src="{{asset('uploads')}}/{{$r->image}}"
+                    alt="Generic placeholder image">
+            </div>
+            <div class="col-sm-7">
+                <div class="media-body">
+                    <div class="row">
+                        <h5 class="mt-0">{{$r->fullname}}<span class="text-warning">
+                                @for($i =1; $i <= $r->rating; $i++)
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    @endfor
+                                    @for($i =1; $i <=5 - $r->rating; $i++)
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @endfor
+                            </span></h5>
+                    </div>
+                    <div class="row">
+                        {{$r->comment}}
+                    </div>
+
+                </div>
             </div>
         </div>
         <br>
-        <div class="media">
-            <img class="mr-3" src="{{asset('uploads')}}/{{'avatar.jpg'}}" alt="Generic placeholder image">
-            <div class="media-body">
-                <h5 class="mt-0">Media heading <span class="text-warning">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </span></h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+    @endforeach -->
+
+    @foreach($rate as $r)
+    <div class="card">
+        <div class="row">
+            <div class="col-sm-3" style="display:flex; align-items: center;">
+                <img style="width: 150px; height: 100px;" src="{{asset('uploads')}}/{{$r->image}}" alt="Card image cap">
+            </div>
+            <div class="col-sm-6">
+                <div class="card-body">
+                    <h4 class="mt-0">{{$r->fullname}}</h4>
+                    <p class="card-text">
+                        {{$r->comment}}
+                    </p>
+                    <br />
+                    <!-- {!! $b->content !!} -->
+                </div>
+            </div>
+            <div class="col-sm-3" style="display:flex; align-items: center;">
+                <h4>&nbsp;&nbsp;<span class="text-warning">
+                        @for($i =1; $i <= $r->rating; $i++)
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            @endfor
+                            @for($i =1; $i <=5 - $r->rating; $i++)
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                @endfor
+                    </span></h4>
             </div>
         </div>
     </div>
-    <!-- <br>
-        <br>
-        <div class="row mb-5">
-            <h2>Post your Own Reviews</h2>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <form>
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <input style="border-style: inset;" class="form-control" placeholder="Email" name="email" type="Email">
-                    </div>
-                    <br/>
-                    <br/>
-                    <div class="col-sm-12">
-                        <textarea style="border-style: inset;" class="textarea" name="message" placeholder="Message">Message</textarea>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <button class="send-btn">Send</button> -->
+    <br>
+    @endforeach
+    <div class="row mb-5">
+        <span style="position: absolute; right: 160px;">{!! $rate->links() !!}</span>
+    </div>
+    <br>
+    @if(session('accountSession'))
+    <div class="row mb-5" style="text-align: right;">
+        <h2>Post your Own Reviews</h2>
+    </div>
+
+    <!-- <div class="row">
+        <ul class="list-inline" title="Average Rating">
+                @for($count=1; $count<=5; $count++)
+                    @php
+                    if($count <= $star){
+                        $color = 'color:#ffcc00;';
+                    }else{
+                        $color = 'color:#ccc;';
+                    }
+                    @endphp
+                    <li title="Rating"
+                    id="{{$books->isbn}}-{{$count}}"
+                    data-index="{{$count}}"
+                    data-product_id="{{$books->isbn}}"
+                    data-rating="{{$star}}"
+                    class="rating list-inline-item" style="cursor: pointer; {{$color}}; font-size: 30px;">
+                    &#9733;
+                    </li>
+                @endfor
+            </ul>
+        <h4 class="text-warning mt-2 mb-4">
+            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+            <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+        </h4>
+    </div> -->
+
+    <div class="row">
+        <h4 class="text-center mt-2 mb-4">
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_1" data-rating="1"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_2" data-rating="2"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_3" data-rating="3"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_4" data-rating="4"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_5" data-rating="5"></i>
+        </h4>
+    </div>
+    <div class="form-group">
+        <input type="text" value="{{session('accountSession')[0]['id']}}" id="user_id" style="display: none;" />
+        <input type="text" value="{{$books->isbn}}" id="isbn" style="display: none;" />
+    </div>
+    <div class="form-group">
+        <label for="Write your feedback">Write your feedback</label>
+        <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="save_review">Submit</button>
+    </div>
+
+    @endif
 </div>
 
 @endsection
