@@ -16,7 +16,7 @@
 <!-- test -->
 <br>
 <div class="container">
-    <div class="row">
+    <div class="row ">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories
@@ -33,6 +33,31 @@
                     @endforeach
                 </ul>
             </div>
+            <div class="card bg-light mb-3">
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filter by</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#contains">Contains</a></li>
+                            <li><a href="#its_equal">It's equal</a></li>
+                            <li><a href="#greather_than">Greather than ></a></li>
+                            <li><a href="#less_than">Less than < </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#all">Anything</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><img src="{{asset('images/search_icon.png')}}"
+                                alt=""></button>
+                    </span>
+                </div>
+            </div>
+
             <!-- <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Last product</div>
                 <div class="card-body">
@@ -45,11 +70,47 @@
             </div> -->
         </div>
         <div class="col">
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Filter by</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#contains">Contains</a></li>
+                                    <li><a href="#its_equal">It's equal</a></li>
+                                    <li><a href="#greather_than">Greather than ></a></li>
+                                    <li><a href="#less_than">Less than < </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#all">Anything</a></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input type="text" class="form-control" name="x" placeholder="Search term...">
+                            <select name="cars" id="cars">
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><img
+                                        src="{{asset('images/search_icon.png')}}" alt=""></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
             @foreach($books as $b)
             <div class="card">
                 <div class="row">
                     <div class="col-sm-5" style="display:flex; align-items: center;">
-                        <img style="width: 60%; height: 250px;" src="{{asset('uploads')}}/{{$b->image}}" alt="Card image cap">
+                        <img style="width: 60%; height: 250px;" src="{{asset('uploads')}}/{{$b->image}}"
+                            alt="Card image cap">
                     </div>
                     <div class="col-sm-7">
                         <div class="card-body">
@@ -65,7 +126,7 @@
                                 <i class="text-success fa fa-file-text-o" aria-hidden="true" style="font-size: 1em"></i>
                                 <strong>Pages: &nbsp;</strong> {{$b->no_Pages}} &nbsp;pages.
                             </p>
-                            <br/>
+                            <br />
                             <!-- {!! $b->content !!} -->
 
                             <div class="row">
