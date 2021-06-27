@@ -21,7 +21,9 @@
 @import url(slick.css);
 @import url(jquery.fancybox.min.css);
 @import url(jquery-ui.css);
-@import url(nice-select.css);
+
+/* @import url(nice-select.css); */
+
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
@@ -2076,10 +2078,12 @@ ul.location_icon span {
     margin-bottom: 90px;
 }
 
+
 /*.about-bg {
     background-color: #b32137;
     margin-top: 90px;
 }*/
+
 .about-bg {
     background-color: #b32137;
     background-image: linear-gradient(#b32137, #550002);
@@ -2140,8 +2144,7 @@ span.psw {
     padding-top: 16px;
 }
 
-  .modal1 {
-
+.modal1 {
     display: none;
     position: fixed;
     z-index: 1;
@@ -2156,9 +2159,7 @@ span.psw {
     padding-top: 60px;
 }
 
-
-  .modal-content1 {
-
+.modal-content1 {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
@@ -2265,11 +2266,14 @@ a.drop-menu i.fa-caret-down {
 
 /**footer shortlink**/
 
+
 /**footer shortlink**/
-.footer-shortlink li a{
+
+.footer-shortlink li a {
     color: white;
 }
-.footer-shortlink li:hover a{
+
+.footer-shortlink li:hover a {
     color: black;
 }
 
@@ -2349,7 +2353,9 @@ a.drop-menu i.fa-caret-down {
     margin-bottom: 100px;
 }
 
+
 /**About us**/
+
 .social-link {
     width: 30px;
     height: 30px;
@@ -2361,22 +2367,28 @@ a.drop-menu i.fa-caret-down {
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
-  }
-.social-link:hover, .social-link:focus {
+}
+
+.social-link:hover,
+.social-link:focus {
     background: #b32137;
     text-decoration: none;
     color: white;
 }
-  /* Profile sidebar */
-  .profile {
+
+
+/* Profile sidebar */
+
+.profile {
     margin: 20px 0;
-  }
-  .profile-sidebar {
+}
+
+.profile-sidebar {
     padding: 20px 0 10px 0;
     background: #fff;
-  }
+}
 
-  .profile-userpic img {
+.profile-userpic img {
     float: none;
     margin: 0 auto;
     width: 50%;
@@ -2384,98 +2396,103 @@ a.drop-menu i.fa-caret-down {
     -webkit-border-radius: 50% !important;
     -moz-border-radius: 50% !important;
     border-radius: 50% !important;
-  }
+}
 
-  .profile-usertitle {
+.profile-usertitle {
     text-align: center;
     margin-top: 20px;
-  }
+}
 
-  .profile-usertitle-name {
+.profile-usertitle-name {
     color: #5a7391;
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 7px;
-  }
+}
 
-  .profile-usertitle-job {
+.profile-usertitle-job {
     text-transform: uppercase;
     color: #5b9bd1;
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 15px;
-  }
+}
 
-  .profile-userbuttons {
+.profile-userbuttons {
     text-align: center;
     margin-top: 10px;
-  }
+}
 
-  .profile-userbuttons .btn {
+.profile-userbuttons .btn {
     text-transform: uppercase;
     font-size: 11px;
     font-weight: 600;
     padding: 6px 15px;
     margin-right: 5px;
-  }
+}
 
-  .profile-userbuttons .btn:last-child {
+.profile-userbuttons .btn:last-child {
     margin-right: 0px;
-  }
+}
 
-  .profile-usermenu {
+.profile-usermenu {
     margin-top: 30px;
-  }
+}
 
-  .profile-usermenu ul li {
+.profile-usermenu ul li {
     border-bottom: 1px solid #f0f4f7;
-  }
+}
 
-  .profile-usermenu ul li:last-child {
+.profile-usermenu ul li:last-child {
     border-bottom: none;
-  }
+}
 
-  .profile-usermenu ul li a {
+.profile-usermenu ul li a {
     color: #93a3b5;
     font-size: 14px;
     font-weight: 400;
-  }
+}
 
-  .profile-usermenu ul li a i {
+.profile-usermenu ul li a i {
     margin-right: 8px;
     font-size: 14px;
-  }
+}
 
-  .profile-usermenu ul li a:hover {
+.profile-usermenu ul li a:hover {
     background-color: #fafcfd;
     color: #5b9bd1;
-  }
+}
 
-  .profile-usermenu ul li.active {
+.profile-usermenu ul li.active {
     border-bottom: none;
-  }
+}
 
-  .profile-usermenu ul li.active a {
+.profile-usermenu ul li.active a {
     color: #5b9bd1;
     background-color: #f6f9fb;
     border-left: 2px solid #5b9bd1;
     margin-left: -2px;
-  }
+}
 
-  /* Profile Content */
-  .profile-content {
+
+/* Profile Content */
+
+.profile-content {
     padding: 20px;
     background: #fff;
     min-height: 460px;
-  }
+}
 
-  /* membership package */
-  .flip-card {
+
+/* membership package */
+
+.flip-card {
     background-color: transparent;
     width: 260px;
     height: 100px;
     perspective: 1000px
 }
+
 .flip-card-inner {
     width: 260px;
     height: 300px;
@@ -2483,9 +2500,11 @@ a.drop-menu i.fa-caret-down {
     transition: transform 0.8s;
     transform-style: preserve-3d
 }
+
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg)
 }
+
 .flip-card-front,
 .flip-card-back {
     position: absolute;
@@ -2493,16 +2512,19 @@ a.drop-menu i.fa-caret-down {
     height: 100%;
     backface-visibility: hidden
 }
+
 .flip-card-front {
     background-color: #bbb;
     color: black
 }
+
 .flip-card-back {
     transform: rotateY(180deg);
     width: 260px;
     height: 300px;
     background-color: #f2f2f2
 }
+
 .person {
     color: #007b5e;
     font-family: 'Yrsa', serif;
@@ -2510,30 +2532,38 @@ a.drop-menu i.fa-caret-down {
     padding: 15px
 }
 
+
 /**Our Library**/
+
 .box-featured {
     display: grid;
     background-color: white;
-    border-bottom: 1px solid gray ;
+    border-bottom: 1px solid gray;
     margin-bottom: 1rem;
     width: 100%;
 }
-.box-featured__thumb-image, .box-featured__thumb-link, .box-featured__video-thumb-image, .box-featured__video-thumb-link {
-    display: block;
 
+.box-featured__thumb-image,
+.box-featured__thumb-link,
+.box-featured__video-thumb-image,
+.box-featured__video-thumb-link {
+    display: block;
 }
+
 .box-featured__blurb {
     padding: 1.25rem 1.25rem .25rem;
 }
+
 .box-featured__heading {
     color: #b32137;
-    font-family: Roboto Condensed,sans-serif;
+    font-family: Roboto Condensed, sans-serif;
     font-size: 1.1875rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 0;
     margin-top: 0;
 }
+
 .box-featured__description {
     margin-bottom: 1.375rem;
 }
