@@ -51,7 +51,7 @@
 
                                             <div class="container">
                                                 <span class="psw text-left" ><a style="color: white !important" class="a-hover" href="{{url('register')}}">Register now</a></span>
-                                                <span class="psw"><a style="color: white !important" class="a-hover" href="#">Forgot password?</a></span>
+                                                <span class="psw"><a style="color: white !important" class="a-hover" href="{{url('/resetPass')}}">Forgot password?</a></span>
                                             </div>
                                         </form>
                                     </div>

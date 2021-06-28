@@ -22,6 +22,7 @@
       <link rel="icon" href="{{asset('images/fevicon.png')}}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{asset('css/jquery.mCustomScrollbar.min.css')}}">
+      <link rel="stylesheet" href="{{asset('css')}}/admincss.css">
       <!-- Tweaks for older IEs-->
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -34,8 +35,8 @@
       @include('common.headerIndex')
 
          @yield('main')
-         
-      @include('common.footer')   
+
+      @include('common.footer')
 
      <!-- Javascript files-->
      @if(Session::has('login'))
@@ -48,6 +49,7 @@
      <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
      <script src="{{asset('js/jquery-3.0.0.min.js')}}"></script>
      <script src="{{asset('js/plugin.js')}}"></script>
+     @yield('script')
      <!-- sidebar -->
      <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
      <script src="{{asset('js/custom.js')}}"></script>

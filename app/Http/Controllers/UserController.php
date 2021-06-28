@@ -7,6 +7,9 @@ use App\Models\account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\CustomerController;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 /**
  * Controller  khong can dang nhap
@@ -80,5 +83,37 @@ class UserController extends Controller
 
         request()->session()->invalidate();
         return redirect()->action('UserController@index');
+    }
+    public function resetPass(){
+        return view('user.resetPass');
+    }
+    public function postResetPass(Request $request){
+        // Mail::send('mail.resetPass',['email'=>$request->email], function ($message) {
+        //     $message->from('sangtrancong171196@gmail.com', 'John Doe');
+
+        //     $message->to('trancongsang.a1.vd.2014@gmail.com');
+
+        //     $message->subject('Reset Password');
+
+        // });
+        // return redirect()->action('UserController@index');
+        //validate
+        $request->validate([
+            'email'=>'required|exists:accounts'
+        ],[
+            'email.exists'=>'Your email does not exist!'
+        ]);
+        $account = account::where('email',$request->email)->first();
+        $newPass=Str::random(8);
+        $update=account::where('email',$request->email)->update(['password'=>Hash::make($newPass)]);
+        if($update) {
+            $data =array('email'=>$request->email,'password'=>$newPass,'name'=>$account->fullname);
+            $result=Mail::to($request->email)->send(new SendMail($data));
+            return redirect()->back()->with('Success','Your Password have been send to your email! Please check email!');
+
+        }
+        else return redirect()->back()->with('Success','Erro!');
+
+
     }
 }

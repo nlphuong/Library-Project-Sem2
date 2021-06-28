@@ -27,6 +27,9 @@ Route::get('/register', 'UserController@register');
 Route::post('/register', 'UserController@postRegister');
 Route::post('/postLogin', 'UserController@postLogin');
 Route::get('/logout', 'UserController@logout');
+Route::get('/resetPass', 'UserController@resetPass');
+Route::post('/resetPass', 'UserController@postResetPass');
+
 
 
 //Route chỉ admin mới vào được(middleware -> admin)
@@ -39,7 +42,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/profile', 'Admin\AdminController@profile');
     Route::post('/editProfile/{id}', 'Admin\AdminController@editProfile');
     Route::post('/changePass/{id}', 'Admin\AdminController@postChangePass');
-    Route::get('/feedback', 'Admin\AdminController@feedback');
+    Route::post('/resetPass', 'Admin\AdminController@resetPass');
+    Route::get('/contactManage', 'Admin\AdminController@contactManage');
     Route::prefix('account')->group(function () {
         Route::get('/createAccount', 'Admin\AdminController@createAccount');
         Route::post('/createAccount', 'Admin\AdminController@postCreateAccount');
@@ -47,6 +51,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/admin', 'Admin\AdminController@admin');
         Route::get('/lock/{id}', 'Admin\AdminController@lock');
         Route::get('/unlock/{id}', 'Admin\AdminController@unlock');
+        Route::get('/delete/{id}', 'Admin\AdminController@delete');
     });
 });
 

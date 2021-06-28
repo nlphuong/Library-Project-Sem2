@@ -301,6 +301,41 @@
 
                     </form>
                   </div>
+                  <div class="content-header">
+                    <div class="box box-primary">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <span style="position: relative;  top: 20px;left:10px;" ><img src="{{asset('images')}}/forget_pass.png" width="35px" alt=""></span>
+                            </div>
+                            <div class="col-sm-11">
+                              <h3> Forget Password</h3>
+                              <p>Please enter your email, then we send a reset password to this email!</p>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="content">
+                    <form method="post" class="form-horizontal" action="{{url('admin/resetPass')}}">
+                        @csrf
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="my-input">Email</label>
+                            <div class="col-sm-10">
+                                <input id="my-input" class="form-control" required  type="email" name="email">
+                                @error('email')
+                                <div class="alert alert-danger" role="alert">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary" onclick="confirm('We will reset your password and send password to this email!')">Send password</button>
+                            </div>
+                          </div>
+
+                    </form>
+                  </div>
 
               </div>
               <!-- /.tab-pane -->

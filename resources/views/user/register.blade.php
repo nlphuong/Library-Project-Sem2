@@ -86,24 +86,4 @@
       </form>
     </div>
 </div>
-
-  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#my-modal">Content</button>
-  <div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content2" style="z-index: 100;">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="my-modal-title">Title</h5>
-                  <button class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <p>Content</p>
-              </div>
-              <div class="modal-footer">
-                  Footer
-              </div>
-          </div>
-      </div>
-  </div>
 @endsection

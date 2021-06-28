@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: bold; word-spacing: 3px; text-align: center">
-            CUSTOMER FEEDBACK
+            CONTACT
           <small></small>
         </h1>
          {{-- <ol class="breadcrumb">
@@ -29,6 +29,7 @@
                         <table id="table_id" class="display table-bordered">
                             <thead>
                                 <tr style="color: white;background-color: cadetblue">
+
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -40,11 +41,11 @@
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
-                                    <td>{{$d->name}}</td>
-                                    <td>{{$d->email}}</td>
-                                    <td class="text-center">{{$d->phone}}</td>
-                                    <td class="text-center">{{$d->subject}}</td>
-                                    <td>{{$d->message}}</td>
+                                    <td>{{$d->Name}}</td>
+                                    <td>{{$d->Email}}</td>
+                                    <td class="text-center">{{$d->Phone}}</td>
+                                    <td class="text-center">{{$d->Subject}}</td>
+                                    <td>{{$d->Message}}</td>
                                     <td>{{$d->created_at}}</td>
                                 </tr>
                                 @endforeach

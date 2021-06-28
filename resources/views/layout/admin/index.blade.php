@@ -160,8 +160,8 @@
           </a>
         </li>
         <li>
-          <a href="{{url('admin/feedback')}}">
-            <i class="fa fa-comments-o"></i> <span>Customer Feedback</span>
+          <a href="{{url('admin/contactManage')}}">
+            <i class="fa fa-comments-o"></i> <span>Contact</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
             </span>

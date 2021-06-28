@@ -80,15 +80,16 @@
             <div class="box-body">
                 <h2 style=" font-weight: bold">CATEGORIES LIST</h2>
                 <hr>
-                @foreach($cats as $cat)
-                <div class="rows">
-                    <div class=" col-md-3 col-lg-3">
+
+                <div class="row" >
+                    @foreach($cats as $cat)
+                    <div class=" col-md-6 col-lg-4">
                         <div class="thumbnail text-center">
                             <img data-src="#" alt="">
                             <div class="caption">
                                 <h3 style="font-weight: 500">{{$cat->name}}</h3>
                                 <p>
-                                   <img width="90%" height="150px" src="{{asset('uploads/'.$cat->image)}}" alt="">
+                                   <img width="90%" height="200px" src="{{asset('uploads/'.$cat->image)}}" alt="">
                                 </p>
                                 <span >
                                     <a class="btn btn-success" title="Edit"  data-toggle="modal" href='#edit{{$cat->id}}'><i class="glyphicon glyphicon-edit"></i></a>
@@ -148,9 +149,10 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
 
-                @endforeach
+
             </div>
             {{--sang--- end list category modal --}}
 

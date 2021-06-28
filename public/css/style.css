@@ -2160,6 +2160,7 @@ span.psw {
 }
 
 .modal-content1 {
+    position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;pointer-events:auto;
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
