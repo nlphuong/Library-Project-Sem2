@@ -36,9 +36,9 @@ class UserController extends Controller
     // public function contact(){
     //     return view('user.contact');
     // }
-    // public function library(){
-    //     return view('user.library');
-    // }
+    public function library(){
+         return view('user.library');
+    }
     public function register(){
         return view('user.register');
     }
