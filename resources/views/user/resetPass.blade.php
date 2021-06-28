@@ -48,7 +48,7 @@
 <div class="container">
     <div class="card card-primary" style="margin: 100px 0px">
       <div class="card-header">
-        <h3 class="card-title">Please enter your email or mobile number to search for your account.</h3>
+        <h3 class="card-title">Please enter your email to search for your account.</h3>
       </div>
       <!-- /.card-header -->
       <!-- form start -->

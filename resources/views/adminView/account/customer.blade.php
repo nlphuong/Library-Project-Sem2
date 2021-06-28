@@ -79,6 +79,9 @@
                                                 @else
                                                 <li><a onclick="confirm('Are you sure you want to unLock this account?')" href="{{url('admin/account/unlock',['id'=>$d->id])}}">UnLock</a></li>
                                                 @endif
+                                                @if(session('adminSession')[0]['role']==3)
+                                                <li><a onclick="confirm('Are you sure you want to Delete this account?')" href="{{url('admin/account/delete',['id'=>$d->id])}}">Delete</a></li>
+                                                @endif
                                             </ul>
                                             <div id="my-modal{{$d->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -96,22 +99,22 @@
                                                                 <p class="text-muted text-center">Customer</p>
                                                             </div>
                                                             <div class="box-body">
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Email</strong>
+                                                                <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
                                                                 <p class="text-muted">{{$d->email}}</p>
                                                                 <hr>
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Date of birth</strong>
+                                                                <strong><i class="fa fa-birthday-cake margin-r-5"></i> Date of birth</strong>
                                                                 <p class="text-muted">{{$d->birthday}}</p>
                                                                 <hr>
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Gender</strong>
+                                                                <strong><i class="fa fa-transgender margin-r-5"></i> Gender</strong>
                                                                 <p class="text-muted">@if($d->gender==1) male @else female @endif</p>
                                                                 <hr>
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Phone</strong>
+                                                                <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
                                                                 <p class="text-muted">{{$d->phone}}</p>
                                                                 <hr>
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Status</strong>
+                                                                <strong><i class="fa fa-hand-o-right margin-r-5"></i> Status</strong>
                                                                 <p class="text-muted">@if($d->active==1) Active @else Lock @endif</p>
                                                                 <hr>
-                                                                <strong><i class="fa fa-map-marker margin-r-5"></i> Created at</strong>
+                                                                <strong><i class="fa fa-hourglass-start margin-r-5"></i> Created at</strong>
                                                                 <p class="text-muted">{{$d->created_at}}</p>
                                                                 <hr>
                                                             </div>

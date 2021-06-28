@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Mail\SendMail;
 use App\Models\account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule as ValidationRule;
 use Illuminate\Support\Str;
 
@@ -35,8 +37,9 @@ class AdminController extends Controller
             'phone'=>'required',
 
         ]);
-        $account=account::where('id',$id)->first();
+
         $update=account::where('id',$id)->update(request()->only('fullname','email','gender','address','birthday','phone'));
+        $account=account::where('id',$id)->first();
         if($update){
             request()->session()->invalidate();
             request()->session()->push('adminSession',$account);
@@ -65,9 +68,9 @@ class AdminController extends Controller
         else return redirect()->back()->with('incorrect',"Current Password not match!");
     }
 
-    public function feedback(){
+    public function contactManage(){
         $data=DB::table('contact')->orderBy('created_at')->get();
-        return view('adminView.feedback',compact('data'));
+        return view('adminView.contact',compact('data'));
     }
     public function createAccount(){
         return view('adminView.account.create');
@@ -96,7 +99,7 @@ class AdminController extends Controller
 
         $data= account::where('id',$id)->update(['active'=>2]);
         if($data){
-            return redirect()->back()->with('success','Lock success');
+            return redirect()->back()->with('Success','Lock success');
         }
         else return redirect()->back()->with('fail','Lock fail');
 
@@ -105,7 +108,16 @@ class AdminController extends Controller
 
         $data= account::where('id',$id)->update(['active'=>1]);
         if($data){
-            return redirect()->back()->with('success','Lock success');
+            return redirect()->back()->with('Success','UnLock success');
+        }
+        else return redirect()->back()->with('fail','Lock fail');
+
+    }
+    public function delete($id){
+
+        $data= account::where('id',$id)->delete();
+        if($data){
+            return redirect()->back()->with('success','Delete Account success!');
         }
         else return redirect()->back()->with('fail','Lock fail');
 
@@ -113,5 +125,23 @@ class AdminController extends Controller
     public function admin(){
         $data= account::where('role',2)->get();
         return view('adminView.account.admin',compact('data'));
+    }
+    public function resetPass(Request $request){
+        $request->validate([
+            'email'=>'required|exists:accounts'
+        ],[
+            'email.exists'=>'Your email does not exist!'
+        ]);
+        $account = account::where('email',$request->email)->first();
+        $newPass=Str::random(8);
+        $update=account::where('email',$request->email)->update(['password'=>Hash::make($newPass)]);
+        if($update) {
+            request()->session()->invalidate();
+            $data =array('email'=>$request->email,'password'=>$newPass,'name'=>$account->fullname);
+            $result=Mail::to($request->email)->send(new SendMail($data));
+            return redirect()->action('UserController@index')->with('login','Login start');
+
+        }
+        else return redirect()->back()->with('Success','Erro!');
     }
 }

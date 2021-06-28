@@ -30,14 +30,14 @@
     <section class="content">
 
         <div class="box box-primary">
-            <div class="box-header with-border">
+            <div class="box-header with-border col-sm-offset-2">
               <h3 class="box-title">Please enter the following information</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" action="" method="POST">
                 @csrf
-              <div class="box-body">
+              <div class="box-body col-sm-offset-2 col-sm-8">
                   <div class="form-group">
                     <label for="exampleInputName">Full Name</label>
                     <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Your Name" required name="fullname" value="{{old('fullname')}}">
@@ -96,11 +96,12 @@
                         @endif
                     </select>
                   </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
         </div>
