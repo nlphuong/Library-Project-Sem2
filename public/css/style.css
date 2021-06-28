@@ -2568,3 +2568,16 @@ a.drop-menu i.fa-caret-down {
 .box-featured__description {
     margin-bottom: 1.375rem;
 }
+
+/**Our Book**/
+.cate-box,
+.list-group-item{
+    background-color: white;
+    border-top: 1px solid white;
+    color: black;
+}
+.cate-box,
+.list-group-item:hover{
+    background-color: #b32137;
+    color: white;
+}

@@ -19,45 +19,20 @@
     <div class="row ">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories
+                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list" style="font-size: small"></i> Categories
                 </div>
-                <ul class="list-group category_block">
+                <div class="list-group cate-box">
                     <!-- <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
                     <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
                     <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
                     <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
                     <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li> -->
-                    <li class="list-group-item"><a href="{{url("books")}}">All Categories</a></li>
+                    <a class="list-group-item" href="{{url("books")}}">All Categories</a>
                     @foreach($cats as $c)
-                    <li class="list-group-item"><a href="{{url("books/categories/{$c->id}")}}">{{$c->name}}</a></li>
+                    <a class="list-group-item" href="{{url("books/categories/{$c->id}")}}">{{$c->name}}</a>
                     @endforeach
-                </ul>
-            </div>
-            <div class="card bg-light mb-3">
-                <div class="input-group">
-                    <div class="input-group-btn search-panel">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span id="search_concept">Filter by</span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#contains">Contains</a></li>
-                            <li><a href="#its_equal">It's equal</a></li>
-                            <li><a href="#greather_than">Greather than ></a></li>
-                            <li><a href="#less_than">Less than < </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#all">Anything</a></li>
-                        </ul>
-                    </div>
-                    <input type="hidden" name="search_param" value="all" id="search_param">
-                    <input type="text" class="form-control" name="x" placeholder="Search term...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><img src="{{asset('images/search_icon.png')}}"
-                                alt=""></button>
-                    </span>
                 </div>
             </div>
-
             <!-- <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Last product</div>
                 <div class="card-body">
@@ -69,36 +44,32 @@
                 </div>
             </div> -->
         </div>
+
         <div class="col">
             <div class="card">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <div class="input-group-btn search-panel">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span id="search_concept">Filter by</span> <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#contains">Contains</a></li>
-                                    <li><a href="#its_equal">It's equal</a></li>
-                                    <li><a href="#greather_than">Greather than ></a></li>
-                                    <li><a href="#less_than">Less than < </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#all">Anything</a></li>
-                                </ul>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Years</a>
+                                    <a class="dropdown-item" href="#">Rating</a>
+                                    <a class="dropdown-item" href="#">Recommend</a>
+                                </div>
                             </div>
                             <input type="hidden" name="search_param" value="all" id="search_param">
                             <input type="text" class="form-control" name="x" placeholder="Search term...">
-                            <select name="cars" id="cars">
+                            <!--<select name="cars" id="cars">
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
                                 <option value="mercedes">Mercedes</option>
                                 <option value="audi">Audi</option>
-                            </select>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><img
-                                        src="{{asset('images/search_icon.png')}}" alt=""></button>
+                            </select> -->
+                            <span class="input-group-btn" style="background-color: white">
+                                <button class="btn btn-default" style="background-color: white" type="button"><img
+                                        src="{{asset('images/search icon_1.png')}}" alt=""></button>
                             </span>
                         </div>
                     </div>
