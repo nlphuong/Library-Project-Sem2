@@ -19,8 +19,7 @@
     <div class="row ">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list" style="font-size: small"></i> Categories
-                </div>
+                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list" style="font-size: small"></i> Categories</div>
                 <div class="list-group cate-box">
                     <!-- <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
                     <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
@@ -33,6 +32,16 @@
                     @endforeach
                 </div>
             </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filter Dropdown
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button">Action 1</button>
+                  <button class="dropdown-item" type="button">Action 2</button>
+                  <button class="dropdown-item" type="button">Action 3</button>
+                </div>
+              </div>
             <!-- <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Last product</div>
                 <div class="card-body">
