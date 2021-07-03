@@ -5,7 +5,7 @@
               <div class="col-md-10 offset-md-1">
                  <div class="titlepage">
                     <h2>Our <strong class="black">Library </strong></h2>
-                    <span>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</span>
+                    <span>Our libraries give you the space to study alone or with your group. As well as physical and online materials</span>
                  </div>
               </div>
            </div>
@@ -25,7 +25,6 @@
            <div class="row">
               <div class="col-md-12">
                  <div class="read-more">
-                    <a href="#">Read More</a>
                  </div>
               </div>
            </div>

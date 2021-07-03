@@ -7,8 +7,7 @@
                       <div class="container">
                          <div class="carousel-caption relative">
                             <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
-                            <p>adipiscing elit, sed do eiusmod tempor incididunt ut<br> labore et dolore magna aliqua. Ut enim ad minim<br> veniam, quis nostrud exercitation </p>
-                            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                            <p>We inspire and enable independent minds<br> providing resources, spaces and technologies.</p>
                             <ul class="locat_icon">
                                <li> <a href="#"><img src="icon/facebook.png"></a></li>
                                <li> <a href="#"><img src="icon/Twitter.png"></a></li>
@@ -19,34 +18,16 @@
                       </div>
                    </div>
                    <div class="carousel-item">
-                      <img class="second-slide" src="images/banner.jpg" alt="Second slide">
+                      <img class="second-slide" src="images/b7.jpg" alt="Second slide">
                       <div class="container">
                          <div class="carousel-caption relative">
-                            <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
-                            <p>adipiscing elit, sed do eiusmod tempor incididunt ut<br> labore et dolore magna aliqua. Ut enim ad minim<br> veniam, quis nostrud exercitation </p>
-                            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
-                            <ul class="locat_icon">
-                               <li> <a href="#"><img src="icon/facebook.png"></a></li>
-                               <li> <a href="#"><img src="icon/Twitter.png"></a></li>
-                               <li> <a href="#"><img src="icon/linkedin.png"></a></li>
-                               <li> <a href="#"><img src="icon/instagram.png"></a></li>
-                            </ul>
                          </div>
                       </div>
                    </div>
                    <div class="carousel-item">
-                      <img class="third-slide" src="images/banner.jpg" alt="Third slide">
+                      <img class="third-slide" src="images/b6.jpg" alt="Third slide">
                       <div class="container">
                          <div class="carousel-caption relative">
-                            <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
-                            <p>adipiscing elit, sed do eiusmod tempor incididunt ut<br> labore et dolore magna aliqua. Ut enim ad minim<br> veniam, quis nostrud exercitation </p>
-                            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
-                            <ul class="locat_icon">
-                               <li> <a href="#"><img src="icon/facebook.png"></a></li>
-                               <li> <a href="#"><img src="icon/Twitter.png"></a></li>
-                               <li> <a href="#"><img src="icon/linkedin.png"></a></li>
-                               <li> <a href="#"><img src="icon/instagram.png"></a></li>
-                            </ul>
                          </div>
                       </div>
                    </div>
