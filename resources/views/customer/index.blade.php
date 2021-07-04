@@ -25,7 +25,7 @@
                       </div>
                    </div>
                    <div class="carousel-item">
-                      <img class="second-slide" src="{{asset('images')}}/b7.jpg" alt="Second slide">
+                      <img class="second-slide" src="{{asset('/images/Home')}}/b7.jpg" alt="Second slide">
                       <div class="container">
                          <div class="carousel-caption relative">
                              </div>
@@ -38,7 +38,7 @@
                          </div>
                       </div>
                       <div class="carousel-item">
-                        <img class="third-slide" src="{{asset('images')}}/b6.jpg" alt="Third slide">
+                        <img class="third-slide" src="{{asset('/images/Home')}}/b6.jpg" alt="Third slide">
                         <div class="container">
                            <div class="carousel-caption relative">
                                </div>
@@ -82,7 +82,7 @@
               </div>
               <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
                  <div class="about-box">
-                    <figure><img style="width:100%" src="{{asset('images')}}/11.jfif" alt="img" /></figure>
+                    <figure><img style="width:100%" src="{{asset('/images/Home')}}/11.jfif" alt="img" /></figure>
                  </div>
               </div>
            </div>
