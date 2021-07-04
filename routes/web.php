@@ -63,6 +63,8 @@ Route::prefix('customer')->group(function () {
     Route::get('/changePass/{id}', 'CustomerController@changePass');
     Route::post('/changePass/{id}', 'CustomerController@postChangePass');
     Route::get('/memberPack/{id}', 'CustomerController@memberPack');
+    Route::get('/bookmanager/{id}', 'CustomerController@bookmanager');
     Route::get('/contact', 'CustomerController@contact');
     Route::post('/contact', 'CustomerController@send');
+    
 });

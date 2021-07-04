@@ -95,4 +95,9 @@ class CustomerController extends Controller
             return redirect()->back()->with('fail', 'Your information update failed');
         }
     }
+    public function bookmanager($id)
+    {
+        $account = account::where('id', $id)->first();
+        return view('customer.bookmanager', compact('account'));
+    }
 }
