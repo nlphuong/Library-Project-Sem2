@@ -17,7 +17,7 @@
               </div>
               <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
                  <div class="about-box">
-                    <figure><img style="width:100%" src="{{asset('images')}}/11.jfif" alt="img" /></figure>
+                    <figure><img style="width:100%" src="{{asset('/images/Home')}}/11.jfif" alt="img" /></figure>
                  </div>
               </div>
            </div>
