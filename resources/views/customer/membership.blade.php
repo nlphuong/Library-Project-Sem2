@@ -5,7 +5,7 @@
 @endsection
 @section('contentMembership')
 
-<h3>Become a member at Memorial library during our anniversary week and get 10% off the membership free! Get access to our ever -expanding collection of books, DVDs, online resources, event and activites.    </h3>
+<h3>Become a member at Memorial library during our anniversary week and get 10% off the membership free! Get access to our ever -expanding collection of books event and activites.    </h3>
 
     <div class="row">
         <div class="col-xl-4 col-md-6 mb-4 " style="height: 300px !important">
