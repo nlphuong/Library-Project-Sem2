@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <p id="countdown">10:00</p>
+</body>
+<script>
+    const startingMinutes=10;
+    let time =startingMinutes*60;
+    const countdownEl=document.getElementById('countdown');
+    setInterval(updatecountdown,1000);
+    function updatecountdown(){
+        const minutes=Math.floor(time/60);
+        let seconds=time%60;
+        countdownEl.innerHTML=`${minutes}:${seconds}`;
+        time--;
+    }
+</script>
+</html>
