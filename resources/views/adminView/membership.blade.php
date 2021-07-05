@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 style="font-weight: bold; word-spacing: 3px; text-align: center">
-            COMMENT AND RATING BOOKS
+            MEMBERSHIP MANAGEMENT
           <small></small>
         </h1>
         <div class="row">
@@ -16,8 +16,8 @@
                 <form id="form1" action="">
                     @csrf
                     <select name="select" id="input" class="form-control" style="border-color: #1baa0ee6" required="required" onchange="submitChange()">
-                        <option @if($status=='pending') selected @endif value="1">Pending</option>
-                        <option   @if($status=='approved') selected @endif value="2">Approved</option>
+                        <option @if($status=='unpaid') selected @endif value="1">Unpaid</option>
+                        <option   @if($status=='paid') selected @endif value="2">Paid</option>
                         <option  @if($status=='all') selected @endif  value="3">All</option>
                     </select>
                 </form>
@@ -26,7 +26,7 @@
         </div>
         <ol class="breadcrumb">
             <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i> Home</a></li>
-            <li class="active">Comment and rating</li>
+            <li class="active">Membership</li>
         </ol>
     </section>
 
@@ -43,11 +43,10 @@
                                 <tr style="color: white;background-color: darkslategrey">
                                     <th>No</th>
                                     <th>Email</th>
-                                    <th>Book</th>
+                                    <th>Start Date</th>
+                                    <th>Expiration Date</th>
                                     <th class="text-center">Status</th>
-                                    <th>Comment</th>
-                                    <th class="text-center">Rating</th>
-                                    <th>Date time</th>
+                                    <th>Register Date</th>
                                     <th style="width: 50px"></th>
                                 </tr>
                             </thead>
@@ -57,40 +56,22 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$d->account->email}}</td>
-                                    <td>{{$d->book->title}}</td>
+                                    <td>{{$d->start_date}}</td>
+                                    <td>{{$d->expiration_Date}}</td>
                                     <td class="text-center">
-                                        @if($d->active==0)
-                                        <span class="label label-warning">Pending</span>
-                                        @elseif($d->active==1)
-                                        <span class="label label-success">Approved</span>
+                                        @if($d->status==1)
+                                        <span class="label label-warning">Unpaid</span>
+                                        @elseif($d->status==2)
+                                        <span class="label label-success">Paid</span>
                                         @else
-                                        <span class="label label-danger">Denied</span>
+                                        <span class="label label-danger">Expired</span>
                                         @endif
                                     </td>
-                                    <td>{{$d->comment}}</td>
-                                    <td class="text-center">{{$d->rating}}</td>
-                                    <td>{{$d->create_at}}</td>
+                                    <td>{{$d->created_at}}</td>
                                     <td>
-                                        <div class="btn-group" style="display: inline-flex !important">
-                                            <button type="button" class="btn btn-info">Action</button>
-                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-
-                                                @if($d->active==0 ||$d->active==2)
-                                                <li><a  href="{{url('admin/approveRating?q=approve',['id'=>$d->id])}}">Approve</a></li>
-                                                @endif
-                                                @if($d->active != 2)
-                                                <li><a  href="{{url('admin/approveRating?q=deny',['id'=>$d->id])}}">Deny</a></li>
-                                                @endif
-                                                @if(session('adminSession')[0]['role']==3)
-                                                <li><a onclick="confirm('Are you sure you want to Delete this account?')" href="{{url('admin/approveRating?q=delete',['id'=>$d->id])}}">Delete</a></li>
-                                                @endif
-                                            </ul>
-
-                                        </div>
+                                        @if($d->status==1)
+                                        <a href="{{url('admin/approvedMember/'.$d->id)}}" class="btn btn-success">Approved</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

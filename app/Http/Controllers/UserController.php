@@ -73,6 +73,7 @@ class UserController extends Controller
                 return redirect()->action('CustomerController@index');
             }
             else if($account->role ==2||$account->role ==3){
+                request()->session()->invalidate();
                 request()->session()->push('adminSession',$account);
                 return redirect()->action('Admin\AdminController@index');
             }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Mail\SendMail;
 use App\Models\account;
+use App\Models\Membership;
 use App\Models\ratingBook;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -148,10 +150,10 @@ class AdminController extends Controller
     public function rating(Request $request){
         if($request->has('select')){
             if($request->select==1) {
-                $data= ratingBook::where('status','1')->orderByDesc('create_at')->get();
+                $data= ratingBook::where('active','0')->orderByDesc('create_at')->get();
                 return view('adminView.rating')->with('data',$data)->with('status','pending');
             } else if($request->select==2){
-                $data= ratingBook::where('status','2')->orderByDesc('create_at')->get();
+                $data= ratingBook::where('active','1')->orderByDesc('create_at')->get();
                 return view('adminView.rating')->with('data',$data)->with('status','approved');
             }
             else {
@@ -159,18 +161,18 @@ class AdminController extends Controller
                 return view('adminView.rating')->with('data',$data)->with('status','all');
             }
         }
-        $data= ratingBook::where('status','1')->orderByDesc('create_at')->get();
+        $data= ratingBook::where('active','0')->orderByDesc('create_at')->get();
         return view('adminView.rating')->with('data',$data)->with('status','pending');
 
 
     }
     public function approveRating(Request $request,$id){
         if($request->q=="approve"){
-            $update=ratingBook::where('id',$id)->update(['status'=>2]);
+            $update=ratingBook::where('id',$id)->update(['active'=>1]);
             if($update) return redirect()->back()->with('Success','Update status success!');
         }
         else if($request->q=="deny"){
-            $update=ratingBook::where('id',$id)->update(['status'=>3]);
+            $update=ratingBook::where('id',$id)->update(['active'=>2]);
             if($update) return redirect()->back()->with('Success','Update status success!');
         }
         else if($request->q=="delete"){
@@ -178,4 +180,55 @@ class AdminController extends Controller
             if($delete) return redirect()->back()->with('Success','Delete status success!');
         }
     }
+    public function membership(Request $request){
+        if($request->has('select')){
+            if($request->select==1) {
+                $data= Membership::where('status','1')->orderByDesc('created_at')->get();
+                return view('adminView.membership')->with('data',$data)->with('status','unpaid');
+            } else if($request->select==2){
+                $data= Membership::where('status','2')->orderByDesc('created_at')->get();
+                return view('adminView.membership')->with('data',$data)->with('status','paid');
+            }
+            else {
+                $data= Membership::orderByDesc('created_at')->get();
+                return view('adminView.membership')->with('data',$data)->with('status','all');
+            }
+        }
+        $data= Membership::where('status','1')->orderByDesc('created_at')->get();
+        return view('adminView.membership')->with('data',$data)->with('status','unpaid');
+    }
+
+    // duyệt gói thành viên
+    public function approvedMember($id){
+        $member=Membership::where([
+            ['id','=',$id],
+            ['status','=',1]
+            ])->first();
+        if($member->price==9){
+            $update= Membership::where('id',$id)->update([
+                'start_date'=> now(),
+                'expiration_Date'=> Carbon::now()->addMonth(1),
+                'status'=>2
+            ]);
+        }
+        else if($member->price==25){
+            $update= Membership::where('id',$id)->update([
+                'start_date'=> now(),
+                'expiration_Date'=> Carbon::now()->addMonth(3),
+                'status'=>2
+            ]);
+        }
+        else if($member->price==89){
+            $update= Membership::where('id',$id)->update([
+                'start_date'=> now(),
+                'expiration_Date'=> Carbon::now()->addYear(1),
+                'status'=>2
+            ]);
+        }
+
+        if($update){
+            return redirect()->back()->with('s','success');
+        }
+    }
+
 }

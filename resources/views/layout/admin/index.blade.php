@@ -160,10 +160,19 @@
           </a>
         </li>
         <li>
+          <a href="{{url('admin/membership')}}">
+            <i class="fa fa-id-card-o"></i> <span>Membership</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">{{$count['countUnpaid']}}</small>
+              <small class="label pull-right bg-red">{{$count['countExpired']}}</small>
+            </span>
+          </a>
+        </li>
+        <li>
           <a href="{{url('admin/rating')}}">
             <i class="fa fa-star"></i> <span>Comment and rating</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
+              <small class="label pull-right bg-yellow">{{$count['countPendingRating']}}</small>
             </span>
           </a>
         </li>
