@@ -7,6 +7,7 @@
 @endsection
 
 @section('main')
+
 @if(Session::has('Success'))
 <script>
     $(document).ready(function () {
@@ -21,11 +22,11 @@
             LIST BOOK
           <small></small>
         </h1>
-         {{-- <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Examples</a></li>
-          <li class="active">Blank page</li>
-        </ol> --}}
+        <ol class="breadcrumb">
+            <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i> Home</a></li>
+            <li><a >Book</a></li>
+            <li class="active">Book list</li>
+        </ol>
     </section>
 
     <!-- Main content -->

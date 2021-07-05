@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -128,11 +129,17 @@ class CategoryController extends Controller
         dd($category->id);
     }
     public function delete(Category $category)
-    {
-        $delete= Category::find($category->id)->delete();
-        if($delete) {
-            return redirect()->route('category.index')->with('deleteSuccess','Delete category name: '.$category->name.' success');
+    {   $count = Book::where('category_id',$category->id)->count();
+        if($count>0){
+            return redirect()->back()->with('deleteFail','Can not delete because have book in this Category');
         }
-        return redirect()->back()->with('deleteFail','Delete category name: '.$category->name.' fail');
+        else {
+            $delete= Category::find($category->id)->delete();
+            if($delete) {
+                return redirect()->route('category.index')->with('deleteSuccess','Delete category name: '.$category->name.' success');
+            }
+            return redirect()->back()->with('deleteFail','fail');
+        }
+
     }
 }

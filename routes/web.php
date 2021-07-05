@@ -44,6 +44,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/changePass/{id}', 'Admin\AdminController@postChangePass');
     Route::post('/resetPass', 'Admin\AdminController@resetPass');
     Route::get('/contactManage', 'Admin\AdminController@contactManage');
+    Route::get('/rating', 'Admin\AdminController@rating');
+    Route::get('/approveRating/{id}', 'Admin\AdminController@approveRating');
     Route::prefix('account')->group(function () {
         Route::get('/createAccount', 'Admin\AdminController@createAccount');
         Route::post('/createAccount', 'Admin\AdminController@postCreateAccount');
