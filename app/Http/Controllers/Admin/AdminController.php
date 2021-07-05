@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Mail\SendMail;
 use App\Models\account;
 use App\Models\Membership;
+use App\Models\membership_fee;
 use App\Models\ratingBook;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -181,6 +182,7 @@ class AdminController extends Controller
         }
     }
     public function membership(Request $request){
+        Membership::where('expiration_Date','<',now())->update(['status'=>3]);
         if($request->has('select')){
             if($request->select==1) {
                 $data= Membership::where('status','1')->orderByDesc('created_at')->get();
@@ -200,6 +202,8 @@ class AdminController extends Controller
 
     // duyệt gói thành viên
     public function approvedMember($id){
+        // $exp=Membership::where('id',$id)->first()->expiration_Date;
+        // dd(Carbon::parse($exp)->diffInSeconds(Carbon::parse(now())));
         $member=Membership::where([
             ['id','=',$id],
             ['status','=',1]
@@ -227,6 +231,11 @@ class AdminController extends Controller
         }
 
         if($update){
+            $mem=Membership::where('id',$id)->first();
+            membership_fee::create([
+                'membership_id'=>$mem->id,
+                'price'=>$mem->price
+            ]);
             return redirect()->back()->with('s','success');
         }
     }
