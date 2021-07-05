@@ -22,6 +22,7 @@ Route::get('/books', 'BookController@showAllBook');
 Route::get('/about', 'UserController@about');
 Route::get('/library', 'UserController@library');
 Route::get('/books/categories/{id}', 'BookController@getCategoryBooks');
+Route::get('/books/search', 'BookController@search');
 Route::get('/books/detail/{id}', 'BookController@detailBooks');
 Route::get('/register', 'UserController@register');
 Route::post('/register', 'UserController@postRegister');

@@ -13,74 +13,76 @@
         </div>
     </div>
 </div>
-<!-- test -->
+<!-- Book list -->
 <br>
 <div class="container">
     <div class="row ">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list" style="font-size: small"></i> Categories</div>
+                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"
+                        style="font-size: small"></i> Categories</div>
                 <div class="list-group cate-box">
-                    <!-- <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
-                    <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
-                    <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
-                    <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
-                    <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li> -->
                     <a class="list-group-item" href="{{url("books")}}">All Categories</a>
                     @foreach($cats as $c)
                     <a class="list-group-item" href="{{url("books/categories/{$c->id}")}}">{{$c->name}}</a>
                     @endforeach
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Filter Dropdown
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button class="dropdown-item" type="button">Action 1</button>
-                  <button class="dropdown-item" type="button">Action 2</button>
-                  <button class="dropdown-item" type="button">Action 3</button>
-                </div>
-              </div>
-            <!-- <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase">Last product</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <p class="bloc_left_price">99.00 $</p>
-                </div>
-            </div> -->
         </div>
 
         <div class="col">
-            <div class="card">
+            <div class="col-12">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Years</a>
-                                    <a class="dropdown-item" href="#">Rating</a>
-                                    <a class="dropdown-item" href="#">Recommend</a>
+                    <div class="col-sm-9">
+                        <div >
+                            <form action="{{url("books/search")}}" method="get">
+                                <div class="input-group">
+                                <div class="input-group-prepend">
+                                        <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="border-style: hidden;">Filter by</button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Years</a>
+                                        <a class="dropdown-item" href="#">Rating</a>
+                                        <a class="dropdown-item" href="#">Recommend</a>
+                                    </div> -->
+                                        <select name="categories" class="custom-select" style="border-style: hidden;background-color: cornsilk;border-radius: 25px 0px 0px 25px;">
+                                            <option selected value="">All Categories</option>
+                                            @foreach($cats as $c)
+                                            <option value="{{$c->id}}" @if(isset($_GET['categories']) && $_GET['categories']==$c->id) selected @endif>{{$c->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <!-- <select class="custom-select" style="border-style: hidden;">
+                                            <option selected style="text-align: center;">Sort by</option>
+
+                                            <option value="1">1</option>
+                                            <option value="2">Two</option>
+                                        <option value="3">Three</option>
+
+                                        </select> -->
                                 </div>
-                            </div>
-                            <input type="hidden" name="search_param" value="all" id="search_param">
-                            <input type="text" class="form-control" name="x" placeholder="Search term...">
-                            <!--<select name="cars" id="cars">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                            </select> -->
-                            <span class="input-group-btn" style="background-color: white">
-                                <button class="btn btn-default" style="background-color: white" type="button"><img
-                                        src="{{asset('images/search icon_1.png')}}" alt=""></button>
-                            </span>
+                                    <!-- <input type="hidden" name="search_param" value="all" id="search_param"> -->
+                                    <input style="border-style: hidden;background-color: cornsilk;" type="text" class="form-control" name="txtsearch" placeholder="Search term...">
+                                    <span class="input-group-btn" style="background-color: white">
+                                        <button class="btn btn-default" style="background-color: cornsilk;border-radius: 0px 25px 25px 0px;"
+                                            type="submit"><img src="{{asset('images/search icon_1.png')}}"
+                                                alt=""></button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <form action="">
+                        <select id="sort" name= "sort" class="custom-select btn btn-info" style="border-style: hidden; background-color: cornsilk; border-radius: 25px;">
+                            <option selected style="text-align: center;">Sort by</option>
+
+                            <option value="1" @if(isset($_GET['sort']) && $_GET['sort']==1) selected @endif>Latest</option>
+                            <option value="2" @if(isset($_GET['sort']) && $_GET['sort']==2) selected @endif>Year increase</option>
+                            <option value="3" @if(isset($_GET['sort']) && $_GET['sort']==3) selected @endif>Year decrease<i class="fa fa-arrow-down" aria-hidden="true"></i></option>
+
+                        </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -107,8 +109,6 @@
                                 <strong>Pages: &nbsp;</strong> {{$b->no_Pages}} &nbsp;pages.
                             </p>
                             <br />
-                            <!-- {!! $b->content !!} -->
-
                             <div class="row">
                                 <div class="col-6">
                                     <!-- <p class="btn btn-danger btn-block">{{$b->price}}</p> -->
@@ -125,47 +125,23 @@
             </div>
             <br>
             @endforeach
-            <!--
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product.html" title="View Product">Product title</a></h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 -->
-
             <div class="col-12">
                 <nav aria-label="...">
                     <ul class="pagination">
-                        <!-- <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li> -->
-                        {!! $books->links() !!}
+                        @if(isset($_GET['sort']) && !empty($_GET['sort']) && !isset($_GET['txtsearch']) && !isset($_GET['categories']))
+                            {{ $books->appends(['sort' => $_GET['sort']])->links() }}
+                        @elseif(!isset($_GET['sort']) && empty($_GET['sort']) && isset($_GET['txtsearch']) && isset($_GET['categories']))
+                            {{ $books->appends(['categories' => $_GET['categories']])->appends(['txtsearch' => $_GET['txtsearch']])->links() }}
+                        @elseif(isset($_GET['sort']) && !empty($_GET['sort']) && isset($_GET['txtsearch']) && isset($_GET['categories']))
+                            {{ $books->appends(['categories' => $_GET['categories']])->appends(['txtsearch' => $_GET['txtsearch']])->appends(['sort' => $_GET['sort']])->links() }}
+                        @else
+                            {{ $books->links() }}
+                        @endif
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
-
 </div>
 <br>
 @endsection
