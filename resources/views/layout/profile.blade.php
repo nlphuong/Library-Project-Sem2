@@ -52,9 +52,9 @@
 							Change Password </a>
 						</li>
 						<li>
-							<a href="#">
-							<i class="fa fa-flag"></i>
-							Notification </a>
+							<a href="{{url('customer/bookmanager/'.$account->id)}}">
+							<i class="fa fa-book"></i>
+							Books Manager </a>
 						</li>
 					</ul>
 				</div>

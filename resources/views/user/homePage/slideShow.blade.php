@@ -18,14 +18,14 @@
                       </div>
                    </div>
                    <div class="carousel-item">
-                      <img class="second-slide" src="images/b7.jpg" alt="Second slide">
+                      <img class="second-slide" src="{{asset('/images/Home')}}/b7.jpg" alt="Second slide">
                       <div class="container">
                          <div class="carousel-caption relative">
                          </div>
                       </div>
                    </div>
                    <div class="carousel-item">
-                      <img class="third-slide" src="images/b6.jpg" alt="Third slide">
+                      <img class="third-slide" src="{{asset('/images/Home')}}/b6.jpg" alt="Third slide">
                       <div class="container">
                          <div class="carousel-caption relative">
                          </div>

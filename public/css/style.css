@@ -2581,3 +2581,27 @@ a.drop-menu i.fa-caret-down {
     background-color: #b32137;
     color: white;
 }
+
+/**Book Manager*/
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #b32137
+}
+
+.back {
+    color: #b32137;
+}
+
+.borrow-image{
+    padding: 1em;
+    max-height: 60%;
+    max-width: 250px;
+}
+
+.booktime{
+    font-size: small;
+    color: #b32137;
+}
+
+
