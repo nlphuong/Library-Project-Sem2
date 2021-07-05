@@ -7,14 +7,63 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
-    public function showAllBook(){
-        $books = DB::table('books')->paginate(3);
+    public function showAllBook(Request $request){
+        $books = DB::table('books');
+
+        if(isset($_GET['sort']) && !empty($_GET['sort'])){
+            if($_GET['sort']== "1"){
+                $books->orderByDesc('created_at');
+            }else if($_GET['sort']== "2"){
+                $books->orderBy('publication_Year');
+            }else if($_GET['sort']== "3"){
+                $books->orderByDesc('publication_Year');
+            }
+        }
+        $books = $books->paginate(3);
         return view('user.books')->with(['books'=>$books]);
     }
 
-    public function getCategoryBooks($id){
-        $books = DB::table('books')->where('category_Id', intval($id))->paginate(2);
+    public function getCategoryBooks($url){
+        $books = DB::table('books')->where('category_Id', intval($url));
+        if(isset($_GET['sort']) && !empty($_GET['sort'])){
+            if($_GET['sort']== "1"){
+                $books->orderByDesc('created_at');
+            }else if($_GET['sort']== "2"){
+                $books->orderBy('publication_Year');
+            }else if($_GET['sort']== "3"){
+                $books->orderByDesc('publication_Year');
+            }
+        }
+        $books = $books->paginate(2);
         return view('user.books')->with(['books'=>$books]);
+    }
+
+    public function search(Request $request){
+
+        $books = DB::table('books');
+
+        if(isset($_GET['txtsearch']) && !empty($_GET['txtsearch'])){
+            $search = $_GET['txtsearch'];
+            $cateId = $_GET['categories'];
+            $books->where('title','Like', '%'.$search.'%');
+        }
+        if(isset($_GET['categories']) && !empty($_GET['categories'])){
+            $books->where('category_Id', $cateId);
+        }
+        if(isset($_GET['sort']) && !empty($_GET['sort'])){
+            if($_GET['sort']== "1"){
+                $books->orderByDesc('created_at');
+            }else if($_GET['sort']== "2"){
+                $books->orderBy('publication_Year');
+            }else if($_GET['sort']== "3"){
+                $books->orderByDesc('publication_Year');
+            }
+        }
+        $books = $books->paginate(3);
+
+        return view('user.books')->with(['books'=>$books]);
+
+
     }
 
     public function detailBooks($isbn){
@@ -27,7 +76,8 @@ class BookController extends Controller
                                         ->inRandomOrder()->limit(2)->get();
 
         $rate = DB::table('ratingBooks')->join('accounts', 'ratingBooks.customer_Id', '=', 'accounts.id')
-                                        ->where('ratingBooks.isbn', $isbn)->orderByDesc('create_at')
+                                        ->where('ratingBooks.isbn', $isbn)->where('ratingBooks.active',0)
+                                        ->orderByDesc('create_at')
                                         ->paginate(4);
         $total_no_star = DB::table('ratingBooks')->where('isbn', $isbn)->sum('rating');
 
