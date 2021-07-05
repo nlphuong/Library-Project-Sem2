@@ -44,6 +44,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/changePass/{id}', 'Admin\AdminController@postChangePass');
     Route::post('/resetPass', 'Admin\AdminController@resetPass');
     Route::get('/contactManage', 'Admin\AdminController@contactManage');
+    Route::get('/rating', 'Admin\AdminController@rating');
+    Route::get('/approveRating/{id}', 'Admin\AdminController@approveRating');
     Route::prefix('account')->group(function () {
         Route::get('/createAccount', 'Admin\AdminController@createAccount');
         Route::post('/createAccount', 'Admin\AdminController@postCreateAccount');
@@ -53,6 +55,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/unlock/{id}', 'Admin\AdminController@unlock');
         Route::get('/delete/{id}', 'Admin\AdminController@delete');
     });
+    Route::get('/membership', 'Admin\AdminController@membership');
+    Route::get('/approvedMember/{id}', 'Admin\AdminController@approvedMember');
+
 });
 
 //Route chỉ Customer mới vào được (middleware->cus)
@@ -63,8 +68,9 @@ Route::prefix('customer')->group(function () {
     Route::get('/changePass/{id}', 'CustomerController@changePass');
     Route::post('/changePass/{id}', 'CustomerController@postChangePass');
     Route::get('/memberPack/{id}', 'CustomerController@memberPack');
+    Route::get('/RegisPack/{id}', 'CustomerController@RegisPack');
     Route::get('/bookmanager/{id}', 'CustomerController@bookmanager');
     Route::get('/contact', 'CustomerController@contact');
     Route::post('/contact', 'CustomerController@send');
-    
+
 });

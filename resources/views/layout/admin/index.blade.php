@@ -99,7 +99,7 @@
             </ul>
           </div>
         </nav>
-      </header>
+    </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -153,9 +153,26 @@
         </li>
         <li>
           <a href="">
-            <i class="fa fa-th"></i> <span>Widgets</span>
+            <i class="fa fa-address-book"></i> <span>Borrow Books</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('admin/membership')}}">
+            <i class="fa fa-id-card-o"></i> <span>Membership</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">{{$count['countUnpaid']}}</small>
+              <small class="label pull-right bg-red">{{$count['countExpired']}}</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('admin/rating')}}">
+            <i class="fa fa-star"></i> <span>Comment and rating</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">{{$count['countPendingRating']}}</small>
             </span>
           </a>
         </li>
@@ -187,7 +204,7 @@
   </footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+  {{-- <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
@@ -374,7 +391,7 @@
       </div>
       <!-- /.tab-pane -->
     </div>
-  </aside>
+  </aside> --}}
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

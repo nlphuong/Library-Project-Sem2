@@ -19,11 +19,11 @@
             CREATE ACCOUNT
           <small></small>
         </h1>
-         {{-- <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Examples</a></li>
-          <li class="active">Blank page</li>
-        </ol> --}}
+         <ol class="breadcrumb">
+          <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i> Home</a></li>
+          <li><a >Account</a></li>
+          <li class="active">Create new account</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -38,13 +38,25 @@
             <form role="form" action="" method="POST">
                 @csrf
               <div class="box-body col-sm-offset-2 col-sm-8">
+
                   <div class="form-group">
                     <label for="exampleInputName">Full Name</label>
-                    <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Your Name" required name="fullname" value="{{old('fullname')}}">
+                    <div class="input-group">
+
+                        <div class="input-group-addon">
+                            @
+                        </div>
+                        <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Your Name" required name="fullname" value="{{old('fullname')}}">
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required name="email" value="{{old('email')}}">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required name="email" value="{{old('email')}}">
+                    </div>
                   </div>
                   @error('email')
                   <div class="alert alert-danger" role="alert">
@@ -53,7 +65,12 @@
                   @enderror
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" pattern=".{8,}" class="form-control" id="password" placeholder="Password" required name="password">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <input type="password" pattern=".{8,}" class="form-control" id="password" placeholder="Password" required name="password">
+                    </div>
                   </div>
                   @error('password')
                   <div class="alert alert-danger" role="alert">
@@ -62,7 +79,12 @@
                   @enderror
                   <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
-                    <input type="password" pattern=".{8,}" class="form-control" id="confirm_password" placeholder="Confirm Password" required name="confirm_password">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <input type="password" pattern=".{8,}" class="form-control" id="confirm_password" placeholder="Confirm Password" required name="confirm_password">
+                    </div>
                   </div>
                   @error('confirm_password')
                   <div class="alert alert-danger" role="alert">
@@ -76,15 +98,30 @@
                   </div>
                   <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="Address" required name="address" value="{{old('address')}}">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-address-card-o"></i>
+                        </div>
+                        <input type="text" class="form-control" id="address" placeholder="Address" required name="address" value="{{old('address')}}">
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" required value="{{old('birthday')}}">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control" id="birthday" name="birthday" required value="{{old('birthday')}}">
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="text" pattern="[03][0-9]{9}" class="form-control" id="phone" placeholder="Phone"  required name="phone" value="{{old('phone')}}">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <input type="text" pattern="[03][0-9]{9}" class="form-control" id="phone" placeholder="Phone"  required name="phone" value="{{old('phone')}}">
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="phone">Role</label>
@@ -96,7 +133,7 @@
                         @endif
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Create</button>
 
               </div>
               <!-- /.box-body -->

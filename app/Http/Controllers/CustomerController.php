@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\Membership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -66,8 +67,9 @@ class CustomerController extends Controller
     }
     public function memberPack($id)
     {
+        $membership=Membership::where('customer_id',$id)->whereIn('status',[1,2])->first();
         $account = account::where('id', $id)->first();
-        return view('customer.membership', compact('account'));
+        return view('customer.membership', compact('account','membership'));
     }
     public function contact()
     {
@@ -99,5 +101,31 @@ class CustomerController extends Controller
     {
         $account = account::where('id', $id)->first();
         return view('customer.bookmanager', compact('account'));
+    }
+    public function RegisPack($id,Request $request)
+    {
+       if($request->pack==1){
+         $update =Membership::create([
+             'customer_id'=>$id,
+             'price'=>9,
+             'status'=>1
+         ]);
+       } else if($request->pack==2){
+        $update =Membership::create([
+            'customer_id'=>$id,
+            'price'=>25,
+            'status'=>1
+        ]);
+       } else if($request->pack==3){
+        $update =Membership::create([
+            'customer_id'=>$id,
+            'price'=>89,
+            'status'=>1
+        ]);
+       }
+       else return redirect()->back()->with('fail', 'Your information update failed');
+       if($update){
+           return redirect()->back()->with('success','Membership request has been sent. Please go to the library to pay!');
+       }
     }
 }

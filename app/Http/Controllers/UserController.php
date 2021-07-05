@@ -68,10 +68,12 @@ class UserController extends Controller
         $account =account::where('email',$email)->first();
         if($account!=null && Hash::check($pass, $account->password)) {
             if($account->role ==1){
+                request()->session()->invalidate();
                 request()->session()->push('accountSession',$account);
                 return redirect()->action('CustomerController@index');
             }
             else if($account->role ==2||$account->role ==3){
+                request()->session()->invalidate();
                 request()->session()->push('adminSession',$account);
                 return redirect()->action('Admin\AdminController@index');
             }

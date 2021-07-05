@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 use App\Models\Category;
+use App\Models\Membership;
+use App\Models\ratingBook;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $cats = Category::orderby('name')->get();
-        view()->share(compact('cats'));
+        $count= [
+            'countUnpaid'=>Membership::where('status','1')->count(),
+            'countExpired'=>Membership::where('status','3')->count(),
+            'countPendingRating'=>ratingBook::where('active',0)->count(),
+        ];
+
+        view()->share(compact('cats','count'));
     }
 }

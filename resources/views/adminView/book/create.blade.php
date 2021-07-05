@@ -22,11 +22,11 @@
             ADD NEW BOOK
           <small></small>
         </h1>
-         {{-- <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Examples</a></li>
-          <li class="active">Blank page</li>
-        </ol> --}}
+         <ol class="breadcrumb">
+          <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i> Home</a></li>
+          <li><a >Book</a></li>
+          <li class="active">Create book</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -193,7 +193,7 @@
                             <button type="submit" class="btn btn-info col-sm-offset-2">Create</button>
 
                             <button type="reset" class="btn btn-default ">Reset</button>
-                            <button type="submit" class="btn btn-danger ">Cancel</button>
+                            <a href="{{route('book.index')}}" class="btn btn-danger ">Cancel</a>
 
                             </div>
                             <!-- /.box-footer -->

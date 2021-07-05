@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group">
                       <label for="phone">Phone Number</label>
-                      <input type="text" pattern="[03][0-9]{9}" class="form-control" id="phone" placeholder="Phone"  required name="phone" value="{{old('phone')}}">
+                      <input type="text" pattern="[0-9]{8,14}" class="form-control" id="phone" placeholder="Phone"  required name="phone" value="{{old('phone')}}">
                     </div>
               </div>
             </div>

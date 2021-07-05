@@ -19,11 +19,11 @@
             CUSTOMER ACCOUNT
           <small></small>
         </h1>
-         {{-- <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Examples</a></li>
-          <li class="active">Blank page</li>
-        </ol> --}}
+         <ol class="breadcrumb">
+          <li><a href="{{url('admin/index')}}"><i class="fa fa-home"></i> Home</a></li>
+          <li><a class="active">Account</a></li>
+          <li class="active">Customer</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -37,8 +37,8 @@
                     <div class=" ">
                         <table id="table_id" class="display table-bordered">
                             <thead>
-                                <tr style="color: white;background-color: cadetblue">
-                                    <th>ID</th>
+                                <tr style="color: white;background-color: darkslategrey">
+                                    <th></th>
                                     <th>Fullname</th>
                                     <th>Email</th>
                                     <th class="text-center">Gender</th>
@@ -46,14 +46,14 @@
                                     <th>Day of birth</th>
                                     <th class="text-center" style="width: 100px">Phone</th>
                                     <th class="text-center">Status</th>
-                                    <th></th>
+                                    <th style="width: 50px"></th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
-                                    <td>{{$d->id}}</td>
+                                    <td></td>
                                     <td>{{$d->fullname}}</td>
                                     <td>{{$d->email}}</td>
                                     <td class="text-center">@if($d->gender==1) Male @else Female @endif</td>
@@ -67,10 +67,13 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" class="btn btn-default btn-lg " href="">Action <span class="caret"></span></a>
-                                            <ul class="dropdown-menu " style="font-size: 20px">
-
+                                        <div class="btn-group" style="display: inline-flex !important">
+                                            <button type="button" class="btn btn-info">Action</button>
+                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
                                                 <li>
                                                     <button style="border: none;background:none" class="dropdown-fix" type="button" data-toggle="modal" data-target="#my-modal{{$d->id}}">Detail</button>
                                                 </li>
@@ -83,49 +86,54 @@
                                                 <li><a onclick="confirm('Are you sure you want to Delete this account?')" href="{{url('admin/account/delete',['id'=>$d->id])}}">Delete</a></li>
                                                 @endif
                                             </ul>
-                                            <div id="my-modal{{$d->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title text-center" style="font-weight: bold"  id="my-modal-title">ACCOUNT DETAIL</h3>
-                                                            <button class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="box-body box-profile">
-                                                                <img class="profile-user-img img-responsive img-circle" src="{{asset('uploads')}}/{{$d->image}}" alt="User profile picture">
-                                                                <h3 class="profile-username text-center">{{$d->fullname}}</h3>
-                                                                <p class="text-muted text-center">Customer</p>
-                                                            </div>
-                                                            <div class="box-body">
-                                                                <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
-                                                                <p class="text-muted">{{$d->email}}</p>
-                                                                <hr>
-                                                                <strong><i class="fa fa-birthday-cake margin-r-5"></i> Date of birth</strong>
-                                                                <p class="text-muted">{{$d->birthday}}</p>
-                                                                <hr>
-                                                                <strong><i class="fa fa-transgender margin-r-5"></i> Gender</strong>
-                                                                <p class="text-muted">@if($d->gender==1) male @else female @endif</p>
-                                                                <hr>
-                                                                <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
-                                                                <p class="text-muted">{{$d->phone}}</p>
-                                                                <hr>
-                                                                <strong><i class="fa fa-hand-o-right margin-r-5"></i> Status</strong>
-                                                                <p class="text-muted">@if($d->active==1) Active @else Lock @endif</p>
-                                                                <hr>
-                                                                <strong><i class="fa fa-hourglass-start margin-r-5"></i> Created at</strong>
-                                                                <p class="text-muted">{{$d->created_at}}</p>
-                                                                <hr>
-                                                            </div>
-                                                        </div>
+
+                                        </div>
+
+
+
+                                    </td>
+                                    <div id="my-modal{{$d->id}}" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content" style="border: 5px solid #00acd6">
+                                                <div class="modal-header" style="border-bottom: 2px solid #00acd6">
+                                                    <h3 class="modal-title text-center" style="font-weight: bold"  id="my-modal-title">ACCOUNT DETAIL</h3>
+                                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="box-body box-profile">
+                                                        <img class="profile-user-img img-responsive img-circle" src="{{asset('uploads')}}/{{$d->image}}" alt="User profile picture">
+                                                        <h3 class="profile-username text-center">{{$d->fullname}}</h3>
+                                                        <p class="text-muted text-center">Customer - <span>ID: {{$d->id}}</span></p>
+                                                    </div>
+                                                    <div class="box-body">
+                                                        <strong><i class="fa fa-envelope margin-r-5"></i> ID</strong>
+                                                        <p class="text-muted">{{$d->id}}</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
+                                                        <p class="text-muted">{{$d->email}}</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-birthday-cake margin-r-5"></i> Date of birth</strong>
+                                                        <p class="text-muted">{{$d->birthday}}</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-transgender margin-r-5"></i> Gender</strong>
+                                                        <p class="text-muted">@if($d->gender==1) male @else female @endif</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+                                                        <p class="text-muted">{{$d->phone}}</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-hand-o-right margin-r-5"></i> Status</strong>
+                                                        <p class="text-muted">@if($d->active==1) Active @else Lock @endif</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
+                                                        <strong><i class="fa fa-hourglass-start margin-r-5"></i> Created at</strong>
+                                                        <p class="text-muted">{{$d->created_at}}</p>
+                                                        <hr style="border-top: 1px solid #00acd6">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                    </td>
-
+                                    </div>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -184,11 +192,20 @@
 
 
     $(document).ready( function () {
-         $('#table_id').DataTable({
-            "order": [[ 5, "desc" ]]
-         }
+        var t = $('#table_id').DataTable( {
+            "columnDefs": [ {
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            } ],
+            "order": [[ 1, 'desc' ]]
+        } );
 
-         );
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
     } );
 </script>
 
