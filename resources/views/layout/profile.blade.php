@@ -1,5 +1,5 @@
 
-@extends('layout.appindex')
+@extends('layout.app')
 
 @section('title','profile')
 @section('body-class','contact-page')

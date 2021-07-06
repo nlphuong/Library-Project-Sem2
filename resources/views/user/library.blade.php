@@ -1,4 +1,4 @@
-@extends('layout.appIndex')
+@extends('layout.app')
 @section('title','Library')
 @section('main')
    <!-- Library head -->
@@ -21,10 +21,10 @@
            <div class="row">
               <div class="col-md-10 offset-md-1">
                  <div class="titlepage">
-                    <span>Our libraries give you the space to study alone or with your group. As well as physical and online materials and technology to do what you need to do.</span> 
+                    <span>Our libraries give you the space to study alone or with your group. As well as physical and online materials and technology to do what you need to do.</span>
                  </div>
               </div>
-           
+
             <!-- Library card-->
             <!--Matheson Library-->
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -109,7 +109,7 @@
                     </div>
                  </div>
               </div>
-              
+
             <!-------------------End Library body--------------------------------->
            </div>
         </div>
