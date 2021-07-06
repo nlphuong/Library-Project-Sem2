@@ -1715,7 +1715,7 @@ ul.locat_icon li {
     float: left;
     height: 70px;
     color: #fff;
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     align-items: center;
     padding-right: 20px;
@@ -2160,7 +2160,12 @@ span.psw {
 }
 
 .modal-content1 {
-    position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;pointer-events:auto;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
@@ -2352,6 +2357,29 @@ a.drop-menu i.fa-caret-down {
     -moz-box-shadow: 12px 14px 22px 2px rgba(0, 0, 0, 0.75);
     box-shadow: 12px 14px 22px 2px rgba(0, 0, 0, 0.75);
     margin-bottom: 100px;
+}
+
+.borrow {
+    background-color: blanchedalmond;
+    border-radius: 25px;
+    /* width: 150px; */
+    box-shadow: 5px 8px 10px 1px rgba(83, 82, 82, 0.75);
+    font-size: 16px;
+}
+
+.similar {
+    background-color: #b32137;
+    background-image: linear-gradient(#b32137, #550002);
+}
+
+.similar .similartitle h2 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 45px;
+    padding: 10px 0;
+    font-weight: 500;
+    text-align: center;
 }
 
 
@@ -2569,18 +2597,22 @@ a.drop-menu i.fa-caret-down {
     margin-bottom: 1.375rem;
 }
 
+
 /**Our Book**/
+
 .cate-box,
-.list-group-item{
+.list-group-item {
     background-color: white;
     border-top: 1px solid white;
     color: black;
 }
+
 .cate-box,
-.list-group-item:hover{
+.list-group-item:hover {
     background-color: #b32137;
     color: white;
 }
+
 
 /**Book Manager*/
 
@@ -2593,15 +2625,13 @@ a.drop-menu i.fa-caret-down {
     color: #b32137;
 }
 
-.borrow-image{
+.borrow-image {
     padding: 1em;
     max-height: 60%;
     max-width: 250px;
 }
 
-.booktime{
+.booktime {
     font-size: small;
     color: #b32137;
 }
-
-

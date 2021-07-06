@@ -1,4 +1,4 @@
-@extends('layout.appIndex')
+@extends('layout.app')
 @section('title','Books')
 @section('body-class','Books-bg')
 @section('main')
