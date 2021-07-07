@@ -1,4 +1,4 @@
-@extends('layout.appIndex')
+@extends('layout.app')
 @section('title','Books')
 @section('body-class','Books-bg')
 @section('main')
@@ -82,6 +82,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                @if(session('accountSession'))
                     <!-- Button trigger modal -->
                     <a type="button" class="btn btn- btn-lg text-success borrow" data-toggle="modal"
                         data-target="#modelId">
@@ -129,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-
+                @endif
                 </div>
             </div>
 
@@ -188,6 +189,38 @@
     </div>
 </div>
 <div class="container mt-5 mb-5">
+@if(session('accountSession'))
+    <div class="container shadow" style="border-radius: 15px; padding: 30px; padding-bottom: 70px;">
+        <div class="row mb-5">
+            <strong>
+                <h2 style="position: absolute; left: 200px; font-size: 30px;">Post your Own Reviews:</h2>
+            </strong>
+        </div>
+        <br>
+        <h4 class="text-center mt-2 mb-4">
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_1" data-rating="1"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_2" data-rating="2"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_3" data-rating="3"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_4" data-rating="4"></i>
+            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_5" data-rating="5"></i>
+        </h4>
+
+        <div class="form-group">
+            <input type="text" value="{{session('accountSession')[0]['id']}}" id="user_id" style="display: none;" />
+            <input type="text" value="{{$books->isbn}}" id="isbn" style="display: none;" />
+        </div>
+        <div class="form-group">
+            <label for="Write your feedback">Write your feedback</label>
+            <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="save_review" style="background-color: #b32137;
+    background-image: linear-gradient(#b32137, #550002);position: absolute; left: 680px;">Submit</button>
+        </div>
+    </div>
+<br>
+<br>
+    @endif
     @foreach($rate as $r)
     <div class="card shadow" style="border: none; border-radius: 50%; background-color: beige; padding: 30px;">
         <div class="row">
@@ -225,36 +258,6 @@
         <span style="position: absolute; right: 160px;">{!! $rate->links() !!}</span>
     </div>
     <br>
-    @if(session('accountSession'))
-    <div class="container shadow" style="border-radius: 15px; padding: 30px; padding-bottom: 70px;">
-        <div class="row mb-5">
-            <strong>
-                <h2 style="position: absolute; left: 200px; font-size: 30px;">Post your Own Reviews:</h2>
-            </strong>
-        </div>
-        <br>
-        <h4 class="text-center mt-2 mb-4">
-            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_1" data-rating="1"></i>
-            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_2" data-rating="2"></i>
-            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_3" data-rating="3"></i>
-            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_4" data-rating="4"></i>
-            <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_5" data-rating="5"></i>
-        </h4>
 
-        <div class="form-group">
-            <input type="text" value="{{session('accountSession')[0]['id']}}" id="user_id" style="display: none;" />
-            <input type="text" value="{{$books->isbn}}" id="isbn" style="display: none;" />
-        </div>
-        <div class="form-group">
-            <label for="Write your feedback">Write your feedback</label>
-            <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="save_review" style="background-color: #b32137;
-    background-image: linear-gradient(#b32137, #550002);position: absolute; left: 680px;">Submit</button>
-        </div>
-    </div>
-
-    @endif
 </div>
 @endsection
