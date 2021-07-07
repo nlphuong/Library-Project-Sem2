@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -96,6 +97,12 @@ class BookController extends Controller
     }
 
     public function rating(Request $request){
+
+        $request->validate([
+            'rating_data' => 'required',
+            'user_review' => 'required',
+        ]);
+
         $data = $request->all();
         $customer_Id = $data['user_id'];
         $isbn = $data['isbn'];
@@ -109,5 +116,23 @@ class BookController extends Controller
             'comment'=>$comment,
         ]);;
 
+    }
+    public function borrow(Request $request){
+
+        $data = $request->all();
+        $isbn = $data['txtIsbn'];
+        $cusId = $data['txtIdCus'];
+        $date = date('d/m/Y', strtotime($data['borrowDate']));
+        $dateTime = DateTime::createFromFormat('d/m/Y H:i:s', "$date 00:00:00");
+        $borrow = DB::table('borrows')->insert([
+            'customer_id'=>intval($cusId),
+            'book_isbn'=>$isbn,
+            'borrowed_From'=>$dateTime,
+        ]);
+        if ($borrow) {
+            return redirect()->back()->with('success', 'Thanks For Your Confirm');
+        } else {
+            return redirect()->back()->with('fail', 'Your Confirm send to admin failed');
+        }
     }
 }

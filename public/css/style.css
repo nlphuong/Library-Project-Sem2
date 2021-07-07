@@ -740,9 +740,10 @@ ul.top_icon li a {
 
 .modal-title {
     padding: 0px;
-    color: #ffffff;
-    font-size: 18px;
+    color: #812020;
+    font-size: 25px;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .btn-template-outlined {
@@ -2363,7 +2364,7 @@ a.drop-menu i.fa-caret-down {
     background-color: blanchedalmond;
     border-radius: 25px;
     /* width: 150px; */
-    box-shadow: 5px 8px 10px 1px rgba(83, 82, 82, 0.75);
+    /* box-shadow: 5px 8px 10px 1px rgba(83, 82, 82, 0.75); */
     font-size: 16px;
 }
 
