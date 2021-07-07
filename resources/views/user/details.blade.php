@@ -2,6 +2,34 @@
 @section('title','Books')
 @section('body-class','Books-bg')
 @section('main')
+<link rel="stylesheet" href="{{asset('css')}}/admincss.css">
+{{-- notifi success change password --}}
+
+<div class="modal fade" id="modal-id">
+    <div class="modal-dialog">
+        <div class="modal-content" style="text-align: center; border-radius: 25px;">
+            <div class="modal-body">
+                <div class="success-checkmark">
+                    <div class="check-icon" style="box-sizing: content-box !important">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                        <div class="icon-circle"></div>
+                        <div class="icon-fix"></div>
+                    </div>
+                </div>
+                <p>
+                @if(Session::get('success'))
+                    <span style="font-size: 20px;">{{Session::get('success')}}</span>
+                @endif
+                @if(Session::get('fail'))
+                    <span style="font-size: 20px;">{{Session::get('fail')}}</span>
+                @endif
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="about-bg">
     <div class="container">
         <div class="row">
@@ -82,9 +110,9 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                @if(session('accountSession'))
+                    @if(session('accountSession'))
                     <!-- Button trigger modal -->
-                    <a type="button" class="btn btn- btn-lg text-success borrow" data-toggle="modal"
+                    <a type="button" class="btn btn- btn-lg text-success shadow borrow" data-toggle="modal"
                         data-target="#modelId">
                         <i class="fa fa-bookmark-o" aria-hidden="true" style="font-size: 1em"></i> &nbsp; Borrow
                     </a>
@@ -92,45 +120,83 @@
                     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" action="">
+                            <div class="modal-content"
+                                style="border-radius: 30px; padding: 20px;text-align: center; background-color: beige;">
+
+                                <h5 class="modal-title">Confirm Box</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                                <div class="modal-body" style="text-align: center;">
+                                    <form method="POST" action="{{url('books/details/borrow')}}">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control"
-                                                placeholder="Enter Name..." />
+                                            <p>Hi <Strong
+                                                    style="font-size: larger; font-weight: bold;">{{session('accountSession')[0]['fullname']}}</Strong>,
+                                                you have registered borrow this book. So please check you info and
+                                                choice your date to get this book.</p>
+                                            <p>If it has any wrong, please <Strong style="font-weight: bold;">contact
+                                                    with
+                                                    admin</Strong>.</p>
+                                            <input type="text" value="{{session('accountSession')[0]['id']}}"
+                                                name="txtIdCus" style="display: none;">
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for=""
+                                                style="font-style: italic;text-decoration: underline red solid;">Your
+                                                info: </label>
+                                            <p style="font-style: italic;">Email: &nbsp;<strong
+                                                    style="font-weight: bold;">{{session('accountSession')[0]['email']}}</strong>
+                                            </p>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="marks" class="form-control"
-                                                placeholder="Enter Marks..." />
+                                            <label for=""
+                                                style="font-style: italic;text-decoration: underline red solid;">Book
+                                                info:</label>
+                                            <input type="text" name="txtIsbn" class="form-control"
+                                                value="{{$books->isbn}}" style="display: none;" />
+                                            <br>
+                                            <strong class="text-success">Title: &nbsp;</strong>{{$books->title}} <br>
+                                            <strong class="text-success">Authors: &nbsp;</strong> {{$books->author}}
+                                            <br>
+                                            <strong class="text-success">Publisher: &nbsp;</strong>
+                                            {{$books->publisher}} <br>
+                                            <p><i class="text-info fa fa-map-marker" aria-hidden="true"
+                                                    style="font-size: 1em"></i>
+                                                &nbsp; {{$books->position}} | &nbsp; <span
+                                                    class="text-success">available</span></p>
+                                        </div>
+                                        <div class="row">
+
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="department" class="form-control"
-                                                placeholder="Enter Department..." />
+                                            <label for=""
+                                                style="font-style: italic;text-decoration: underline red solid;">Select
+                                                date:</label>
+                                            <input type="date" name="borrowDate" class="form-control"
+                                                value="<?php echo date('Y-m-d'); ?>" />
+                                            <br>
+                                            <label for="">
+                                                <p style="font-style: italic;">***Kindly noted that, you will have 24h
+                                                    to get your book from your selected date.</p>
+                                            </label>
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="date" name="result" class="form-control"
-                                                placeholder="Enter Result..." />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" name="submit" class="btn btn-info"
-                                                value="Add Student" />
+                                            <input type="submit" name="btnborrow" class="btn btn-info"
+                                                value="Confirm" />
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
+                                <!-- <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Save</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-                @endif
+                    @endif
                 </div>
             </div>
 
@@ -189,7 +255,7 @@
     </div>
 </div>
 <div class="container mt-5 mb-5">
-@if(session('accountSession'))
+    @if(session('accountSession'))
     <div class="container shadow" style="border-radius: 15px; padding: 30px; padding-bottom: 70px;">
         <div class="row mb-5">
             <strong>
@@ -213,20 +279,22 @@
             <label for="Write your feedback">Write your feedback</label>
             <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
         </div>
+        <div id="validTitle" style="display: none; font-size: larger; color: red;"> </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" id="save_review" style="background-color: #b32137;
     background-image: linear-gradient(#b32137, #550002);position: absolute; left: 680px;">Submit</button>
         </div>
     </div>
-<br>
-<br>
+    <br>
+    <br>
     @endif
     @foreach($rate as $r)
-    <div class="card shadow" style="border: none; border-radius: 50%; background-color: beige; padding: 30px;">
+    <div class="card shadow" style="border: none; border-radius: 150px; background-color: beige; padding: 30px;">
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-2" style="display:flex; align-items: center;">
-                <img style="width: 150px; height: 150px; border-radius: 50%;" src="{{asset('uploads')}}/{{$r->image}}" alt="Card image cap">
+                <img style="width: 150px; height: 150px; border-radius: 50%;" src="{{asset('uploads')}}/{{$r->image}}"
+                    alt="Card image cap">
             </div>
             <div class="col-sm-3">
                 <div class="card-body">
@@ -260,4 +328,13 @@
     <br>
 
 </div>
+@endsection
+@section('script')
+@if(Session::has('success') )
+<script>
+$(document).ready(function() {
+    $('#modal-id').modal('show');
+});
+</script>
+@endif
 @endsection
