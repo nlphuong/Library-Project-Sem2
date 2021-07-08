@@ -76,6 +76,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/returnBook/{id}/{isbn}', 'Admin\AdminController@returnBook');
     Route::get('/expiredDetail/{cusId}','Admin\AdminController@expiredDetail');
     Route::post('/expiredDetail/{cusId}','Admin\AdminController@postExpiredDetail');
+    Route::get('/sendMail/{id}/{total}', 'Admin\AdminController@sendMail');
 
 
 });

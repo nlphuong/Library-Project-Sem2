@@ -46,7 +46,7 @@
                                     <td class="text-center">{{$d->Phone}}</td>
                                     <td class="text-center">{{$d->Subject}}</td>
                                     <td>{{$d->Message}}</td>
-                                    <td>{{$d->created_at}}</td>
+                                    <td>{{$d->create_at}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -134,7 +134,7 @@
                   </div>
                   <input type="hidden" name="fee" value="{{round($money*1.1,2)}}">
                   <div class="col-xs-12">
-                    <a href="" target="_blank" class="btn btn-default"><i class="fa fa-envelope"></i> Send Email</a>
+                    <a href="{{url('admin/sendMail/'.$data[0]->customer_id.'/'.round($money*1.1,2))}}" target="_blank" class="btn btn-default"><i class="fa fa-envelope"></i> Send Email</a>
                     <button  type="submit" style="margin-right: 100px" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
 
                   </div>

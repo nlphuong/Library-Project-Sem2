@@ -12,7 +12,7 @@ CREATE TABLE `membership_fee` (
 CREATE TABLE `borrows` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `customer_id` int not null,
-  `status` tinyint not null DEFAULT 1 COMMENT '1-cho duyet 2-da duyet 3-tu choi do het sach/ly do khac',
+  `status` tinyint not null DEFAULT 1 COMMENT '1-cho duyet 2-da duyet 3-da tra sach 4-qua han',
   `book_isbn` varchar(50) not null,
   `issued_by` int,
   `borrowed_From` datetime,

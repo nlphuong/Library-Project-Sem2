@@ -219,7 +219,7 @@
                                                         </div>
                                                     </td>
                                                     <div id="my-modal{{$d->id}}" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document" style="width: 60%">
+                                                        <div class="modal-dialog" role="document" style="width: 50%">
                                                             <div class="modal-content" style="border: 5px solid #00acd6; " >
                                                                 <div class="modal-header" >
                                                                     <h3 class="modal-title text-center" style="font-weight: bold"  id="my-modal-title">BORROW DETAIL</h3>
@@ -257,16 +257,16 @@
                                                                         </div>
                                                                         <!-- /.col -->
                                                                         <div class="col-md-9">
-                                                                          <div class="nav-tabs-custom">
+                                                                          <div class="nav-tabs-custom" style="box-shadow: none !important">
                                                                             <ul class="nav nav-tabs">
                                                                               <li class="active"><a href="#settings" data-toggle="tab">Borrow information</a></li>
                                                                             </ul>
                                                                             <div class="tab-content">
                                                                               <div class="row">
-                                                                                  <div class="col-sm-3">
+                                                                                  <div class="col-sm-4">
                                                                                         <img src="{{asset('uploads/'.$d->book->image)}}" width="100%" alt="">
                                                                                   </div>
-                                                                                  <div class="col-sm-9">
+                                                                                  <div class="col-sm-8">
                                                                                     <ul class="list-group list-group-unbordered">
 
                                                                                         <li class="list-group-item">
@@ -287,8 +287,15 @@
                                                                                         <li class="list-group-item">
                                                                                           <b><i class="fa fa-hourglass-end" style="margin-right: 15px"></i>Expiration date</b> <a class="pull-right">{{$d->expiration_Date}}</a>
                                                                                         </li>
+                                                                                        <li class="list-group-item">
+                                                                                          <b>Status</b> <a class="pull-right"><span style="padding-left: 5px" class="label label-warning">Pending</span></a>
+                                                                                        </li>
 
                                                                                       </ul>
+                                                                                  </div>
+                                                                                  <div class="col-sm-12">
+                                                                                    <a href="{{url('admin/returnBook/'.$d->id.'/'.$d->book_isbn)}}" type="submit" class="btn btn-success pull-right"><i class="fa fa-sign-in"></i> Return book</a>
+                                                                                    <a href="" target="_blank" class="btn btn-default pull-right"><i class="fa fa-envelope"></i> Send Email</a>
                                                                                   </div>
                                                                               </div>
                                                                             </div>

@@ -342,4 +342,19 @@ class AdminController extends Controller
             return redirect() ->action('Admin\AdminController@borrow');
         }
     }
+    public function sendMail($id,$total){
+
+        $data = borrow::where('customer_id',$id)->where('status',4)->get();
+        // dd($data[0]->account->fullname);
+        Mail::send('mail.expired',[
+            'data'=>$data,
+            'total'=>$total,
+        ], function ($message) use($data) {
+                $message->from('memoriallibrary123@gmail.com');
+                $message->to($data[0]->account->email);
+                $message->subject('Notice about expiration!');
+
+            });
+        return redirect() ->action('Admin\AdminController@borrow');
+    }
 }
