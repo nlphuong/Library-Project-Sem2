@@ -17,20 +17,31 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route không áp dụng middleware
-Route::get('/', 'UserController@index');
+Route::get('/', 'CommonController@index');
+Route::get('/about', 'CommonController@about');
+Route::get('/library', 'CommonController@library');
+
+//contact
+Route::get('/contact', 'CommonController@contact');
+Route::post('/contact', 'CommonController@send');
+
+//Authentication
+Route::get('/register', 'AuthenticationController@register');
+Route::post('/register', 'AuthenticationController@postRegister');
+Route::post('/postLogin', 'AuthenticationController@postLogin');
+Route::get('/logout', 'AuthenticationController@logout');
+Route::get('/resetPass', 'AuthenticationController@resetPass');
+Route::post('/resetPass', 'AuthenticationController@postResetPass');
+
+//our book and detail book
 Route::get('/books', 'BookController@showAllBook');
-Route::get('/about', 'UserController@about');
-Route::get('/library', 'UserController@library');
-Route::get('/books/categories/{id}', 'BookController@getCategoryBooks');
-Route::get('/books/search', 'BookController@search');
-Route::get('/books/detail/{id}', 'BookController@detailBooks');
-Route::get('/register', 'UserController@register');
-Route::post('/register', 'UserController@postRegister');
-Route::post('/postLogin', 'UserController@postLogin');
-Route::get('/logout', 'UserController@logout');
-Route::get('/resetPass', 'UserController@resetPass');
-Route::post('/resetPass', 'UserController@postResetPass');
-Route::post('books/details/borrow', 'BookController@borrow');
+Route::prefix('books')->group(function () {
+    Route::get('/categories/{id}', 'BookController@getCategoryBooks');
+    Route::get('/search', 'BookController@search');
+    Route::get('/detail/{id}', 'BookController@detailBooks');
+    Route::post('/details/borrow', 'BookController@borrow');
+});
+
 
 
 
@@ -64,7 +75,7 @@ Route::prefix('admin')->group(function () {
 
 //Route chỉ Customer mới vào được (middleware->cus)
 Route::prefix('customer')->group(function () {
-    Route::get('/index', 'CustomerController@index');
+    // Route::get('/index', 'CustomerController@index');
     Route::get('/profile/{id}', 'CustomerController@profile');
     Route::post('/editProfile/{id}', 'CustomerController@editProfile');
     Route::get('/changePass/{id}', 'CustomerController@changePass');
@@ -72,7 +83,4 @@ Route::prefix('customer')->group(function () {
     Route::get('/memberPack/{id}', 'CustomerController@memberPack');
     Route::get('/RegisPack/{id}', 'CustomerController@RegisPack');
     Route::get('/bookmanager/{id}', 'CustomerController@bookmanager');
-    Route::get('/contact', 'CustomerController@contact');
-    Route::post('/contact', 'CustomerController@send');
-
 });
