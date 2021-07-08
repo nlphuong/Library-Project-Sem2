@@ -435,10 +435,14 @@ $(document).ready(function() {
             rating_data: rating_data,
             user_review: user_review
         }
-
-        if (user_review == '' || rating_data == 0) {
-            alert("Please rating and write your review");
-            return false;
+        if (rating_data == 0) {
+            $('#validTitle').show()
+            $('#validTitle').html("You have to rate star!");
+            return;
+        } else if (user_review == '') {
+            $('#validTitle').show()
+            $('#validTitle').html("Your review can not blank!");
+            return;
         } else {
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/rating',
@@ -462,6 +466,8 @@ $(document).ready(function() {
     }
 
 });
+
+//sort
 
 $(document).ready(function() {
     var url = new URL(window.location.href);

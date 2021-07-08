@@ -1,4 +1,4 @@
-@extends('layout.indexDefault')
+@extends('layout.app')
 @section('title','Register')
 @section('main')
 <div class="about-bg">

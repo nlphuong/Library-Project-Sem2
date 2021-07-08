@@ -1,4 +1,4 @@
-@extends('layout.indexDefault')
+@extends('layout.app')
 @section('title','Reset Password')
 @section('main')
 {{-- notifi success change password --}}

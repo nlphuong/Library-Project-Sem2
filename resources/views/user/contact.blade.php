@@ -1,4 +1,4 @@
-@extends('layout.appIndex')
+@extends('layout.app')
 @section('title','Contact')
 @section('body-class','contact-page')
 @section('main')
@@ -59,34 +59,4 @@
 
 
   <!-- end Contact -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @endsection

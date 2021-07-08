@@ -1,4 +1,4 @@
-@extends('layout.appIndex')
+@extends('layout.app')
 @section('title','About')
 @section('main')
 <!-- about head -->
@@ -13,7 +13,7 @@
          </div>
       </div>
    </div>
-<!-- End about head--> 
+<!-- End about head-->
 
 <!-- about body -->
 <div class="about">
@@ -24,7 +24,7 @@
             <p class="font-italic text-muted mb-4">The library is an ideal place to enjoy the delight of perusing and for exploring. And let Memorial give you all you need.</p>
             <p class="fotn-italic text-capitalize text-dark mb-4" style="font-size:x-large"><b>Memorial</b> - Where knowledge begins</p>
             <p class="fotn-italic text-capitalize mb-4" style="color: black; font-size: x-large">Always visit us whenever in <b>DOUBT</b></p>
-            
+
          </div>
          <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="{{asset('images/research.jpg')}}" alt="research space" class="img-fluid mb-4 mb-lg-0"></div>
       </div>
@@ -67,7 +67,7 @@
                </div>
             </div>
             <!-- End-->
- 
+
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{asset('images/team/sang.jpg')}}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -81,7 +81,7 @@
                </div>
             </div>
             <!-- End-->
- 
+
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{asset('images/team/tien.jpg')}}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -95,7 +95,7 @@
                </div>
             </div>
             <!-- End-->
- 
+
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{asset('images/team/hieu.jpg')}}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -108,7 +108,7 @@
                      </ul>
                </div>
             </div>
-            <!-- End--> 
+            <!-- End-->
          </div>
       </div>
    </div>
