@@ -8,7 +8,7 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
-                           <div class="logo"> <a href="{{url('customer/index')}}"><img src="{{asset('images/logo.png')}}" alt="#"></a> </div>
+                           <div class="logo"> <a href="{{url('/')}}"><img src="{{asset('images/logo.png')}}" alt="#"></a> </div>
                         </div>
                      </div>
                   </div>
@@ -17,11 +17,11 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li> <a href="{{url('customer/index')}}">Home</a> </li>
+                                 <li> <a href="{{url('/')}}">Home</a> </li>
                                  <li> <a href="{{url('about')}}">About us</a> </li>
                                  <li><a href="{{url('books')}}">Our Books</a></li>
                                  <li><a href="{{url('library')}}">library</a></li>
-                                 <li><a href="{{url('customer/contact')}}">Contact us</a></li>
+                                 <li><a href="{{url('contact')}}">Contact us</a></li>
                                  <!-- <li> <a href="#"><img src="{{asset('images/search_icon.png')}}" alt="#" /></a> </li> -->
                                  @if(empty(session('accountSession')) && empty(session('adminSession')))
                                  <li>
