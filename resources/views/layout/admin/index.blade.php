@@ -180,7 +180,7 @@
           <a href="{{url('admin/contactManage')}}">
             <i class="fa fa-comments-o"></i> <span>Contact</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
+              <small class="label pull-right bg-blue">{{$count['countContact']}}</small>
             </span>
           </a>
         </li>

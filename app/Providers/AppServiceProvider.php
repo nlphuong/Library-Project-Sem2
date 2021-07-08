@@ -4,6 +4,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Membership;
 use App\Models\ratingBook;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
             'countUnpaid'=>Membership::where('status','1')->count(),
             'countExpired'=>Membership::where('status','3')->count(),
             'countPendingRating'=>ratingBook::where('active',0)->count(),
+            'countContact'=>DB::table('contact')->count(),
         ];
 
         view()->share(compact('cats','count'));

@@ -63,6 +63,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/borrowdetail/{cusId}/{date}','Admin\AdminController@borrowDetail');
     Route::post('/borrowdetail/{cusId}/{date}','Admin\AdminController@postBorrowDetail');
     Route::get('/returnBook/{id}/{isbn}', 'Admin\AdminController@returnBook');
+    Route::get('/expiredDetail/{cusId}','Admin\AdminController@expiredDetail');
+    Route::post('/expiredDetail/{cusId}','Admin\AdminController@postExpiredDetail');
 
 
 });

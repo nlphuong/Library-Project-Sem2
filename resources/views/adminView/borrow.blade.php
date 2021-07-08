@@ -27,7 +27,7 @@
             <div class="box-body">
                     <div class=" ">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-warning">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -39,11 +39,11 @@
                                     <div class="panel-body">
                                         <table id="accordion-example-1" class="table" data-paging="true" data-filtering="true" data-sorting="true">
                                             <thead>
-                                                <tr>
+                                                <tr style="background-color: darkgrey">
                                                     <th>Email customer</th>
                                                     <th>Phone</th>
                                                     <th>Quantity</th>
-                                                    <th>Start date</th>
+                                                    <th>Arrival date </th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -161,7 +161,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-danger">
+                            <div class="panel panel-warning">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -173,7 +173,7 @@
                                     <div class="panel-body">
                                         <table id="accordion-example-2" class="table" data-paging="true" data-filtering="true" data-sorting="true">
                                             <thead>
-                                                <tr>
+                                                <tr style="background-color: darkgrey">
                                                     <th>Email</th>
                                                     <th>Phone</th>
                                                     <th>Book title</th>
@@ -282,11 +282,12 @@
                                                                                           <b>Publication Year</b> <a class="pull-right">{{$d->book->publication_Year}}</a>
                                                                                         </li>
                                                                                         <li class="list-group-item">
-                                                                                          <b>Price</b> <a class="pull-right">{{$d->book->price}}</a>
+                                                                                          <b><i class="fa fa-hourglass-start" style="margin-right: 15px"></i>Start date</b> <a class="pull-right">{{$d->borrowed_From}}</a>
                                                                                         </li>
                                                                                         <li class="list-group-item">
-                                                                                          <b>Price</b> <a class="pull-right">{{$d->book->price}}</a>
+                                                                                          <b><i class="fa fa-hourglass-end" style="margin-right: 15px"></i>Expiration date</b> <a class="pull-right">{{$d->expiration_Date}}</a>
                                                                                         </li>
+
                                                                                       </ul>
                                                                                   </div>
                                                                               </div>
@@ -308,8 +309,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-danger" style="border-color: red">
-                                <div class="panel-heading" role="tab" id="headingTwo" style="background-color: #fc1111;color: white !important">
+                            <div class="panel panel-danger" >
+                                <div class="panel-heading" role="tab" id="headingTwo" >
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                             EXPIRED
@@ -318,28 +319,36 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                     <div class="panel-body">
-                                        <table id="accordion-example-2" class="table" data-paging="true" data-filtering="true" data-sorting="true">
-
+                                        <table id="accordion-example-3" class="table" data-paging="true" data-filtering="true" data-sorting="true">
+                                            <thead>
+                                                <tr style="background-color: darkgrey">
+                                                    <th>Email customer</th>
+                                                    <th>Phone</th>
+                                                    <th>Quantity</th>
+                                                    <th>Expiration Date</th>
+                                                    <th>status</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($borrowExpired as $b)
+                                                <tr>
+                                                    <td>{{$b->account->email}}</td>
+                                                    <td>{{$b->account->phone}}</td>
+                                                    <td>{{$b->total}}</td>
+                                                    <td>{{$b->expiration_Date}}</td>
+                                                    <td><span class="label label-danger">Locked</span></td>
+                                                    <td>
+                                                        <a href="{{url('admin/expiredDetail/'.$b->customer_id)}}" class="btn btn-primary">Detail</a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading" role="tab" id="headingFour">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            BORROWED
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                    <div class="panel-body">
-                                        <table id="accordion-example-2" class="table" data-paging="true" data-filtering="true" data-sorting="true">
 
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
             </div>
@@ -354,7 +363,7 @@
 <script src="{{asset('js/footable.min.js')}}"></script>
 <script>
     jQuery(function($){
-	$('#accordion-example-1,#accordion-example-2').footable();
+	$('#accordion-example-1,#accordion-example-2,#accordion-example-3,#accordion-example-4').footable();
 });
 </script>
 @endsection
