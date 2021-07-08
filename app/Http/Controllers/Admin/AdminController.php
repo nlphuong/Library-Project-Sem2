@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Mail\SendMail;
 use App\Models\account;
+use App\Models\Book;
+use App\Models\borrow;
 use App\Models\Membership;
 use App\Models\membership_fee;
 use App\Models\ratingBook;
@@ -80,6 +82,7 @@ class AdminController extends Controller
         return view('adminView.account.create');
     }
     public function postCreateAccount(LoginRequest $loginRequest){
+        dd($loginRequest->all());
         $account = new account();
         $account->fullname=request()->fullname;
         $account->email=$loginRequest->email;
@@ -237,6 +240,47 @@ class AdminController extends Controller
                 'price'=>$mem->price
             ]);
             return redirect()->back()->with('s','success');
+        }
+    }
+    public function borrow(){
+
+        $aboutExprireDate=Carbon::now()->addDay(2)->format('Ymd');
+        $aboutExpire = borrow::where('status',2)->where('expiration_Date','<',$aboutExprireDate)->get();
+        $expired = borrow::where('status',3)->get();
+        $pending=borrow::select('customer_id','borrowed_From',DB::raw('count(*) as total'))->where('status',1)->groupBy('customer_id','borrowed_From')->orderByDesc('created_at')->get();
+
+        return view('adminView.borrow',compact(['pending','aboutExpire','expired']));
+    }
+    public function borrowDetail($cusId,$date){
+
+        $data = borrow::where('customer_id',$cusId)->where('borrowed_From',$date)->where('status',1)->get();
+
+       return view('adminView.borrowDetail',compact('data'));
+    }
+    public function postBorrowDetail($cusId,$date){
+        request()->validate([
+            'borrow'=>'required',
+        ]);
+        // dd($date);
+
+        $approved=borrow::where('customer_id',$cusId)->where('status',1)->where('borrowed_From',$date)->whereIn('book_isbn',request()->borrow)->update([
+            'status'=>2,
+            'issued_by'=>request()->issued_by,
+            'borrowed_From'=>now(),
+            'expiration_Date'=>Carbon::now()->addDays(7),
+        ]);
+        if($approved) {
+            return redirect() ->action('Admin\AdminController@borrow');
+        }
+    }
+    public function returnBook($id,$isbn){
+        $return = borrow::where('id',$id)->update([
+            'status'=>3,
+            'return_Date'=>now()
+        ]);
+        if($return){
+            Book::where('isbn',$isbn)->update(['no_Copies_Current'=>'no_Copies_Current'  +1]);
+            return redirect()->back();
         }
     }
 

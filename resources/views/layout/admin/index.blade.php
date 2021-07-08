@@ -152,7 +152,7 @@
           </ul>
         </li>
         <li>
-          <a href="">
+          <a href="{{url('admin/borrow')}}">
             <i class="fa fa-address-book"></i> <span>Borrow Books</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">Hot</small>
