@@ -13,10 +13,6 @@ use Illuminate\Validation\Rule as ValidationRule;
 class CustomerController extends Controller
 {
 
-    public function index()
-    {
-        return view('customer.index');
-    }
     public function profile($id)
     {
         $account = account::where('id', $id)->first();
@@ -71,32 +67,7 @@ class CustomerController extends Controller
         $account = account::where('id', $id)->first();
         return view('customer.membership', compact('account','membership'));
     }
-    public function contact()
-    {
-        return view('user.contact');
-    }
-    public function send(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'subject' => 'required',
-        ]);
 
-        $query = DB::table('contact')->insert([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'subject' => $request->input('subject'),
-            'message' => $request->input('message')
-        ]);
-        if ($query) {
-            return redirect()->back()->with('success', 'Thanks For Your Information');
-        } else {
-            return redirect()->back()->with('fail', 'Your information update failed');
-        }
-    }
     public function bookmanager($id)
     {
         $account = account::where('id', $id)->first();

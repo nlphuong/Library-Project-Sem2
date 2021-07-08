@@ -6,39 +6,13 @@ use App\Http\Requests\LoginRequest;
 use App\Models\account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CommonController;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-/**
- * Controller  khong can dang nhap
-*/
-
-class UserController extends Controller
+class AuthenticationController extends Controller
 {
-
-    public function index(){
-        return view('user.index');
-    }
-    // public function indexAdmin(){
-    //     return view('admin.index');
-    // }
-    // public function home(){
-    //     return view('user.home');
-    // }
-    public function about(){
-        return view('user.about');
-    }
-    // public function books(){
-    //     return view('user.books');
-    // }
-    // public function contact(){
-    //     return view('user.contact');
-    // }
-    public function library(){
-         return view('user.library');
-    }
     public function register(){
         return view('user.register');
     }
@@ -55,7 +29,7 @@ class UserController extends Controller
         $account->phone=$loginRequest->phone;
         $result = $account->save();
         if($result){
-           return  redirect()->action('UserController@index')->with('registerSuccess','Your account has been successfully registered');
+           return  redirect()->action('CommonController@index')->with('registerSuccess','Your account has been successfully registered');
         }
         else return redirect() -> back()->with('erro','fail');
     }
@@ -70,7 +44,7 @@ class UserController extends Controller
             if($account->role ==1){
                 request()->session()->invalidate();
                 request()->session()->push('accountSession',$account);
-                return redirect()->action('CustomerController@index');
+                return redirect()->action('CommonController@index');
             }
             else if($account->role ==2||$account->role ==3){
                 request()->session()->invalidate();
@@ -84,7 +58,7 @@ class UserController extends Controller
     public function logout(){
 
         request()->session()->invalidate();
-        return redirect()->action('UserController@index');
+        return redirect()->action('CommonController@index');
     }
     public function resetPass(){
         return view('user.resetPass');
@@ -98,7 +72,7 @@ class UserController extends Controller
         //     $message->subject('Reset Password');
 
         // });
-        // return redirect()->action('UserController@index');
+        // return redirect()->action('AuthenticationController@index');
         //validate
         $request->validate([
             'email'=>'required|exists:accounts'
