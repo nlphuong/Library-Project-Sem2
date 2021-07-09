@@ -70,6 +70,14 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('/membership', 'Admin\AdminController@membership');
     Route::get('/approvedMember/{id}', 'Admin\AdminController@approvedMember');
+    Route::get('/borrow', 'Admin\AdminController@borrow');
+    Route::get('/borrowdetail/{cusId}/{date}','Admin\AdminController@borrowDetail');
+    Route::post('/borrowdetail/{cusId}/{date}','Admin\AdminController@postBorrowDetail');
+    Route::get('/returnBook/{id}/{isbn}', 'Admin\AdminController@returnBook');
+    Route::get('/expiredDetail/{cusId}','Admin\AdminController@expiredDetail');
+    Route::post('/expiredDetail/{cusId}','Admin\AdminController@postExpiredDetail');
+    Route::get('/sendMail/{id}/{total}', 'Admin\AdminController@sendMail');
+
 
 });
 

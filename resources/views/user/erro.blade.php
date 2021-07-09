@@ -15,25 +15,16 @@
         <div class="container">
 
 
-            <table border="1">
-                <tr>
-                    <th>a</th>
-                    <th>b</th>
-                    <th>c</th>
-                    <th>d</th>
-                </tr>
-                <tr>
-                    <td>m</td>
-                    <td>m</td>
-                    <td>m</td>
-                    <td>m</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total</td>
+            <div class="error-content">
+              <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
 
-                    <td>m</td>
-                </tr>
-            </table>
+              <p>
+                We will work on fixing that right away.
+                Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
+              </p>
+
+
+            </div>
           </div>
     </body>
 

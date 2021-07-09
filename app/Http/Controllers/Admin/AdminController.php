@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Mail\SendMail;
 use App\Models\account;
+use App\Models\Book;
+use App\Models\borrow;
 use App\Models\Membership;
 use App\Models\membership_fee;
+use App\Models\Penalty_fee;
 use App\Models\ratingBook;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,6 +83,7 @@ class AdminController extends Controller
         return view('adminView.account.create');
     }
     public function postCreateAccount(LoginRequest $loginRequest){
+        dd($loginRequest->all());
         $account = new account();
         $account->fullname=request()->fullname;
         $account->email=$loginRequest->email;
@@ -239,5 +243,118 @@ class AdminController extends Controller
             return redirect()->back()->with('s','success');
         }
     }
+    public function borrow(){
+        //delete request khach hang ko den lay va +1 so luong sach
 
+        $getExpired = borrow::where([
+             ['status', '=', '1'],
+             ['borrowed_From', '<', Carbon::now()->format('Ymd')],
+        ])->get();
+        foreach ($getExpired as $b) {
+            $delete=borrow::where('id',$b->id)->delete();
+            if($delete){
+                $increaceBook=Book::where('isbn',$b->book_isbn)->update(['no_Copies_Current'=>DB::raw('no_Copies_Current +1')]);
+                if(!$increaceBook) return view('user.erro');
+            }
+            else return view('user.erro');
+        }
+        //khoa tai khoan khach khong tra sach
+        borrow::where([
+            ['status','=',2],
+            ['expiration_Date','<',Carbon::now()->format('Ymd')]
+        ])->update(['status'=>4]);
+        $borrowExpired=borrow::select('customer_id',DB::raw('count(*) as total'))->where('status',4)->groupBy('customer_id')->orderByDesc('created_at')->get();
+        foreach ($borrowExpired as $be) {
+            account::where('id',$be->customer_id)->update(['active'=>2]);
+        }
+
+        //show
+        $aboutExprireDate=Carbon::now()->addDay(2)->format('Ymd');
+        $aboutExpire = borrow::where('status',2)->where('expiration_Date','<',$aboutExprireDate)->get();
+        $pending=borrow::select('customer_id','borrowed_From',DB::raw('count(*) as total'))->where('status',1)->groupBy('customer_id','borrowed_From')->orderByDesc('created_at')->get();
+        return view('adminView.borrow',compact(['pending','aboutExpire','borrowExpired']));
+    }
+    public function borrowDetail($cusId,$date){
+
+        $data = borrow::where('customer_id',$cusId)->where('borrowed_From',$date)->where('status',1)->get();
+
+       return view('adminView.borrowDetail',compact('data'));
+    }
+    public function postBorrowDetail($cusId,$date){
+        request()->validate([
+            'borrow'=>'required',
+        ]);
+        // dd($date);
+        $approved=borrow::where('customer_id',$cusId)->where('status',1)->where('borrowed_From',$date)->whereIn('book_isbn',request()->borrow)->update([
+            'status'=>2,
+            'issued_by'=>request()->issued_by,
+            'borrowed_From'=>now(),
+            'expiration_Date'=>Carbon::now()->addDays(7),
+        ]);
+        if($approved) {
+            $customer=account::where('id',$cusId)->first();
+            $book=Book::whereIn('isbn',request()->borrow)->get();
+            $data=[$customer,$book,now()->format('d-m-Y H:i'),Carbon::now()->addDays(7)->format('d-m-Y H:i')];
+            Mail::send('mail.approvedBorrow',[
+                'customer'=>$data[0],
+                'book'=>$data[1],
+                'start'=>$data[2],
+                'end'=>$data[3],
+            ], function ($message) use($data) {
+                    $message->from('memoriallibrary123@gmail.com');
+                    $message->to($data[0]->email);
+                    $message->subject('Notice about borrowing books!');
+
+                });
+            return redirect() ->action('Admin\AdminController@borrow');
+        }
+    }
+    public function returnBook($id,$isbn){
+        $return = borrow::where('id',$id)->update([
+            'status'=>3,
+            'return_Date'=>now()
+        ]);
+        if($return){
+            Book::where('isbn',$isbn)->update(['no_Copies_Current'=>DB::raw('no_Copies_Current +1')]);
+            return redirect()->back();
+        }
+    }
+    public function expiredDetail($cusId){
+        $data = borrow::where('customer_id',$cusId)->where('status',4)->get();
+        return view('adminView.expiredDetail',compact('data'));
+    }
+    public function postExpiredDetail($cusId){
+
+        //sau khi tra => chuyeen trang thai da tra sach va mo khoa account
+        $update1=borrow::where('customer_id',$cusId)->where('status',4)->update([
+            'status'=>3,
+            'return_Date'=>now()
+        ]);
+        $update2=account::where('id',$cusId)->update(['active'=>1]);
+        //cong 1 vao sach da tra:
+        Book::whereIn('isbn',request()->isbn)->update(['no_Copies_Current'=>DB::raw('no_Copies_Current +1')]);
+        //them du lieu vao bang phi phat
+        $update3=Penalty_fee::insert([
+            'customer_id'=>$cusId,
+            'amount'=>request()->fee
+        ]);
+        if($update1&&$update2&&$update3){
+            return redirect() ->action('Admin\AdminController@borrow');
+        }
+    }
+    public function sendMail($id,$total){
+
+        $data = borrow::where('customer_id',$id)->where('status',4)->get();
+        // dd($data[0]->account->fullname);
+        Mail::send('mail.expired',[
+            'data'=>$data,
+            'total'=>$total,
+        ], function ($message) use($data) {
+                $message->from('memoriallibrary123@gmail.com');
+                $message->to($data[0]->account->email);
+                $message->subject('Notice about expiration!');
+
+            });
+        return redirect() ->action('Admin\AdminController@borrow');
+    }
 }

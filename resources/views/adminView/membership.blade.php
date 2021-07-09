@@ -67,7 +67,7 @@
                                         <span class="label label-danger">Expired</span>
                                         @endif
                                     </td>
-                                    <td>{{$d->created_at}}</td>
+                                    <td>{{$d->updated_at}}</td>
                                     <td>
                                         @if($d->status==1)
                                         <a href="{{url('admin/approvedMember/'.$d->id)}}" class="btn btn-success">Approved</a>

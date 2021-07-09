@@ -45,7 +45,7 @@
                                     <th>Email</th>
                                     <th>Book</th>
                                     <th class="text-center">Status</th>
-                                    <th>Comment</th>
+                                    <th >Comment</th>
                                     <th class="text-center">Rating</th>
                                     <th>Date time</th>
                                     <th style="width: 50px"></th>

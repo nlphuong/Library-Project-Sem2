@@ -35,10 +35,10 @@
         </div>
     </div>
 </div>
-@if($membership==null)
+@if($membership==null||$membership->status==3)
 <h3>Become a member at Memorial library during our anniversary week and get 10% off the membership free! Get access to our ever -expanding collection of books event and activites.    </h3>
  @endif
-    @if($membership==null)
+    @if($membership==null||$membership->status==3)
     <div class="row">
         <div class="col-xl-4 col-md-6 mb-4 " style="height: 300px !important">
             <div class="card border-0 ">
@@ -102,7 +102,8 @@
         </div>
 
     </div>
-    @else
+    @endif
+    @if($membership!=null)
     <div class="col-12">
         <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -164,7 +165,10 @@
                              <br>
                             <i class="fa fa-hourglass-end booktime"></i> Expiration Date: {{$membership->expiration_Date}}
                             <br>
+                            @if($membership->status==2)
                             <img src="{{asset('images/paid.jpg')}}" alt="" width="100%">
+                            @else <img src="{{asset('images/expired.png')}}"  width="100%" alt="">
+                            @endif
                             </p>
                             @endif
                         </div>

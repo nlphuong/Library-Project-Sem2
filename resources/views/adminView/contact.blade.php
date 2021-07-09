@@ -27,8 +27,8 @@
                     <div class=" ">
                         <table id="table_id" class="display table-bordered">
                             <thead>
-                                <tr style="color: white;background-color: cadetblue">
-
+                                <tr style="color: white;background-color: darkslategrey">
+                                    <th></th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -40,12 +40,13 @@
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
+                                    <td></td>
                                     <td>{{$d->Name}}</td>
                                     <td>{{$d->Email}}</td>
                                     <td class="text-center">{{$d->Phone}}</td>
                                     <td class="text-center">{{$d->Subject}}</td>
                                     <td>{{$d->Message}}</td>
-                                    <td>{{$d->created_at}}</td>
+                                    <td>{{$d->create_at}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -62,10 +63,20 @@
 <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
-         $('#table_id').DataTable({
-            "order": [[ 5, "desc" ]]
-         }
-         );
+         var t = $('#table_id').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 5, 'desc' ]]
+        } );
+
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
     } );
 </script>
 @endsection
