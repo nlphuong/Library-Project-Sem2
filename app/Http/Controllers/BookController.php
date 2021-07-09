@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\borrow;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,7 +79,7 @@ class BookController extends Controller
                                         ->inRandomOrder()->limit(2)->get();
 
         $rate = DB::table('ratingBooks')->join('accounts', 'ratingBooks.customer_Id', '=', 'accounts.id')
-                                        ->where('ratingBooks.isbn', $isbn)->where('ratingBooks.active',0)
+                                        ->where('ratingBooks.isbn', $isbn)->where('ratingBooks.active',1)
                                         ->orderByDesc('create_at')
                                         ->paginate(4);
         $total_no_star = DB::table('ratingBooks')->where('isbn', $isbn)->sum('rating');
@@ -88,12 +90,15 @@ class BookController extends Controller
             $star = floor($total_no_star / $total_review);
         }
 
+        $borrow = DB::table('borrows')->where('book_isbn', $isbn)->get('customer_id');
+        // dd($borrow);
         return view('user.details')->with(['books'=>$books,
                                             'relateBooks'=>$relateBooks,
                                             'star'=>$star,
                                             'rate'=>$rate,
                                             'no_star'=>$total_no_star,
-                                            'review'=>$total_review,]);
+                                            'review'=>$total_review,
+                                            'cusBorrow'=>$borrow]);
     }
 
     public function rating(Request $request){
@@ -119,16 +124,26 @@ class BookController extends Controller
     }
     public function borrow(Request $request){
 
-        $data = $request->all();
-        $isbn = $data['txtIsbn'];
-        $cusId = $data['txtIdCus'];
-        $date = date('d/m/Y', strtotime($data['borrowDate']));
+        $request->validate([
+            'selectDate'      => 'required|date|after:today',
+        ]);
+
+        $isbn = $request->input('txtIsbn');
+        $cusId = $request->input('txtIdCus');
+        $date = $request->input('selectDate');
+        $date = date('d/m/Y', strtotime($date));
         $dateTime = DateTime::createFromFormat('d/m/Y H:i:s', "$date 00:00:00");
-        $borrow = DB::table('borrows')->insert([
+        $borrow = false;
+        $borrow = borrow::insert([
             'customer_id'=>intval($cusId),
             'book_isbn'=>$isbn,
             'borrowed_From'=>$dateTime,
         ]);
+
+        $num = DB::table('books')->where('isbn', $isbn)->first()->{'no_Copies_Current'};
+        $num = $num -1;
+        DB::table('books')->where('isbn', $isbn)->update(array('no_Copies_Current' => $num));
+        //dd($request);
         if ($borrow) {
             return redirect()->back()->with('success', 'Thanks For Your Confirm');
         } else {

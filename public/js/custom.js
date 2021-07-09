@@ -418,6 +418,7 @@ $(document).ready(function() {
     $(document).on('click', '.submit_star', function() {
         rating_data = $(this).data('rating');
 
+
         reset_background();
         for (var count = 1; count <= rating_data; count++) {
             $('#submit_star_' + count).addClass('text-warning');
@@ -436,10 +437,12 @@ $(document).ready(function() {
             user_review: user_review
         }
         if (rating_data == 0) {
+            $('#validSuccess').hide();
             $('#validTitle').show()
             $('#validTitle').html("You have to rate star!");
             return;
         } else if (user_review == '') {
+            $('#validSuccess').hide();
             $('#validTitle').show()
             $('#validTitle').html("Your review can not blank!");
             return;
@@ -453,11 +456,15 @@ $(document).ready(function() {
                 contentType: "application/json",
                 data: JSON.stringify(rateInfo),
                 success: function(res) {
-                    console.log('Res: ' + res);
-                    resetPage();
-
+                    $('#validSuccess').show();
+                    $('#validSuccess').html("Thanks for your feedback!");
+                    $('#validTitle').hide();
+                    // $('#user_review').val("");
+                    reset_background();
                 }
             });
+            rating_data = 0;
+            $('#user_review').val("");
         }
     });
 
