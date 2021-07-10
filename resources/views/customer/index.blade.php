@@ -1,4 +1,4 @@
-@extends('layout.appindex')
+@extends('layout.app')
 @section('title','index')
 @section('body-class','home_page')
 @section('main')

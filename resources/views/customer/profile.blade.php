@@ -98,7 +98,7 @@
       <div class="row">
         <div class="col-sm-12">
 
-          <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#my-modal"><i class="fa fa-edit"></i></button>
+          <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#my-modal"><i class="fa fa-edit"></i></button>
           <div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
