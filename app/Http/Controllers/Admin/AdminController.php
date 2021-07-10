@@ -24,7 +24,39 @@ use Illuminate\Support\Str;
 class AdminController extends Controller
 {
     public function index(){
-        return view('adminView.index');
+        $fee1=membership_fee::select(DB::raw('DATE(created_at) as date'), DB::raw('sum(price) as sums'))->whereDate('created_at', '=', Carbon::today()->toDateString())->groupBy('date')->first();
+        $fee2=Penalty_fee::select(DB::raw('DATE(created_at) as date'), DB::raw('sum(amount) as sums'))->whereDate('created_at', '=', Carbon::today()->toDateString())->groupBy('date')->first();
+       //tong doanh thu 7 ngay tro lai
+        $countBorrow=[];
+        for ($i=0; $i < 7; $i++) {
+            $countBorrow[$i]=borrow::whereDate('created_at', '=', Carbon::today()->subDay($i)->toDateString())->count();
+        }
+
+        $data1=[
+            'countBorrow'=>borrow::whereDate('created_at', '=', Carbon::today()->toDateString())->count(),
+            'countBorrowMonth'=>borrow::whereMonth('created_at', '=', Carbon::now()->format('m'))->count(),
+            'sumMemberFee'=>($fee1)==null?0:$fee1->sums,
+            'sumPenaFee'=>($fee2)==null?0:$fee2->sums,
+            'sum1'=>membership_fee::whereMonth('created_at', '=', Carbon::now()->format('m'))->whereYear('created_at', '=', Carbon::now()->format('Y'))->sum('price'),
+            'sum2'=>Penalty_fee::whereMonth('created_at', '=',Carbon::now()->format('m'))->whereYear('created_at', '=', Carbon::now()->format('Y'))->sum('amount'),
+            'sumCustomer'=>account::where('role',1)->count(),
+            'countExpired'=>borrow::where('status',4)->count(),
+            'date'=>[
+                Carbon::now()->subDay(6)->format('d-m-Y')=>$countBorrow[6],
+                Carbon::now()->subDay(5)->format('d-m-Y')=>$countBorrow[5],
+                Carbon::now()->subDay(4)->format('d-m-Y')=>$countBorrow[4],
+                Carbon::now()->subDay(3)->format('d-m-Y')=>$countBorrow[3],
+                Carbon::now()->subDay(2)->format('d-m-Y')=>$countBorrow[2],
+                Carbon::now()->subDay(1)->format('d-m-Y')=>$countBorrow[1],
+                Carbon::now()->format('d-m-Y')=>$countBorrow[0]
+            ],
+            'mostBorrowBook'=>borrow::select('book_isbn',DB::raw('count(*) as count'))->groupBy('book_isbn')->orderByDesc('count')->skip(0)->take(5)->get(),
+            'lastBorrow'=>borrow::orderByDesc('created_at')->skip(0)->take(6)->get(),
+            'minNoBook'=>Book::orderBy('no_Copies_Current')->skip(0)->take(4)->get(),
+            'mostMember'=>borrow::select('customer_id',DB::raw('count(*) as count'))->whereMonth('created_at', '=', Carbon::now()->format('m'))->groupBy('customer_id')->orderByDesc('count')->skip(0)->take(8)->get(),
+        ];
+        // dd($data1['mostMember']);
+        return view('adminView.index',compact('data1'));
     }
     public function profile(){
         return view('adminView.profile');
@@ -76,7 +108,7 @@ class AdminController extends Controller
     }
 
     public function contactManage(){
-        $data=DB::table('contact')->orderBy('created_at')->get();
+        $data=DB::table('contact')->orderBy('create_at')->get();
         return view('adminView.contact',compact('data'));
     }
     public function createAccount(){
@@ -284,7 +316,6 @@ class AdminController extends Controller
         request()->validate([
             'borrow'=>'required',
         ]);
-        // dd($date);
         $approved=borrow::where('customer_id',$cusId)->where('status',1)->where('borrowed_From',$date)->whereIn('book_isbn',request()->borrow)->update([
             'status'=>2,
             'issued_by'=>request()->issued_by,

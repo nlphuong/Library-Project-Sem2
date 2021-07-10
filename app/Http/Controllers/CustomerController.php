@@ -130,4 +130,21 @@ class CustomerController extends Controller
         }
 
     }
+    public function postChangeAvatar($id,Request $request){
+        if($request->has('upload')){
+            $account =account::where('id',$id)->first();
+            $file=$request->upload;
+            $filename=uniqid().$file->getClientoriginalName();
+            $file->move(public_path('uploads'),$filename);
+            $request->merge(['image'=>$filename]);
+            $update = account::where('id',$id)->update([
+                'image'=>$request->image
+              ]);
+              if($update) {
+                  request()->session()->invalidate();
+                  request()->session()->push('accountSession',$account);
+                  return redirect()->back();
+              }
+          }
+    }
 }
