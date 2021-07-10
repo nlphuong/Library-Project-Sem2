@@ -107,23 +107,15 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-home"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
+        <li>
+            <a href="{{url('admin/index')}}">
+              <i class="fa fa-home"></i> <span>Dashboard</span>
+            </a>
         <li>
             <a href="{{route('category.index')}}">
               <i class="fa fa-th"></i> <span>Categories</span>
             </a>
-          </li>
+        </li>
         <li class="treeview">
           <a href="">
             <i class="glyphicon glyphicon-book"></i> <span>Books</span>
@@ -409,6 +401,8 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('admin')}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- ChartJS -->
+<script src="{{asset('admin')}}/bower_components/Chart.js/Chart.js"></script>
 <!-- Morris.js charts -->
 <script src="{{asset('admin')}}/bower_components/raphael/raphael.min.js"></script>
 <script src="{{asset('admin')}}/bower_components/morris.js/morris.min.js"></script>
@@ -427,16 +421,16 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('admin')}}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
-@yield('js')
+
 <script src="{{asset('admin')}}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="{{asset('admin')}}/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('admin')}}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
+{{-- <script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script> --}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin')}}/dist/js/demo.js"></script>
-
+@yield('js')
 </body>
 </html>

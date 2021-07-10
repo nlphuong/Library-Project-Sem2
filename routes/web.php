@@ -91,4 +91,5 @@ Route::prefix('customer')->group(function () {
     Route::get('/memberPack/{id}', 'CustomerController@memberPack');
     Route::get('/RegisPack/{id}', 'CustomerController@RegisPack');
     Route::get('/bookmanager/{id}', 'CustomerController@bookmanager');
+    Route::post('/changeAvatar/{id}', 'CustomerController@postChangeAvatar');
 });

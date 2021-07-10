@@ -126,11 +126,13 @@ $(function () {
 
   /* Morris.js Charts */
   // Sales chart
+
+
   var area = new Morris.Area({
     element   : 'revenue-chart',
     resize    : true,
     data      : [
-      { y: '2011 Q1', item1: 2666, item2: 2666 },
+      { y: '2011 Q1', item1: 2666, item2: sites[1] },
       { y: '2011 Q2', item1: 2778, item2: 2294 },
       { y: '2011 Q3', item1: 4912, item2: 1969 },
       { y: '2011 Q4', item1: 3767, item2: 3597 },

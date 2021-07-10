@@ -14,7 +14,7 @@
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic text-center">
-					<img src="{{asset('uploads')}}/{{session('accountSession')[0]['image']}}" class="img-responsive" alt="">
+					<img src="{{asset('uploads')}}/{{$account->image}}" class="img-responsive" alt="">
 				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
@@ -23,14 +23,21 @@
 						{{session('accountSession')[0]['fullname']}}
 					</div>
 					<div class="profile-usertitle-job">
-						Customer since {{date('d-m-Y', strtotime(session('accountSession')[0]['created_at']))}}
+						Customer since {{date('d-m-Y', strtotime($account->create_at))}}
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Follow</button>
-					<button type="button" class="btn btn-danger btn-sm">Message</button>
+                    <form id="formA" method="POST" action="{{url('customer/changeAvatar/'.$account->id)}}" enctype="multipart/form-data" >
+                        @csrf
+                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                        <label for="my-input1"><span  class="btn btn-danger btn-sm">Change avatar</span></label>
+                        <input id="my-input1" class="form-control" type="file" hidden name="upload" onchange="document.getElementById('formA').submit()">
+
+					    {{-- <button type="button" class="btn btn-danger btn-sm">Change avatar</button> --}}
+                    </form>
+
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
@@ -72,6 +79,14 @@
 	</div>
 </div>
 {{-- @yield('script') --}}
+@section('js')
+    <script>
+        // $('#my-input1').change(function (e) {
+        //     $('#formA').submit();
 
+        // });
+
+    </script>
+@endsection
 @endsection
 
