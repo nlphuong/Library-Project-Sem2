@@ -14,13 +14,13 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front"> <img src="{{asset('uploads')}}/package.png" width="75%" alt="avatar">
                             <div class="card-body text-center ">
-                                <h5 class="card-title mb-0">Package One</h5>
-                                <div class="card-text text-black-50">1 Mounths</div>
+                                <h5 class="card-title mb-0">Associate Member</h5>
+                                <div class="card-text text-black-50">1 Month</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package One</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
+                            <h1 class="person text- ">Associate Member</h1>
+                            <p class="description text-black-50">We have a range of memberships on offer, suitable for all organisations and sectors. Take a look at the benefits under each package, then go to register 1 month to have a best experience.</p>
                             <a href="" class="btn btn-success">Register</a>
                         </div>
                     </div>
@@ -33,13 +33,13 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front"> <img src="{{asset('uploads')}}/package.png" width="75%" alt="avatar">
                             <div class="card-body text-center ">
-                                <h5 class="card-title mb-0">Package two</h5>
-                                <div class="card-text text-black-50">6 Mounths</div>
+                                <h5 class="card-title mb-0">Standard Member</h5>
+                                <div class="card-text text-black-50">6 Months</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package two</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
+                            <h1 class="person text- ">Standard Member</h1>
+                            <p class="description text-black-50">Here you will find all the information you need about your benefits. If you are not a member yet, we would be delighted to welcome you as a Member for 6 months.</p>
                             <a href="" class="btn btn-success">Register</a>
                         </div>
                     </div>
@@ -52,13 +52,13 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front"> <img src="{{asset('uploads')}}/package.png" width="75%" alt="avatar">
                             <div class="card-body text-center ">
-                                <h5 class="card-title mb-0">Package three</h5>
+                                <h5 class="card-title mb-0">Advanced Member</h5>
                                 <div class="card-text text-black-50">One Years</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package three</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
+                            <h1 class="person text- ">Advanced Member</h1>
+                            <p class="description text-black-50">We support you throughout your professional life. Whether you are a student, teacher or professor, there’s a membership package to match every career stage and meet your professional needs.</p>
                             <a href="" class="btn btn-success">Register</a>
                         </div>
                     </div>
