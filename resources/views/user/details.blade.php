@@ -18,12 +18,12 @@
                     </div>
                 </div>
                 <p>
-                @if(Session::get('success'))
+                    @if(Session::get('success'))
                     <span style="font-size: 20px;">{{Session::get('success')}}</span>
-                @endif
-                @if(Session::get('fail'))
+                    @endif
+                    @if(Session::get('fail'))
                     <span style="font-size: 20px;">{{Session::get('fail')}}</span>
-                @endif
+                    @endif
 
                 </p>
             </div>
@@ -111,6 +111,15 @@
                 </div>
                 <div class="col-md-4">
                     @if(session('accountSession'))
+                    <?php
+                        $flag = false;
+                        foreach($cusBorrow as $cus){
+                            if (intval($cus->customer_id) == session('accountSession')[0]['id']) {
+                                $flag = true;
+                            }
+                        }
+                        ?>
+                    @if(!$flag)
                     <!-- Button trigger modal -->
                     <a type="button" class="btn btn- btn-lg text-success shadow borrow" data-toggle="modal"
                         data-target="#modelId">
@@ -157,15 +166,21 @@
                                             <input type="text" name="txtIsbn" class="form-control"
                                                 value="{{$books->isbn}}" style="display: none;" />
                                             <br>
-                                            <strong class="text-success">Title: &nbsp;</strong>{{$books->title}} <br>
-                                            <strong class="text-success">Authors: &nbsp;</strong> {{$books->author}}
-                                            <br>
-                                            <strong class="text-success">Publisher: &nbsp;</strong>
-                                            {{$books->publisher}} <br>
+                                            <div class="text-left">
+                                                <strong class="text-success">Title: &nbsp;</strong>{{$books->title}}
+                                                <br>
+                                                <strong class="text-success">Authors: &nbsp;</strong> {{$books->author}}
+                                                <br>
+                                                <strong class="text-success">Publisher: &nbsp;</strong>
+                                                {{$books->publisher}} <br>
+
+
+                                            </div>
                                             <p><i class="text-info fa fa-map-marker" aria-hidden="true"
                                                     style="font-size: 1em"></i>
                                                 &nbsp; {{$books->position}} | &nbsp; <span
                                                     class="text-success">available</span></p>
+
                                         </div>
                                         <div class="row">
 
@@ -174,14 +189,19 @@
                                             <label for=""
                                                 style="font-style: italic;text-decoration: underline red solid;">Select
                                                 date:</label>
-                                            <input type="date" name="borrowDate" class="form-control"
-                                                value="<?php echo date('Y-m-d'); ?>" />
+                                            <input type="date" name="selectDate" class="form-control"
+                                                value="<?php echo date('Y-m-j',strtotime ( '+1 day' , strtotime ( date('Y-m-j') ) )); ?>"/>
                                             <br>
                                             <label for="">
                                                 <p style="font-style: italic;">***Kindly noted that, you will have 24h
                                                     to get your book from your selected date.</p>
                                             </label>
                                         </div>
+                                        @error('selectDate')
+                                        <div class="alert alert-danger" role="alert">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
 
                                         <div class="form-group">
                                             <input type="submit" name="btnborrow" class="btn btn-info"
@@ -196,6 +216,33 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    <a type="button" class="btn btn- btn-lg text-success shadow borrow" data-toggle="modal"
+                        data-target="#modelId">
+                        <i class="fa fa-bookmark-o" aria-hidden="true" style="font-size: 1em"></i> &nbsp; Borrowed
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content"
+                                style="border-radius: 30px; padding: 20px;text-align: center; background-color: beige;">
+
+                                <h5 class="modal-title">Confirm Box</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+                                <div class="modal-body" style="text-align: center;">
+                                    <p>You have registered to borrow this book. Thanks!</p>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     @endif
                 </div>
             </div>
@@ -262,7 +309,8 @@
                 <h2 style="position: absolute; left: 200px; font-size: 30px;">Post your Own Reviews:</h2>
             </strong>
         </div>
-        <br>
+        <div class="alert alert-success" id="validSuccess"
+            style="display: none; font-size: larger; color: red; text-align: center;"> </div>
         <h4 class="text-center mt-2 mb-4">
             <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_1" data-rating="1"></i>
             <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_2" data-rating="2"></i>
@@ -279,7 +327,8 @@
             <label for="Write your feedback">Write your feedback</label>
             <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
         </div>
-        <div id="validTitle" style="display: none; font-size: larger; color: red;"> </div>
+        <div class="alert alert-danger" id="validTitle"
+            style="display: none; font-size: larger; color: red; text-align: center;"> </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" id="save_review" style="background-color: #b32137;
     background-image: linear-gradient(#b32137, #550002);position: absolute; left: 680px;">Submit</button>
@@ -334,7 +383,15 @@
 <script>
 $(document).ready(function() {
     $('#modal-id').modal('show');
+
 });
 </script>
 @endif
+@error('selectDate')
+<script>
+$(document).ready(function() {
+    $('#modelId').modal('show');
+})
+</script>
+@enderror
 @endsection

@@ -19,7 +19,7 @@
     <div class="row ">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"
+                <div class="card-header text-black text-uppercase" style="background-color: cornsilk"><i class="fa fa-list"
                         style="font-size: small"></i> Categories</div>
                 <div class="list-group cate-box">
                     <a class="list-group-item" href="{{url("books")}}">All Categories</a>
@@ -28,16 +28,47 @@
                     @endforeach
                 </div>
             </div>
+            <!--Carousel-->
             <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase">Last product</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <p class="bloc_left_price">99.00 $</p>
+                <div class="card-header bg-dark">
+                    <!-- Left and right controls -->
+                        <a class="btn btn-outline-light btn-sm prev ml-0" href="#myCarousel" data-slide="prev">
+                            <i class="fa fa-lg fa-chevron-left text-left" style="font-size: 1.1em"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <span class="text-white text-uppercase text-md-center">Maybe you like this !</span>
+                        <a class="btn btn-outline-light btn-sm next mr-0" href="#myCarousel" data-slide="next">
+                            <i class="fa fa-lg fa-chevron-right text-right" style="font-size: 1.1em"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                </div>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    
+                    <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card-body">
+                                    <img class="img-fluid" style="height: 100%" src="https://dummyimage.com/600x400/55595c/fff" />
+                                    <h5 class="card-title">Phương đẹp trai </h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.</p>
+                                    <p class="bloc_left_price">99.00 $</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card-body">
+                                    <img class="img-fluid" style="height: 100%" src="https://dummyimage.com/600x400/55595c/fff" />
+                                    <h5 class="card-title">Sang đẹp trai</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.</p>
+                                    <p class="bloc_left_price">99.99 $</p>
+                                </div>
+                            </div>
+                        </div>
+                    <!--End slide-->
                 </div>
             </div>
+            <!--End carousel-->
         </div>
 
         <div class="col">
