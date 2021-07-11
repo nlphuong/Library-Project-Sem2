@@ -73,7 +73,7 @@
                         </div>
                         <div class="flip-card-back">
                             <h1 class="person text">Package two</h1>
-                            <p class="description text-black-50" style="display: flex">For applicants who in love with. Price below for annual Direct Debit. And you can use other services and free tea.</p>
+                            <p class="description text-black-50" style="display: flex">For applicants who in love with. Price below for annual Direct Debit. And you can use other services and free drinks.</p>
                             <br>
                             <p class="price pb-4">25$/3 Months</p>
                             <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=2'}}" class="btn btn-success">Register</a>
