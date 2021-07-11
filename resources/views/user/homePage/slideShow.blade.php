@@ -8,12 +8,6 @@
                          <div class="carousel-caption relative">
                             <h1>The Best Libraries That<br> Every Book Lover Must<br> Visit!</h1>
                             <p>We inspire and enable independent minds<br> providing resources, spaces and technologies.</p>
-                            <ul class="locat_icon">
-                               <li> <a href="#"><img src="icon/facebook.png"></a></li>
-                               <li> <a href="#"><img src="icon/Twitter.png"></a></li>
-                               <li> <a href="#"><img src="icon/linkedin.png"></a></li>
-                               <li> <a href="#"><img src="icon/instagram.png"></a></li>
-                            </ul>
                          </div>
                       </div>
                    </div>

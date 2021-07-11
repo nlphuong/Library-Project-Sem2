@@ -25,6 +25,7 @@
            <div class="row">
               <div class="col-md-12">
                  <div class="read-more">
+                    <a href="{{url('library')}}">Read More</a>
                  </div>
               </div>
            </div>
