@@ -31,8 +31,7 @@
 				<div class="profile-userbuttons">
                     <form id="formA" method="POST" action="{{url('customer/changeAvatar/'.$account->id)}}" enctype="multipart/form-data" >
                         @csrf
-                        <button type="button" class="btn btn-success btn-sm">Follow</button>
-                        <label for="my-input1"><span  class="btn btn-danger btn-sm">Change avatar</span></label>
+                        <label for="my-input1"><span  class="btn btn-outline-secondary btn-sm">Change avatar</span></label>
                         <input id="my-input1" class="form-control" type="file" hidden name="upload" onchange="document.getElementById('formA').submit()">
 
 					    {{-- <button type="button" class="btn btn-danger btn-sm">Change avatar</button> --}}
