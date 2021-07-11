@@ -206,6 +206,11 @@ class AdminController extends Controller
     public function approveRating(Request $request,$id){
         if($request->q=="approve"){
             $update=ratingBook::where('id',$id)->update(['active'=>1]);
+            $rate = ratingBook::where('id',$id)->get(['isbn','rating'])->all();
+            $book = Book::where('isbn', $rate[0]->isbn)->get(['totalstar','totalreview'])->all();
+            $star = $book[0]->totalstar + $rate[0]->rating;
+            $review = intval($book[0]->totalreview + 1);
+            Book::where('isbn', $rate[0]->isbn)->update(['totalstar' => $star,'totalreview'=> $review]);
             if($update) return redirect()->back()->with('Success','Update status success!');
         }
         else if($request->q=="deny"){

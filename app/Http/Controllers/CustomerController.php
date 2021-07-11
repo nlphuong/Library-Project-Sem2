@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\account;
+use App\Models\borrow;
 use App\Models\Membership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -70,8 +71,27 @@ class CustomerController extends Controller
 
     public function bookmanager($id)
     {
+        $borrow = borrow::where('customer_id',$id)->where('status',"1")->orderBy('borrowed_From')->paginate(3);
+        $status = borrow::where('customer_id',$id)->where('status',"1")->first()->{'status'};
+        $membership=Membership::where('customer_id',$id)->first();
         $account = account::where('id', $id)->first();
-        return view('customer.bookmanager', compact('account'));
+        // dd($status);
+        return view('customer.bookmanager')->with(['account'=>$account,
+                                                    'membership'=>$membership,
+                                                    'borrow'=>$borrow,
+                                                    'status'=>$status]);
+    }
+    public function bookByStatus($id, $status)
+    {
+        $borrow = borrow::where('customer_id',$id)->where('status',$status)->orderBy('borrowed_From')->paginate(3);
+        $status = borrow::where('customer_id',$id)->where('status',$status)->first()->{'status'};
+        $membership=Membership::where('customer_id',$id)->first();
+        $account = account::where('id', $id)->first();
+        // dd($status);
+        return view('customer.bookmanager')->with(['account'=>$account,
+                                                    'membership'=>$membership,
+                                                    'borrow'=>$borrow,
+                                                    'status'=>$status]);
     }
     public function RegisPack($id,Request $request)
     {  if(Membership::where('customer_id',$id)->count()!=0){

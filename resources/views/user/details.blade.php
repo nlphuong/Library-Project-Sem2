@@ -303,10 +303,10 @@
 </div>
 <div class="container mt-5 mb-5">
     @if(session('accountSession'))
-    <div class="container shadow" style="border-radius: 15px; padding: 30px; padding-bottom: 70px;">
-        <div class="row mb-5">
+    <div class="container shadow" style="border-radius: 15px; padding: 30px;">
+        <div class="row mb-5 text-left">
             <strong>
-                <h2 style="position: absolute; left: 200px; font-size: 30px;">Post your Own Reviews:</h2>
+                <h2 style="font-size: 30px;">Post your Own Reviews:</h2>
             </strong>
         </div>
         <div class="alert alert-success" id="validSuccess"
@@ -318,7 +318,6 @@
             <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_4" data-rating="4"></i>
             <i class="fa fa-star star-light submit_star mr-1" aria-hidden="true" id="submit_star_5" data-rating="5"></i>
         </h4>
-
         <div class="form-group">
             <input type="text" value="{{session('accountSession')[0]['id']}}" id="user_id" style="display: none;" />
             <input type="text" value="{{$books->isbn}}" id="isbn" style="display: none;" />
@@ -329,9 +328,9 @@
         </div>
         <div class="alert alert-danger" id="validTitle"
             style="display: none; font-size: larger; color: red; text-align: center;"> </div>
-        <div class="form-group">
+        <div class="form-group" style="text-align: center;">
             <button type="submit" class="btn btn-primary" id="save_review" style="background-color: #b32137;
-    background-image: linear-gradient(#b32137, #550002);position: absolute; left: 680px;">Submit</button>
+    background-image: linear-gradient(#b32137, #550002);">Submit</button>
         </div>
     </div>
     <br>
