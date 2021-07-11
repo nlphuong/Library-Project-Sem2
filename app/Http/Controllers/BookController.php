@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\borrow;
+use App\Models\ratingBook;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,19 @@ class BookController extends Controller
             }
         }
         $books = $books->paginate(3);
-        return view('user.books')->with(['books'=>$books]);
+        $arr = [];
+        $recmd = DB::table('books')->get()->all();
+        for ($i=0; $i < count($recmd); $i++) {
+            $avg = 0;
+            if($recmd[$i]->totalreview != 0){
+                $avg = (integer) floor($recmd[$i]->totalstar/$recmd[$i]->totalreview);
+                if($avg > 3){
+                    array_push($arr, $recmd[$i]);
+                }
+            }
+        }
+        shuffle($arr);
+        return view('user.books')->with(['books'=>$books,'arr'=>$arr]);
     }
 
     public function getCategoryBooks($url){
@@ -38,7 +51,19 @@ class BookController extends Controller
             }
         }
         $books = $books->paginate(2);
-        return view('user.books')->with(['books'=>$books]);
+        $arr = [];
+        $recmd = DB::table('books')->get()->all();
+        for ($i=0; $i < count($recmd); $i++) {
+            $avg = 0;
+            if($recmd[$i]->totalreview != 0){
+                $avg = (integer) floor($recmd[$i]->totalstar/$recmd[$i]->totalreview);
+                if($avg > 3){
+                    array_push($arr, $recmd[$i]);
+                }
+            }
+        }
+        shuffle($arr);
+        return view('user.books')->with(['books'=>$books,'arr'=>$arr]);
     }
 
     public function search(Request $request){
@@ -63,8 +88,20 @@ class BookController extends Controller
             }
         }
         $books = $books->paginate(3);
+        $arr = [];
+        $recmd = DB::table('books')->get()->all();
+        for ($i=0; $i < count($recmd); $i++) {
+            $avg = 0;
+            if($recmd[$i]->totalreview != 0){
+                $avg = (integer) floor($recmd[$i]->totalstar/$recmd[$i]->totalreview);
+                if($avg > 3){
+                    array_push($arr, $recmd[$i]);
+                }
+            }
+        }
+        shuffle($arr);
 
-        return view('user.books')->with(['books'=>$books]);
+        return view('user.books')->with(['books'=>$books,'arr'=>$arr]);
 
 
     }
@@ -82,9 +119,9 @@ class BookController extends Controller
                                         ->where('ratingBooks.isbn', $isbn)->where('ratingBooks.active',1)
                                         ->orderByDesc('create_at')
                                         ->paginate(4);
-        $total_no_star = DB::table('ratingBooks')->where('isbn', $isbn)->sum('rating');
+        $total_no_star = DB::table('ratingBooks')->where('isbn', $isbn)->where('ratingBooks.active',1)->sum('rating');
 
-        $total_review = DB::table('ratingBooks')->where('isbn', $isbn)->count();
+        $total_review = DB::table('ratingBooks')->where('isbn', $isbn)->where('ratingBooks.active',1)->count();
 
         if($total_review !== 0){
             $star = floor($total_no_star / $total_review);
