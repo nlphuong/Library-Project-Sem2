@@ -36,7 +36,7 @@
     </div>
 </div>
 @if($membership==null||$membership->status==3)
-<h3>Become a member at Memorial library during our anniversary week and get 10% off the membership free! Get access to our ever -expanding collection of books event and activites.    </h3>
+<h3>Become a member at <b>Memorial Library</b> during our anniversary week and get 10% off the membership free! Get access to our more expanding collection of books event and activites.    </h3>
  @endif
     @if($membership==null||$membership->status==3)
     <div class="row">
@@ -51,9 +51,10 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package One</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
-                            <p>9$/1 Month</p>
+                            <h1 class="person text">Package One</h1>
+                            <p class="description text-black-50" style="display: flex">Our standard full membership. Price below for annual Direct Debit. You can use other standard services.</p>
+                            <br>
+                            <p class="price_pack pb-4">9$/1 Month</p>
                             <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=1'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>
@@ -71,9 +72,10 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package two</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
-                            <p>25$/3 Months</p>
+                            <h1 class="person text">Package two</h1>
+                            <p class="description text-black-50" style="display: flex">For applicants who in love with. Price below for annual Direct Debit. And you can use other services and free drinks.</p>
+                            <br>
+                            <p class="price_pack pb-4">25$/3 Months</p>
                             <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=2'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>
@@ -91,9 +93,10 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h1 class="person text- ">Package three</h1>
-                            <p class="description text-black-50">This is some description about the member of the team, which appears at the back of card and the image appears at the top of the front side with their social media links and the position of the member.</p>
-                            <p>89$/1 Year</p>
+                            <h1 class="person text">Package three</h1>
+                            <p class="description text-black-50" style="display: flex">Spouses or partners of individual or life members. You will be invited to events and can use all services from our Library.</p>
+                            <br>
+                            <p class="price_pack pb-4">89$/1 Year</p>
                             <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=3'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>

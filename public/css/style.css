@@ -2556,10 +2556,15 @@ a.drop-menu i.fa-caret-down {
 }
 
 .person {
-    color: #007b5e;
+    color: rgba(128, 0, 128, 0.66);
     font-family: 'Yrsa', serif;
     font-size: 30px;
     padding: 15px
+}
+
+.price_pack{
+    color: black;
+    font-size: x-large;
 }
 
 
@@ -2636,3 +2641,5 @@ a.drop-menu i.fa-caret-down {
     font-size: small;
     color: #b32137;
 }
+
+
