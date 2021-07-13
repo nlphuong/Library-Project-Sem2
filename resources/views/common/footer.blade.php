@@ -27,7 +27,9 @@
                         <ul>
                            <li><a href="#">Home</a></li>
                            <li><a href="#">About Us</a></li>
-                           <li><a href="#">Contact</a></li>
+                           <li><a href="#">Our Books</a></li>
+                           <li><a href="#">Library</a></li>
+                           <li><a href="#">Contact Us</a></li>
                         </ul>
                      </div>
                   </div>
@@ -44,7 +46,7 @@
                         <div class="footer-shortlink">
                            <li><a target="blank" href="https://goo.gl/maps/cUPcLhpbbMfWtdgHA"><i class="fa fa-location-arrow" style="font-size: 1em"></i> 9878/25 sec 9 rohini 35 </a></li>
                            <p><i class="fa fa-phone" style="font-size: 1em"></i> +91-9999878398  </p>
-                           <li><a href="mailto:support@harvelelectric.com"><i class="fa fa fa-envelope" style="font-size: 1em"></i> info@example.com</a> </li>
+                           <li><a href="mailto:memoriallibrary123@gmail.com"><i class="fa fa fa-envelope" style="font-size: 1em"></i> memoriallibrary123@gmail.com</a> </li>
                         </div>
                      </div>
                  </div>
@@ -60,8 +62,8 @@
            </div>
         </div>
         <div class="copyright">
-           <div class="container">
-              <p>Copyright 2019 All Right Reserved By <a target="blank" href="https://www.facebook.com/phuong.nguyen.351756">TEAM4Phuong</a></p>
+           <div class="container mt-0">
+              <p style="font-size: small">Copyright 2021 All Right Reserved By <a target="blank" href="https://www.facebook.com/phuong.nguyen.351756">Team4Pro</a></p>
            </div>
         </div>
      </footer>
