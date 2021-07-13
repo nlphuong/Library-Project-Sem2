@@ -115,7 +115,7 @@ class AdminController extends Controller
         return view('adminView.account.create');
     }
     public function postCreateAccount(LoginRequest $loginRequest){
-        dd($loginRequest->all());
+        // dd($loginRequest->all());
         $account = new account();
         $account->fullname=request()->fullname;
         $account->email=$loginRequest->email;
@@ -300,7 +300,7 @@ class AdminController extends Controller
             ['status','=',2],
             ['expiration_Date','<',Carbon::now()->format('Ymd')]
         ])->update(['status'=>4]);
-        $borrowExpired=borrow::select('customer_id',DB::raw('count(*) as total'))->where('status',4)->groupBy('customer_id')->orderByDesc('created_at')->get();
+        $borrowExpired=borrow::select('customer_id',DB::raw('count(*) as total'),DB::raw('min(expiration_Date) as min'))->where('status',4)->groupBy('customer_id')->orderByDesc('created_at')->get();
         foreach ($borrowExpired as $be) {
             account::where('id',$be->customer_id)->update(['active'=>2]);
         }
@@ -308,8 +308,9 @@ class AdminController extends Controller
         //show
         $aboutExprireDate=Carbon::now()->addDay(2)->format('Ymd');
         $aboutExpire = borrow::where('status',2)->where('expiration_Date','<',$aboutExprireDate)->get();
+        $borrowing = borrow::where('status',2)->orderBy('expiration_Date')->get();
         $pending=borrow::select('customer_id','borrowed_From',DB::raw('count(*) as total'))->where('status',1)->groupBy('customer_id','borrowed_From')->orderByDesc('created_at')->get();
-        return view('adminView.borrow',compact(['pending','aboutExpire','borrowExpired']));
+        return view('adminView.borrow',compact(['pending','aboutExpire','borrowExpired','borrowing']));
     }
     public function borrowDetail($cusId,$date){
 
@@ -389,6 +390,16 @@ class AdminController extends Controller
                 $message->from('memoriallibrary123@gmail.com');
                 $message->to($data[0]->account->email);
                 $message->subject('Notice about expiration!');
+
+            });
+        return redirect() ->action('Admin\AdminController@borrow');
+    }
+    public function sendMailAboutExpired($id){
+        $data=borrow::where('id',$id)->first();
+        Mail::send('mail.aboutExpired',['data'=>$data], function ($message) use($data) {
+                $message->from('memoriallibrary123@gmail.com');
+                $message->to($data->account->email);
+                $message->subject('Notice that the borrowed book is almost expired!');
 
             });
         return redirect() ->action('Admin\AdminController@borrow');

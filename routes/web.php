@@ -46,7 +46,7 @@ Route::prefix('books')->group(function () {
 
 
 //Route chỉ admin mới vào được(middleware -> admin)
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('/index', 'Admin\AdminController@index');
     Route::resource('category', 'Admin\CategoryController');
@@ -77,12 +77,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/expiredDetail/{cusId}','Admin\AdminController@expiredDetail');
     Route::post('/expiredDetail/{cusId}','Admin\AdminController@postExpiredDetail');
     Route::get('/sendMail/{id}/{total}', 'Admin\AdminController@sendMail');
+    Route::get('/sendMailAboutExpired/{id}', 'Admin\AdminController@sendMailAboutExpired');
 
 
 });
 
 //Route chỉ Customer mới vào được (middleware->cus)
-Route::prefix('customer')->group(function () {
+Route::prefix('customer')->middleware('cus')->group(function () {
     // Route::get('/index', 'CustomerController@index');
     Route::get('/profile/{id}', 'CustomerController@profile');
     Route::post('/editProfile/{id}', 'CustomerController@editProfile');
