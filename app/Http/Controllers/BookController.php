@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\borrow;
+use App\Models\Membership;
 use App\Models\ratingBook;
 use DateTime;
 use Illuminate\Http\Request;
@@ -102,8 +103,6 @@ class BookController extends Controller
         shuffle($arr);
 
         return view('user.books')->with(['books'=>$books,'arr'=>$arr]);
-
-
     }
 
     public function detailBooks($isbn){
@@ -127,15 +126,18 @@ class BookController extends Controller
             $star = floor($total_no_star / $total_review);
         }
 
-        $borrow = DB::table('borrows')->where('book_isbn', $isbn)->get('customer_id');
-        // dd($borrow);
+        $borrow = DB::table('borrows')->where('book_isbn', $isbn)->where('status','3')->get('customer_id');
+        $membership=Membership::where('status','2')->get();
+        //dd($membership);
+
         return view('user.details')->with(['books'=>$books,
                                             'relateBooks'=>$relateBooks,
                                             'star'=>$star,
                                             'rate'=>$rate,
                                             'no_star'=>$total_no_star,
                                             'review'=>$total_review,
-                                            'cusBorrow'=>$borrow]);
+                                            'cusBorrow'=>$borrow,
+                                            'membership'=>$membership]);
     }
 
     public function rating(Request $request){
