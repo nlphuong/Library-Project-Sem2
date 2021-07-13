@@ -71,11 +71,19 @@ class CustomerController extends Controller
 
     public function bookmanager($id)
     {
-        $borrow = borrow::where('customer_id',$id)->where('status',"1")->orderBy('borrowed_From')->paginate(3);
-        $status = borrow::where('customer_id',$id)->where('status',"1")->first()->{'status'};
+        $status =  1;
+        $borrow = borrow::where('customer_id',$id)->where('status',$status);
+        $tmp = $borrow->get()->all();
+        if(!empty($tmp)){
+            $borrow = $borrow->orderBy('borrowed_From');
+            $status = borrow::where('customer_id',$id)->where('status',$status)->first()->{'status'};
+
+        }
+        $borrow = $borrow->paginate(3);
+        //dd($tmp);
         $membership=Membership::where('customer_id',$id)->first();
         $account = account::where('id', $id)->first();
-        // dd($status);
+
         return view('customer.bookmanager')->with(['account'=>$account,
                                                     'membership'=>$membership,
                                                     'borrow'=>$borrow,
@@ -83,8 +91,13 @@ class CustomerController extends Controller
     }
     public function bookByStatus($id, $status)
     {
-        $borrow = borrow::where('customer_id',$id)->where('status',$status)->orderBy('borrowed_From')->paginate(3);
-        $status = borrow::where('customer_id',$id)->where('status',$status)->first()->{'status'};
+        $borrow = borrow::where('customer_id',$id)->where('status',$status);
+        $tmp = $borrow->get()->all();
+        if(!empty($tmp)){
+            $borrow = $borrow->orderBy('borrowed_From');
+            $status = borrow::where('customer_id',$id)->where('status',$status)->first()->{'status'};
+        }
+        $borrow = $borrow->paginate(3);
         $membership=Membership::where('customer_id',$id)->first();
         $account = account::where('id', $id)->first();
         // dd($status);
