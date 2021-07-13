@@ -161,6 +161,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="panel panel-success">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            BORROWING
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <table id="accordion-example-2" class="table" data-paging="true" data-filtering="true" data-sorting="true">
+                                            <thead>
+                                                <tr style="background-color: darkgrey">
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Book title</th>
+                                                    <th>Start date</th>
+                                                    <th>Expiration Date</th>
+
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($borrowing as $b)
+                                                <tr>
+                                                    <td>{{$b->account->email}}</td>
+                                                    <td>{{$b->account->phone}}</td>
+                                                    <td>{{$b->book->title}}</td>
+                                                    <td>{{$b->borrowed_From}}</td>
+                                                    <td>{{$b->expiration_Date}}</td>
+                                                    <td>
+                                                        <a class="btn btn-success" href="{{url('admin/returnBook/'.$b->id.'/'.$b->book_isbn)}}">Return book</a>
+                                                    </td>
+
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="panel panel-warning">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
@@ -295,7 +336,7 @@
                                                                                   </div>
                                                                                   <div class="col-sm-12">
                                                                                     <a href="{{url('admin/returnBook/'.$d->id.'/'.$d->book_isbn)}}" type="submit" class="btn btn-success pull-right"><i class="fa fa-sign-in"></i> Return book</a>
-                                                                                    <a href="" target="_blank" class="btn btn-default pull-right"><i class="fa fa-envelope"></i> Send Email</a>
+                                                                                    <a href="{{url('admin/sendMailAboutExpired/'.$d->id)}}" target="_blank" class="btn btn-default pull-right"><i class="fa fa-envelope"></i> Send Email</a>
                                                                                   </div>
                                                                               </div>
                                                                             </div>
@@ -343,7 +384,7 @@
                                                     <td>{{$b->account->email}}</td>
                                                     <td>{{$b->account->phone}}</td>
                                                     <td>{{$b->total}}</td>
-                                                    <td>{{$b->expiration_Date}}</td>
+                                                    <td>{{date('d-m-Y',strtotime($b->min))}}</td>
                                                     <td><span class="label label-danger">Locked</span></td>
                                                     <td>
                                                         <a href="{{url('admin/expiredDetail/'.$b->customer_id)}}" class="btn btn-primary">Detail</a>
