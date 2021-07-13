@@ -126,9 +126,9 @@ class BookController extends Controller
             $star = floor($total_no_star / $total_review);
         }
 
-        $borrow = DB::table('borrows')->where('book_isbn', $isbn)->where('status','3')->get('customer_id');
+        $borrow = borrow::where('book_isbn', $isbn)->where('status','!=','3')->get()->all();
         $membership=Membership::where('status','2')->get();
-        //dd($membership);
+        //dd($borrow);
 
         return view('user.details')->with(['books'=>$books,
                                             'relateBooks'=>$relateBooks,
@@ -173,15 +173,19 @@ class BookController extends Controller
         $date = date('d/m/Y', strtotime($date));
         $dateTime = DateTime::createFromFormat('d/m/Y H:i:s', "$date 00:00:00");
         $borrow = false;
-        $borrow = borrow::insert([
-            'customer_id'=>intval($cusId),
-            'book_isbn'=>$isbn,
-            'borrowed_From'=>$dateTime,
-        ]);
+
 
         $num = DB::table('books')->where('isbn', $isbn)->first()->{'no_Copies_Current'};
-        $num = $num -1;
-        DB::table('books')->where('isbn', $isbn)->update(array('no_Copies_Current' => $num));
+        if($num > 0){
+            $num = $num -1;
+            DB::table('books')->where('isbn', $isbn)->update(array('no_Copies_Current' => $num));
+            $borrow = borrow::insert([
+                'customer_id'=>intval($cusId),
+                'book_isbn'=>$isbn,
+                'borrowed_From'=>$dateTime,
+            ]);
+        }
+
         //dd($request);
         if ($borrow) {
             return redirect()->back()->with('success', 'Thanks For Your Confirm');

@@ -101,7 +101,7 @@
             </div>
             <div class="row">
                 <h3 class="text-info"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 1em"></i></h3>
-                <p>&nbsp; {{$books->position}} | &nbsp; <span class="text-success">available</span></p>
+                <p>&nbsp; {{$books->position}} | &nbsp; <span class="text-success"> @if($books->no_Copies_Current > 0) Available @else Not Available @endif </span></p>
             </div>
             <div class="row">
                 <div class="col-md-7">
@@ -112,21 +112,46 @@
                 <div class="col-md-4">
                     @if(session('accountSession'))
                     <?php
-                        $flag = false;
+                        $flag = true;
                         $tmp = false;
                         foreach($membership as $mem){
                             if ($mem->customer_id == session('accountSession')[0]['id']) {
                                 $tmp = true;
                             }
                         }
+
                         foreach($cusBorrow as $cus){
-                            if (intval($cus->customer_id) == session('accountSession')[0]['id']) {
-                                $flag = true;
+                            if ($cus->customer_id == session('accountSession')[0]['id']) {
+                                $flag = false;
                             }
                         }
-
                         ?>
-                    @if($flag &&  $membership!=null && $tmp)
+                    @if($books->no_Copies_Current <= 0)
+                    <a type="button" class="btn btn- btn-lg text-success shadow borrow" data-toggle="modal"
+                        data-target="#modelId">
+                        <i class="fa fa-bookmark-o" aria-hidden="true" style="font-size: 1em"></i> &nbsp; Borrow
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content"
+                                style="border-radius: 30px; padding: 20px;text-align: center; background-color: beige;">
+
+                                <h5 class="modal-title">Confirm Box</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="modal-body" style="text-align: center;">
+                                    <p>This book not available. Thanks!</p>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    @elseif($flag &&  $membership!=null && $tmp)
                     <!-- Button trigger modal -->
                     <a type="button" class="btn btn- btn-lg text-success shadow borrow" data-toggle="modal"
                         data-target="#modelId">
@@ -274,6 +299,7 @@
                             </div>
                         </div>
                     </div>
+
                     @endif
                     @endif
                 </div>
@@ -411,6 +437,14 @@
 @endsection
 @section('script')
 @if(Session::has('success') )
+<script>
+$(document).ready(function() {
+    $('#modal-id').modal('show');
+
+});
+</script>
+@endif
+@if(Session::has('fail') )
 <script>
 $(document).ready(function() {
     $('#modal-id').modal('show');
