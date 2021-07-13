@@ -1,6 +1,16 @@
 @extends('layout.profile')
-@section('contentProfile')
+
 <!-- Membership detail -->
+@if($membership==null||$membership->status==3)
+@section('contentMembership')
+<h3>Become a member at <b>Memorial Library</b> during our anniversary week and get 10% off the membership free! Get access to our more expanding collection of books event and activites.    </h3>
+<a href="{{url('customer/memberPack/'.$account->id)}}" style="color: red; text-align: center;"> >>>>>Come to
+							<i class="fa fa-user" style="font-size: 1em"></i>
+							Membership Package to register.<<<<<</a>
+@endsection
+@endif
+@if($membership!=null)
+@section('contentProfile')
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-12">
@@ -91,6 +101,7 @@
     </div>
 </div>
 @endsection
+@endif
 @section('script')
 <script>
 var element = document.getElementById("bookManage");
