@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\borrow;
+use App\Models\Membership;
 use App\Models\ratingBook;
 use DateTime;
 use Illuminate\Http\Request;
@@ -72,10 +73,10 @@ class BookController extends Controller
 
         if(isset($_GET['txtsearch']) && !empty($_GET['txtsearch'])){
             $search = $_GET['txtsearch'];
-            $cateId = $_GET['categories'];
             $books->where('title','Like', '%'.$search.'%');
         }
         if(isset($_GET['categories']) && !empty($_GET['categories'])){
+            $cateId = $_GET['categories'];
             $books->where('category_Id', $cateId);
         }
         if(isset($_GET['sort']) && !empty($_GET['sort'])){
@@ -102,8 +103,6 @@ class BookController extends Controller
         shuffle($arr);
 
         return view('user.books')->with(['books'=>$books,'arr'=>$arr]);
-
-
     }
 
     public function detailBooks($isbn){
@@ -127,15 +126,18 @@ class BookController extends Controller
             $star = floor($total_no_star / $total_review);
         }
 
-        $borrow = DB::table('borrows')->where('book_isbn', $isbn)->get('customer_id');
-        // dd($borrow);
+        $borrow = borrow::where('book_isbn', $isbn)->where('status','!=','3')->get()->all();
+        $membership=Membership::where('status','2')->get();
+        //dd($borrow);
+
         return view('user.details')->with(['books'=>$books,
                                             'relateBooks'=>$relateBooks,
                                             'star'=>$star,
                                             'rate'=>$rate,
                                             'no_star'=>$total_no_star,
                                             'review'=>$total_review,
-                                            'cusBorrow'=>$borrow]);
+                                            'cusBorrow'=>$borrow,
+                                            'membership'=>$membership]);
     }
 
     public function rating(Request $request){
@@ -171,15 +173,19 @@ class BookController extends Controller
         $date = date('d/m/Y', strtotime($date));
         $dateTime = DateTime::createFromFormat('d/m/Y H:i:s', "$date 00:00:00");
         $borrow = false;
-        $borrow = borrow::insert([
-            'customer_id'=>intval($cusId),
-            'book_isbn'=>$isbn,
-            'borrowed_From'=>$dateTime,
-        ]);
+
 
         $num = DB::table('books')->where('isbn', $isbn)->first()->{'no_Copies_Current'};
-        $num = $num -1;
-        DB::table('books')->where('isbn', $isbn)->update(array('no_Copies_Current' => $num));
+        if($num > 0){
+            $num = $num -1;
+            DB::table('books')->where('isbn', $isbn)->update(array('no_Copies_Current' => $num));
+            $borrow = borrow::insert([
+                'customer_id'=>intval($cusId),
+                'book_isbn'=>$isbn,
+                'borrowed_From'=>$dateTime,
+            ]);
+        }
+
         //dd($request);
         if ($borrow) {
             return redirect()->back()->with('success', 'Thanks For Your Confirm');

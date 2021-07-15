@@ -75,8 +75,8 @@ CREATE TABLE `books` (
   `image` text COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `position` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `totalstar` int(11) NOT NULL,
-  `totalreview` int(11) NOT NULL,
+  `totalstar` int(11) NOT NULL DEFAULT 0,
+  `totalreview` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

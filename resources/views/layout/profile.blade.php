@@ -57,7 +57,7 @@
 							<i class="fa fa-lock"></i>
 							Change Password </a>
 						</li>
-						<li>
+						<li id="bookManage">
 							<a href="{{url('customer/bookmanager/'.$account->id)}}">
 							<i class="fa fa-book"></i>
 							Books Manager </a>
