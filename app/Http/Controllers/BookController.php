@@ -73,10 +73,10 @@ class BookController extends Controller
 
         if(isset($_GET['txtsearch']) && !empty($_GET['txtsearch'])){
             $search = $_GET['txtsearch'];
-            $cateId = $_GET['categories'];
             $books->where('title','Like', '%'.$search.'%');
         }
         if(isset($_GET['categories']) && !empty($_GET['categories'])){
+            $cateId = $_GET['categories'];
             $books->where('category_Id', $cateId);
         }
         if(isset($_GET['sort']) && !empty($_GET['sort'])){

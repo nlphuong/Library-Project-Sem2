@@ -190,7 +190,9 @@
                                 <i class="text-success fa fa-clock-o" aria-hidden="true" style="font-size: 1em"></i>
                                 <strong>Year: &nbsp;</strong> {{$b->publication_Year}}<br />
                                 <i class="text-success fa fa-file-text-o" aria-hidden="true" style="font-size: 1em"></i>
-                                <strong>Pages: &nbsp;</strong> {{$b->no_Pages}} &nbsp;pages.
+                                <strong>Pages: &nbsp;</strong> {{$b->no_Pages}} &nbsp;pages.<br/>
+                                <i class="text-success fa fa-money" aria-hidden="true" style="font-size: 1em"></i>
+                                <strong>Market price: &nbsp;</strong> {{$b->price}}&nbsp;<i class="fa fa-usd" aria-hidden="true" style="font-size: 1em"></i>
                             </p>
                             <br />
                             <div class="row">
