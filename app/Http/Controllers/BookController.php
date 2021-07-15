@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\account;
 use App\Models\Book;
 use App\Models\borrow;
 use App\Models\Membership;
@@ -9,6 +10,7 @@ use App\Models\ratingBook;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -22,9 +24,13 @@ class BookController extends Controller
                 $books->orderBy('publication_Year');
             }else if($_GET['sort']== "3"){
                 $books->orderByDesc('publication_Year');
+            }else if($_GET['sort']== "4"){
+                $books->orderBy('price');
+            }else if($_GET['sort']== "5"){
+                $books->orderByDesc('price');
             }
         }
-        $books = $books->paginate(3);
+        $books = $books->paginate(4);
         $arr = [];
         $recmd = DB::table('books')->get()->all();
         for ($i=0; $i < count($recmd); $i++) {
@@ -49,9 +55,13 @@ class BookController extends Controller
                 $books->orderBy('publication_Year');
             }else if($_GET['sort']== "3"){
                 $books->orderByDesc('publication_Year');
+            }else if($_GET['sort']== "4"){
+                $books->orderBy('price');
+            }else if($_GET['sort']== "5"){
+                $books->orderByDesc('price');
             }
         }
-        $books = $books->paginate(2);
+        $books = $books->paginate(4);
         $arr = [];
         $recmd = DB::table('books')->get()->all();
         for ($i=0; $i < count($recmd); $i++) {
@@ -86,7 +96,12 @@ class BookController extends Controller
                 $books->orderBy('publication_Year');
             }else if($_GET['sort']== "3"){
                 $books->orderByDesc('publication_Year');
+            }else if($_GET['sort']== "4"){
+                $books->orderBy('price');
+            }else if($_GET['sort']== "5"){
+                $books->orderByDesc('price');
             }
+
         }
         $books = $books->paginate(3);
         $arr = [];
@@ -112,7 +127,7 @@ class BookController extends Controller
 
         $relateBooks = DB::table('books')->where('isbn','!=',intval($isbn))
                                         ->where(['category_Id'=>$books->category_Id])
-                                        ->inRandomOrder()->limit(2)->get();
+                                        ->inRandomOrder()->limit(4)->get();
 
         $rate = DB::table('ratingBooks')->join('accounts', 'ratingBooks.customer_Id', '=', 'accounts.id')
                                         ->where('ratingBooks.isbn', $isbn)->where('ratingBooks.active',1)
@@ -184,6 +199,19 @@ class BookController extends Controller
                 'book_isbn'=>$isbn,
                 'borrowed_From'=>$dateTime,
             ]);
+            $customer=account::where('id',$cusId)->first();
+            $book=DB::table('books')->where('isbn', $isbn)->get();
+            $data=[$customer,$book,$dateTime->format('d-m-Y H:i')];
+            Mail::send('mail.registerBorrow',[
+                'customer'=>$data[0],
+                'book'=>$data[1],
+                'start'=>$data[2]
+            ], function ($message) use($data) {
+                    $message->from('memoriallibrary123@gmail.com');
+                    $message->to($data[0]->email);
+                    $message->subject('Notice about borrowing books!');
+
+                });
         }
 
         //dd($request);

@@ -90,7 +90,7 @@
                             <div class="card" style="text-align: center;">
                             <a href="{{url("books/detail/{$arr[$i]->isbn}")}}"><img src="{{asset('uploads')}}/{{$arr[$i]->image}}" style="height: 250px;"
                                     class="card-img-top img-fluid" alt=""></a>
-                                <div class="card-title" style="height: 50px;">
+                                <div class="card-title" style="height: 70px;">
                                     <h4><a href="{{url("books/detail/{$arr[$i]->isbn}")}}" title="View Product">{{$arr[$i]->title}}</a></h4>
 
                                 </div>
@@ -160,6 +160,10 @@
 
                                 <option value="1" @if(isset($_GET['sort']) && $_GET['sort']==1) selected @endif>Latest
                                 </option>
+                                <option value="4" @if(isset($_GET['sort']) && $_GET['sort']==4) selected @endif>Price
+                                    increase</option>
+                                <option value="5" @if(isset($_GET['sort']) && $_GET['sort']==5) selected @endif>Price
+                                    decrease<i class="fa fa-arrow-down" aria-hidden="true"></i></option>
                                 <option value="2" @if(isset($_GET['sort']) && $_GET['sort']==2) selected @endif>Year
                                     increase</option>
                                 <option value="3" @if(isset($_GET['sort']) && $_GET['sort']==3) selected @endif>Year
