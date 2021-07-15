@@ -161,7 +161,7 @@
                                   </div>
                               @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure you want to update ?')">Update</button>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to update ?')">Update</button>
                           </form>
                       </div>
 
