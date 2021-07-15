@@ -86,7 +86,7 @@
                                                 <li><a  href="{{url('admin/approveRating?q=deny',['id'=>$d->id])}}">Deny</a></li>
                                                 @endif
                                                 @if(session('adminSession')[0]['role']==3)
-                                                <li><a onclick="confirm('Are you sure you want to Delete this account?')" href="{{url('admin/approveRating?q=delete',['id'=>$d->id])}}">Delete</a></li>
+                                                <li><a onclick="return confirm('Are you sure you want to Delete this account?')" href="{{url('admin/approveRating?q=delete',['id'=>$d->id])}}">Delete</a></li>
                                                 @endif
                                             </ul>
 

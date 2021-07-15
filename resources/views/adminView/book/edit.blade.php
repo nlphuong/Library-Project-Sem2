@@ -208,7 +208,7 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" onclick="confirm('Are you sure update? ')" class="btn btn-primary col-sm-offset-2">Update</button>
+                                <button type="submit" onclick="return confirm('Are you sure update? ')" class="btn btn-primary col-sm-offset-2">Update</button>
                                 <a href="{{route('book.index')}}" type="button" class="btn btn-danger ">Cancel</a>
 
                             </div>

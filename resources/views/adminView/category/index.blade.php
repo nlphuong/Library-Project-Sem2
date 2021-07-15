@@ -134,7 +134,7 @@
 
                                                       <div class="box-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        <button type="submit" onclick="confirm('Are you sure update? ')" class="btn btn-primary">Update</button>
+                                                        <button type="submit" onclick="return confirm('Are you sure update? ')" class="btn btn-primary">Update</button>
 
                                                       </div>
                                                     </form>

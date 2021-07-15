@@ -55,7 +55,7 @@
                             <p class="description text-black-50" style="display: flex">Our standard full membership. Price below for annual Direct Debit. You can use other standard services.</p>
                             <br>
                             <p class="price_pack pb-4">9$/1 Month</p>
-                            <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=1'}}" class="btn btn-success">Register</a>
+                            <a onclick="return confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=1'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <p class="description text-black-50" style="display: flex">For applicants who in love with. Price below for annual Direct Debit. And you can use other services and free drinks.</p>
                             <br>
                             <p class="price_pack pb-4">25$/3 Months</p>
-                            <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=2'}}" class="btn btn-success">Register</a>
+                            <a onclick="return confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=2'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                             <p class="description text-black-50" style="display: flex">Spouses or partners of individual or life members. You will be invited to events and can use all services from our Library.</p>
                             <br>
                             <p class="price_pack pb-4">89$/1 Year</p>
-                            <a onclick="confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=3'}}" class="btn btn-success">Register</a>
+                            <a onclick="return confirm('Are you sure you want to register this membership Package!')" href="{{url('customer/RegisPack/'.$account->id).'?pack=3'}}" class="btn btn-success">Register</a>
                         </div>
                     </div>
                 </div>

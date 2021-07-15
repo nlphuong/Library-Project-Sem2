@@ -220,7 +220,7 @@
 
                           <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure change information?')">Save Change</button>
+                              <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure change information?')">Save Change</button>
                             </div>
                           </div>
                         </form>
@@ -295,7 +295,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure change password?')">Save Change</button>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure change password?')">Save Change</button>
                             </div>
                           </div>
 
@@ -330,7 +330,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" onclick="confirm('We will reset your password and send password to this email!')">Send password</button>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('We will reset your password and send password to this email!')">Send password</button>
                             </div>
                           </div>
 

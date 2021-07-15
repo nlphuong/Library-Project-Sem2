@@ -63,7 +63,7 @@
           @enderror
       </div>
 
-      <button type="submit" class="btn btn-primary" onclick="confirm('Are you sure change password?')">Save Change</button>
+      <button type="submit" class="btn btn-primary" onclick="return  confirm('Are you sure change password?')">Save Change</button>
   </form>
 
 

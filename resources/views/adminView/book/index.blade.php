@@ -77,7 +77,7 @@
                                                     <form id="my_form{{$d->isbn}}" action="{{route('book.destroy',$d->isbn)}}" method="post">
                                                         @csrf
                                                         <input type="hidden" value="Delete" name="_method">
-                                                        <button style="border: none;background:none" class="dropdown-fix" onclick="confirm('Are you sure you want to delete?')" type="submit">Delete</button>
+                                                        <button style="border: none;background:none" class="dropdown-fix" onclick="return confirm('Are you sure you want to delete?')" type="submit">Delete</button>
                                                     </form>
                                                 </li>
                                             </ul>

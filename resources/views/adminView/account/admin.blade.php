@@ -78,12 +78,12 @@
                                                     <button style="border: none;background:none" class="dropdown-fix" type="button" data-toggle="modal" data-target="#my-modal{{$d->id}}">Detail</button>
                                                 </li>
                                                 @if($d->active==1)
-                                                <li><a onclick="confirm('Are you sure you want to lock this account?')" href="{{url('admin/account/lock',['id'=>$d->id])}}">Lock</a></li>
+                                                <li><a onclick="return confirm('Are you sure you want to lock this account?')" href="{{url('admin/account/lock',['id'=>$d->id])}}">Lock</a></li>
                                                 @else
-                                                <li><a onclick="confirm('Are you sure you want to unLock this account?')" href="{{url('admin/account/unlock',['id'=>$d->id])}}">UnLock</a></li>
+                                                <li><a onclick="return confirm('Are you sure you want to unLock this account?')" href="{{url('admin/account/unlock',['id'=>$d->id])}}">UnLock</a></li>
                                                 @endif
                                                 @if(session('adminSession')[0]['role']==3)
-                                                <li><a onclick="confirm('Are you sure you want to Delete this account?')" href="{{url('admin/account/delete',['id'=>$d->id])}}">Delete</a></li>
+                                                <li><a onclick="return confirm('Are you sure you want to Delete this account?')" href="{{url('admin/account/delete',['id'=>$d->id])}}">Delete</a></li>
                                                 @endif
                                             </ul>
 
