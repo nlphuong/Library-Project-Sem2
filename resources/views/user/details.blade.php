@@ -100,6 +100,11 @@
                 </p>
             </div>
             <div class="row">
+                <p><i class="text-success fa fa-money" aria-hidden="true" style="font-size: 1em"></i>
+                    <strong>Market price: &nbsp;</strong> {{$books->price}}&nbsp;<i class="fa fa-usd" aria-hidden="true" style="font-size: 1em"></i>
+                </p>
+            </div>
+            <div class="row">
                 <h3 class="text-info"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 1em"></i></h3>
                 <p>&nbsp; {{$books->position}} | &nbsp; <span class="text-success"> @if($books->no_Copies_Current > 0) Available @else Not Available @endif </span></p>
             </div>
