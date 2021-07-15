@@ -341,7 +341,7 @@
 
                 </div>
                 <div class="card-text">
-                    <strong>Authors: &nbsp;</strong> {{$b->author}}.<br />
+                    <p style="height: 50px;"><strong>Authors: &nbsp;</strong> {{$b->author}}.</p><br />
                     <br>
                     <a href="{{url("books/detail/{$b->isbn}")}}" class="btn btn-danger text-light"><i class="fa fa-book"
                             aria-hidden="true" style="font-size: 1em"></i>&nbsp;
@@ -386,7 +386,8 @@
             <input type="text" value="{{$books->isbn}}" id="isbn" style="display: none;" />
         </div>
         <div class="form-group">
-            <label for="Write your feedback">Write your feedback</label>
+            <label for="">Write your feedback:</label><br>
+            <label for="" class="text-danger">***Kindly noted that: If your feedback violates our community rules, it will be deleted without notice to you.</label>
             <textarea class="form-control" id="user_review" rows="3" placeholder="enter your review"></textarea>
         </div>
         <div class="alert alert-danger" id="validTitle"
