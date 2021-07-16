@@ -141,7 +141,7 @@
                                     </div>
                                     <!-- <input type="hidden" name="search_param" value="all" id="search_param"> -->
                                     <input style="border-style: hidden;background-color: cornsilk;" type="text"
-                                        class="form-control" name="txtsearch" placeholder="Search term...">
+                                        class="form-control" name="txtsearch" placeholder="Search book's name...">
                                     <span class="input-group-btn" style="background-color: white">
                                         <button class="btn btn-default"
                                             style="background-color: cornsilk;border-radius: 0px 25px 25px 0px;"

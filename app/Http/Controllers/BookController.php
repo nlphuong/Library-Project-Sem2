@@ -202,7 +202,7 @@ class BookController extends Controller
             $customer=account::where('id',$cusId)->first();
             $book=DB::table('books')->where('isbn', $isbn)->get();
             $data=[$customer,$book,$dateTime->format('d-m-Y H:i')];
-            Mail::send('mail.registerBorrow',[
+            $mail = Mail::send('mail.registerBorrow',[
                 'customer'=>$data[0],
                 'book'=>$data[1],
                 'start'=>$data[2]
@@ -213,11 +213,12 @@ class BookController extends Controller
 
                 });
         }
-
         //dd($request);
-        if ($borrow) {
+        if(!$mail){
+            return redirect()->back()->with('fail', 'Can not send email confirm to your email. Please contact with admin.');
+        }else if ($borrow) {
             return redirect()->back()->with('success', 'Thanks For Your Confirm');
-        } else {
+        } else if(!$borrow){
             return redirect()->back()->with('fail', 'Your Confirm send to admin failed');
         }
     }
