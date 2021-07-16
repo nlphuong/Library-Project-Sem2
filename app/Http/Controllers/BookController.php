@@ -143,6 +143,7 @@ class BookController extends Controller
 
         $borrow = borrow::where('book_isbn', $isbn)->where('status','!=','3')->get()->all();
         $membership=Membership::where('status','2')->get();
+        $account = DB::table('accounts')->where('active', 2)->get();
         //dd($borrow);
 
         return view('user.details')->with(['books'=>$books,
@@ -152,7 +153,8 @@ class BookController extends Controller
                                             'no_star'=>$total_no_star,
                                             'review'=>$total_review,
                                             'cusBorrow'=>$borrow,
-                                            'membership'=>$membership]);
+                                            'membership'=>$membership,
+                                            'account'=>$account]);
     }
 
     public function rating(Request $request){
@@ -202,7 +204,7 @@ class BookController extends Controller
             $customer=account::where('id',$cusId)->first();
             $book=DB::table('books')->where('isbn', $isbn)->get();
             $data=[$customer,$book,$dateTime->format('d-m-Y H:i')];
-            $mail = Mail::send('mail.registerBorrow',[
+            Mail::send('mail.registerBorrow',[
                 'customer'=>$data[0],
                 'book'=>$data[1],
                 'start'=>$data[2]
@@ -214,11 +216,9 @@ class BookController extends Controller
                 });
         }
         //dd($request);
-        if(!$mail){
-            return redirect()->back()->with('fail', 'Can not send email confirm to your email. Please contact with admin.');
-        }else if ($borrow) {
+        if ($borrow) {
             return redirect()->back()->with('success', 'Thanks For Your Confirm');
-        } else if(!$borrow){
+        }else if(!$borrow){
             return redirect()->back()->with('fail', 'Your Confirm send to admin failed');
         }
     }
