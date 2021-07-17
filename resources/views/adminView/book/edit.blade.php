@@ -136,7 +136,7 @@
                                             <div class="col-sm-8">
                                                 <select name="position" id="position" class="form-control" required="required">
 
-                                                    <option @if($book->position=='Matheson') selected @endif value="Matheson">Matheson Library</option>
+                                                    <option  @if($book->position=='Matheson') selected @endif value="Matheson">Matheson Library</option>
                                                     <option  @if($book->position=='Peninsula') selected @endif value="Peninsula">Peninsula Library</option>
                                                     <option  @if($book->position=='Caufield') selected @endif value="Caufield">Caufield Library</option>
                                                     <option  @if($book->position=='Hargrave') selected @endif value="Hargrave">Hargrave Library</option>
