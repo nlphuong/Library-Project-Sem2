@@ -150,34 +150,26 @@
     <!-- /.content -->
     <div class="modal fade" id="modal-id">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 style="font-weight: bold" class="modal-title">Message</h3>
-                </div>
+            <div class="modal-content" style="text-align: center; border-radius: 25px;">
                 <div class="modal-body">
                     <div class="success-checkmark">
-                        <div class="check-icon">
-                          <span class="icon-line line-tip"></span>
-                          <span class="icon-line line-long"></span>
-                          <div class="icon-circle"></div>
-                          <div class="icon-fix"></div>
+                        <div class="check-icon" style="box-sizing: content-box !important">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
                         </div>
                     </div>
+                    <p>
+                        @if(Session::get('Success'))
+                        <span style="font-size: 20px;">{{Session::get('Success')}}</span>
+                        @endif
+                        @if(Session::get('fail'))
+                        <span style="font-size: 20px;">{{Session::get('fail')}}</span>
+                        @endif
 
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-
-                            @if(Session::has('Success'))
-                                {{Session::get('Success')}}
-                            @endif
-
-                        </strong>
-                    </div>
-
+                    </p>
                 </div>
-
             </div>
         </div>
     </div>
