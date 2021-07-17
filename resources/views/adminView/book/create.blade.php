@@ -117,40 +117,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="position" class="col-sm-4 control-label">Position</label>
-                                  <div class="col-sm-8">
-                                      <div class="rows">
-                                          <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="position" id="input" value="A" checked="checked">A
-                                                </label>
-                                            </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="position" id="input" value="B" >B
-                                                </label>
-                                            </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="position" id="input" value="C">C
-                                                </label>
-                                            </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="position" id="input" value="D">D
-                                                </label>
-                                            </div>
-                                          </div>
 
-                                      </div>
-                                  </div>
+                                        <label for="position" class="col-sm-4 control-label">Position</label>
+                                        <div class="col-sm-8">
+                                          <select name="position" id="position" class="form-control" required="required">
+                                              <option disabled selected value> -- select position book -- </option>
+                                              <option value="Matheson">Matheson Library</option>
+                                              <option value="Peninsula">Peninsula Library</option>
+                                              <option value="Caufield">Caufield Library</option>
+                                              <option value="Hargrave">Hargrave Library</option>
+                                              <option value="Law">Law Library</option>
+                                              <option value="Pharmacy">Pharmacy Library</option>
+                                          </select>
+                                        </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="image" class="col-sm-4 control-label">Image</label>
@@ -213,37 +193,30 @@
     <!-- /.content -->
     <div class="modal fade" id="modal-id">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 style="font-weight: bold" class="modal-title">Message</h3>
-                </div>
+            <div class="modal-content" style="text-align: center; border-radius: 25px;">
                 <div class="modal-body">
                     <div class="success-checkmark">
-                        <div class="check-icon">
-                          <span class="icon-line line-tip"></span>
-                          <span class="icon-line line-long"></span>
-                          <div class="icon-circle"></div>
-                          <div class="icon-fix"></div>
+                        <div class="check-icon" style="box-sizing: content-box !important">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
                         </div>
                     </div>
+                    <p>
+                        @if(Session::get('createSuccess'))
+                        <span style="font-size: 20px;">{{Session::get('createSuccess')}}</span>
+                        @endif
+                        @if(Session::get('fail'))
+                        <span style="font-size: 20px;">{{Session::get('fail')}}</span>
+                        @endif
 
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>
-
-                            @if(Session::has('createSuccess'))
-                                {{Session::get('createSuccess')}}
-                            @endif
-
-                        </strong>
-                    </div>
-
+                    </p>
                 </div>
-
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
     <!-- Summernote -->

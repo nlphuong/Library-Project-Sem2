@@ -88,7 +88,7 @@ class BookController extends Controller
         $update = book::where('isbn',$isbn)->update([
             'title'=>$request->title,
             'author'=>$request->author,
-            'no_pages'=>$request->no_pages,
+            'no_Pages'=>$request->no_Pages,
             'publication_Year'=>$request->publication_Year,
             'price'=>$request->price,
             'category_id'=>$request->category_id,

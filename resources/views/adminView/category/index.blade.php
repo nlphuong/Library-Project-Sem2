@@ -1,4 +1,10 @@
 @extends('layout.admin.index')
+@section('css')
+    <!-- summernote -->
+
+  <link rel="stylesheet" href="{{asset('css')}}/admincss.css">
+
+@endsection
 @section('main')
 {{-- @if(Session::has('createSuccess'))
     <script>alert('{{Session::get("createSuccess")}}')</script>
