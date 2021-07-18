@@ -39,7 +39,7 @@
                     @enderror
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" pattern=".{8,}" class="form-control" id="password" placeholder="Password" required name="password">
+                      <input type="password"  class="form-control" id="password" placeholder="Password" required name="password">
                     </div>
                     @error('password')
                     <div class="alert alert-danger" role="alert">
@@ -48,7 +48,7 @@
                     @enderror
                     <div class="form-group">
                       <label for="confirm_password">Confirm Password</label>
-                      <input type="password" pattern=".{8,}" class="form-control" id="confirm_password" placeholder="Confirm Password" required name="confirm_password">
+                      <input type="password"  class="form-control" id="confirm_password" placeholder="Confirm Password" required name="confirm_password">
                     </div>
                     @error('confirm_password')
                     <div class="alert alert-danger" role="alert">
