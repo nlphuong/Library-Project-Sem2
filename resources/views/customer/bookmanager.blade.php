@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="card-body">
-                                <h4 class="card-title">{{$b->book->title}}</h4>
+                                <h4 class="card-title"><a href="{{url("books/detail/{$b->book_isbn}")}}">{{$b->book->title}}</a></h4>
                                 <p class="card-text">
                                     <i class="fa fa-hourglass-start booktime"></i> Borrow Date: {{$b->borrowed_From}}
                                     <br>
