@@ -446,8 +446,7 @@
                     <p class="card-text">
                         {{$r->comment}}
                     </p>
-                    <br />
-                    <!-- {!! $b->content !!} -->
+                    <br />                   
                 </div>
             </div>
             <div class="col-sm-3" style="display:flex; align-items: center;">
