@@ -54,9 +54,9 @@
                         <?php $avg = floor($arr[0]->totalstar/$arr[0]->totalreview); ?>
                         <div class="carousel-item active">
                             <div class="card" style="text-align: center;">
-                            <a href="{{url("books/detail/{$arr[0]->isbn}")}}"><img src="{{asset('uploads')}}/{{$arr[0]->image}}" style="height: 250px;"
+                            <a href="{{url("books/detail/{$arr[0]->isbn}")}}"><img src="{{asset('uploads')}}/{{$arr[0]->image}}" style="height: 250px; width: auto;"
                                     class="card-img-top img-fluid" alt=""></a>
-                                <div class="card-title" style="height: 50px;">
+                                <div class="card-title" style="height: 70px;">
                                     <h4><a href="{{url("books/detail/{$arr[0]->isbn}")}}" title="View Product">{{$arr[0]->title}}</a></h4>
 
                                 </div>
